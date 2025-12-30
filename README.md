@@ -1,4 +1,4 @@
-# bread-adventure
+# Bread Adventure
 
 https://store.steampowered.com/app/3835290/Bread_Adventure/
 

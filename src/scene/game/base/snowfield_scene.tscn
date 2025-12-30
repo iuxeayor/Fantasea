@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxligf43thp75"]
+
+[ext_resource type="PackedScene" uid="uid://d3f8si3p73axf" path="res://src/scene/scene.tscn" id="1_26di7"]
+[ext_resource type="Script" uid="uid://b7npp0mavq82n" path="res://src/scene/game/base/snowfield_scene.gd" id="2_8xvja"]
+[ext_resource type="Texture2D" uid="uid://beyx0hbcqc20j" path="res://asset/texture/background/snowplain_mountain.webp" id="3_5enx1"]
+[ext_resource type="Texture2D" uid="uid://btaiko21kvps6" path="res://asset/texture/background/snowplain_sky.webp" id="3_46ocq"]
+[ext_resource type="AudioStream" uid="uid://cgd5apu7fh7h5" path="res://asset/music/snowfield.ogg" id="3_y3eg4"]
+[ext_resource type="Texture2D" uid="uid://c1ufbcc8230x0" path="res://asset/texture/background/snowplain_tree.webp" id="4_nfsjj"]
+[ext_resource type="Material" uid="uid://b3ffm1l1h0xaf" path="res://src/asset/particle/high_snow.tres" id="11_slisd"]
+[ext_resource type="Material" uid="uid://dndu5ccosdvm1" path="res://src/asset/particle/low_snow.tres" id="12_6r71k"]
+
+[node name="SnowfieldScene" instance=ExtResource("1_26di7")]
+script = ExtResource("2_8xvja")
+close_normal_snow = false
+scene_environment = 3
+bgm = ExtResource("3_y3eg4")
+scene_name = "SCENE_SNOWFIELD"
+
+[node name="Sky" type="Parallax2D" parent="Background/Environment" index="1"]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/Sky" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("3_46ocq")
+
+[node name="Mountain" type="Parallax2D" parent="Background/Environment" index="2"]
+scroll_scale = Vector2(0.8, 0.2)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/Mountain" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("3_5enx1")
+
+[node name="Tree" type="Parallax2D" parent="Background/Environment" index="3"]
+scroll_scale = Vector2(0.9, 0.1)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/Tree" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("4_nfsjj")
+
+[node name="Snow" type="Node2D" parent="Background/Prop" index="0"]
+z_index = -1
+position = Vector2(192, -8)
+
+[node name="HighSnowParticle" type="GPUParticles2D" parent="Background/Prop/Snow" index="0"]
+amount = 20
+lifetime = 8.0
+preprocess = 8.0
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+process_material = ExtResource("11_slisd")
+metadata/_edit_lock_ = true
+
+[node name="LowSnowParticle" type="GPUParticles2D" parent="Background/Prop/Snow" index="1"]
+amount = 40
+lifetime = 6.0
+preprocess = 6.0
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+process_material = ExtResource("12_6r71k")
+metadata/_edit_lock_ = true
+
+[node name="EnvironmentLight" type="DirectionalLight2D" parent="Lights" index="0"]
+color = Color(0.635294, 0.752941, 1, 1)
+energy = 0.15
+blend_mode = 2
+range_layer_min = -10
+range_layer_max = 10

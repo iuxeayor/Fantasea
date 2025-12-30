@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhcc2kjd40rou"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_0upbc"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_msaes"]
+[ext_resource type="Texture2D" uid="uid://bvw2ud6qs5055" path="res://asset/texture/unit/npc/potato_chip.webp" id="3_msaes"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_a8i7h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8i7h"]
+resource_local_to_scene = true
+shader = ExtResource("2_msaes")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msaes"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_xofn3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -12)]
+}
+
+[sub_resource type="Animation" id="Animation_a8i7h"]
+resource_name = "flow"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -12), Vector2(0, -13)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xofn3"]
+_data = {
+&"RESET": SubResource("Animation_xofn3"),
+&"hover": SubResource("Animation_a8i7h")
+}
+
+[node name="PotatoChip" instance=ExtResource("1_0upbc")]
+animation_name = &"hover"
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_a8i7h")
+position = Vector2(0, -12)
+texture = ExtResource("3_msaes")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_msaes")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_xofn3")
+}
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+position = Vector2(0, -22)
+root_dialog = NodePath("DialogContent")
+
+[node name="DialogContent" parent="Dialog" index="3" instance=ExtResource("4_a8i7h")]
+can_end = true
+message = Array[String](["POTATO_CHIP_0", "POTATO_CHIP_1", "POTATO_CHIP_2"])

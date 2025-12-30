@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://brsj7mrbg43sm"]
+
+[ext_resource type="PackedScene" uid="uid://b5lt74l16bdil" path="res://src/unit/character/npc/milk_solder.tscn" id="1_oqv21"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_ixiqb"]
+[ext_resource type="Texture2D" uid="uid://d4lihk34ogk56" path="res://asset/texture/unit/npc/cake_piece.webp" id="3_wv3kx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hrmf1"]
+resource_local_to_scene = true
+shader = ExtResource("2_ixiqb")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrmf1"]
+size = Vector2(32, 8)
+
+[node name="CakePiece" instance=ExtResource("1_oqv21")]
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_hrmf1")
+texture = ExtResource("3_wv3kx")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_hrmf1")
+
+[node name="Shop" parent="Dialog" index="3" node_paths=PackedStringArray("target")]
+target = {
+"BUY_MILK_1": NodePath("Milk1"),
+"BUY_MILK_10": NodePath("Milk10")
+}
+
+[node name="Milk1" parent="Dialog/Shop" index="0" node_paths=PackedStringArray("target")]
+target = {
+"DIALOG_RETURN": NodePath("..")
+}
+
+[node name="Milk10" parent="Dialog/Shop" index="1" node_paths=PackedStringArray("target")]
+target = {
+"DIALOG_RETURN": NodePath("..")
+}

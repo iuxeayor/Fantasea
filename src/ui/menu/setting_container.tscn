@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7qqliu8ypcvj"]
+
+[ext_resource type="PackedScene" uid="uid://b0fep0a8toxbc" path="res://src/ui/menu/widget/menu_container.tscn" id="1_7d3m6"]
+[ext_resource type="PackedScene" uid="uid://c68hrdg0n8q0t" path="res://src/ui/menu/setting/lang_container.tscn" id="1_pqhi4"]
+[ext_resource type="PackedScene" uid="uid://ckq6tcyl7wltd" path="res://src/ui/menu/setting/assist_container.tscn" id="2_wejdt"]
+[ext_resource type="PackedScene" uid="uid://c20ty7fcd3mi5" path="res://src/ui/menu/setting/audio_container.tscn" id="3_nkf4c"]
+[ext_resource type="PackedScene" uid="uid://dae8f7f15ljpv" path="res://src/ui/menu/setting/display_container.tscn" id="4_wjxrt"]
+[ext_resource type="PackedScene" uid="uid://d1t6iw5x5o4jw" path="res://src/ui/menu/setting/key_bind_container.tscn" id="5_ebv4n"]
+
+[node name="SettingContainer" instance=ExtResource("1_7d3m6")]
+menu_id = 0
+title = "TITLE_SETTING"
+
+[node name="TitleContainer" parent="." index="0"]
+visible = false
+
+[node name="LangContainer" parent="ContentContainer" index="0" instance=ExtResource("1_pqhi4")]
+layout_mode = 2
+menu_id = 0
+title = "TITLE_SETTING"
+
+[node name="AssistContainer" parent="ContentContainer" index="1" instance=ExtResource("2_wejdt")]
+layout_mode = 2
+menu_id = 0
+title = "TITLE_SETTING"
+
+[node name="AudioContainer" parent="ContentContainer" index="2" instance=ExtResource("3_nkf4c")]
+layout_mode = 2
+menu_id = 0
+title = "TITLE_SETTING"
+
+[node name="DisplayContainer" parent="ContentContainer" index="3" instance=ExtResource("4_wjxrt")]
+layout_mode = 2
+menu_id = 0
+title = "TITLE_SETTING"
+
+[node name="KeyBindContainer" parent="ContentContainer" index="4" instance=ExtResource("5_ebv4n")]
+layout_mode = 2
+menu_id = 0
+title = "TITLE_SETTING"

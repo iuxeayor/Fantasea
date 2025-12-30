@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://q1h2v6803k7d"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_cyhjx"]
+[ext_resource type="Script" uid="uid://bnwh2fr5rk7cw" path="res://src/unit/item/straw_glasses.gd" id="2_ral2a"]
+[ext_resource type="Texture2D" uid="uid://dwnf2ov8nx3f1" path="res://asset/texture/unit/item/straw_glasses.webp" id="2_umds6"]
+
+[node name="StrawGlasses" instance=ExtResource("1_cyhjx")]
+script = ExtResource("2_ral2a")
+item_id = "straw_glasses"
+message = "ITEM_STRAW_GLASSES"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_umds6")

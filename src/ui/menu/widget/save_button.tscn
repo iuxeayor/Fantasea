@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dov3l4ful35q5"]
+
+[ext_resource type="Script" uid="uid://60i83qngmoh6" path="res://src/ui/menu/widget/save_button.gd" id="1_uetq7"]
+
+[node name="SaveButton" type="Button" groups=["menu_option", "save_button"]]
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 3
+script = ExtResource("1_uetq7")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

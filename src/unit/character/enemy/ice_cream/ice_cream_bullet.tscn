@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://vs1kgywbyrvt"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_6rofa"]
+[ext_resource type="Texture2D" uid="uid://3scf6ndpxk74" path="res://asset/texture/unit/enemy/ice_cream/ice_cream_bullet.webp" id="2_glqvy"]
+[ext_resource type="Script" uid="uid://dw62e0f2rgrbv" path="res://src/unit/character/enemy/ice_cream/ice_cream_bullet.gd" id="2_ln6tf"]
+[ext_resource type="Shader" uid="uid://bh7sfp6qvhqtb" path="res://src/asset/shader/outline.gdshader" id="4_j5j6o"]
+[ext_resource type="Material" uid="uid://bisgk71uima1s" path="res://src/asset/particle/ice_cream_bullet_disappear.tres" id="5_q2sjt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j5j6o"]
+shader = ExtResource("4_j5j6o")
+shader_parameter/color = Color(0, 0, 0, 0.6)
+shader_parameter/width = 0.1
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glqvy"]
+size = Vector2(5, 6)
+
+[node name="IceCreamBullet" instance=ExtResource("1_6rofa")]
+script = ExtResource("2_ln6tf")
+obj_name = &"ice_cream_bullet"
+gravity = 450.0
+dead_on_collide = 1
+dead_on_hit = false
+
+[node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_j5j6o")
+texture = ExtResource("2_glqvy")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_glqvy")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-0.5, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("5_q2sjt")
+
+[node name="FloorChecker" type="RayCast2D" parent="." index="6"]
+target_position = Vector2(0, 16)
+collision_mask = 3
+
+[connection signal="finished" from="." to="." method="_on_finished"]

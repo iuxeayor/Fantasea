@@ -1,0 +1,141 @@
+[gd_scene load_steps=11 format=3 uid="uid://dl14oonjmspd2"]
+
+[ext_resource type="Script" uid="uid://n1hdsr11su0c" path="res://src/unit/props/switch_ball.gd" id="1_gx807"]
+[ext_resource type="Texture2D" uid="uid://4qae08g025s2" path="res://asset/texture/unit/mechanical/switch_ball.webp" id="1_hv2wk"]
+[ext_resource type="PackedScene" uid="uid://ctjmfotnke34v" path="res://src/unit/common/hitbox/hitbox.tscn" id="2_t5pjg"]
+[ext_resource type="Texture2D" uid="uid://d3rttbvlymtyw" path="res://asset/texture/unit/mechanical/switch_ball_base.webp" id="3_ghvcr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv2wk"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghvcr"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_t5pjg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Ball:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphic/Ball:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hv2wk"]
+resource_name = "alert"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Ball:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 2]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_tick"
+}, {
+"args": [],
+"method": &"play_tick"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ghvcr"]
+resource_name = "hit"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphic/Ball:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.03125, 0.96875), Vector2(0.96875, 1.03125), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t5pjg"]
+_data = {
+&"RESET": SubResource("Animation_t5pjg"),
+&"alert": SubResource("Animation_hv2wk"),
+&"hit": SubResource("Animation_ghvcr")
+}
+
+[node name="SwitchBall" type="StaticBody2D" groups=["switch_ball"]]
+collision_layer = 513
+collision_mask = 131072
+script = ExtResource("1_gx807")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hv2wk")
+
+[node name="Graphic" type="Node2D" parent="."]
+
+[node name="Ball" type="Sprite2D" parent="Graphic"]
+texture = ExtResource("1_hv2wk")
+hframes = 4
+
+[node name="Base" type="Sprite2D" parent="Graphic"]
+position = Vector2(0, 6)
+texture = ExtResource("3_ghvcr")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_t5pjg")]
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_ghvcr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t5pjg")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShortTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TickTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="collided" from="Hitbox" to="." method="_on_hitbox_collided"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ShortTimer" to="." method="_on_short_timer_timeout"]
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

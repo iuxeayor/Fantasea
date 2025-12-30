@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://gfinuvbbemx"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_c81pk"]
+[ext_resource type="Texture2D" uid="uid://bup5716yk4ynq" path="res://asset/texture/unit/enemy/salad/lettuce_bullet.webp" id="2_jbr1a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jbr1a"]
+radius = 8.0
+
+[node name="LettuceBullet" instance=ExtResource("1_c81pk")]
+obj_name = &"lettuce_bullet"
+gravity = 600.0
+rotation_speed = 0.5
+dead_on_collide = 0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_jbr1a")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_jbr1a")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+position = Vector2(0, 64)
+scale = Vector2(12.8, 12.8)

@@ -1,0 +1,2924 @@
+[gd_scene load_steps=33 format=4 uid="uid://cd43ilurpaopu"]
+
+[ext_resource type="PackedScene" uid="uid://db088prasrhfn" path="res://src/scene/game/base/ship_scene.tscn" id="1_qv2sm"]
+[ext_resource type="PackedScene" uid="uid://siuxrenn3jjp" path="res://src/unit/props/knife.tscn" id="2_2p68q"]
+[ext_resource type="Script" uid="uid://ci3og76vunc6p" path="res://src/scene/game/scene_245.gd" id="2_kefcf"]
+[ext_resource type="PackedScene" uid="uid://8i3k1k6qpbeh" path="res://src/unit/character/npc/final_bread.tscn" id="3_2jkly"]
+[ext_resource type="PackedScene" uid="uid://dhp3xvkqaqrid" path="res://src/scene/entry_point.tscn" id="3_amf8b"]
+[ext_resource type="PackedScene" uid="uid://dgaevlfaq4q6q" path="res://src/unit/character/enemy/boss/whole_wheat_bread/whole_wheat_bread.tscn" id="5_iou2j"]
+[ext_resource type="Material" uid="uid://gi5d1wyy2ldy" path="res://src/asset/particle/defeat.tres" id="6_5b1jx"]
+
+[sub_resource type="Animation" id="Animation_5b1jx"]
+resource_name = "1"
+length = 3.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176)]
+}
+
+[sub_resource type="Animation" id="Animation_ng0v4"]
+resource_name = "10"
+length = 4.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(448, 136)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftKnife/Knife3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(448, 96)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftKnife/Knife2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(448, 56)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftKnife/Knife:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(448, 16)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightKnife/Knife5:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(-448, 176)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RightKnife/Knife4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(-448, 136)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RightKnife/Knife3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(-448, 96)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RightKnife/Knife2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(-448, 56)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RightKnife/Knife:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(-448, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_ggr37"]
+resource_name = "11"
+length = 2.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-160, 40), Vector2(-160, 264), Vector2(-160, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 40), Vector2(-80, 264), Vector2(-80, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife5:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 264), Vector2(0, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife7:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 264), Vector2(80, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife9:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 40), Vector2(160, 264), Vector2(160, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 264), Vector2(-120, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, 264), Vector2(-40, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife6:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.5, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 264), Vector2(40, 40)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TopKnife/Knife8:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.5, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 40), Vector2(120, 264), Vector2(120, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_ewbru"]
+resource_name = "12"
+length = 3.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-160, 40), Vector2(-160, 264), Vector2(-160, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife8:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.4, 2.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 40), Vector2(120, 264), Vector2(120, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife7:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2, 2.2, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 264), Vector2(80, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife6:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 264), Vector2(40, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8, 1.8, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 264), Vector2(0, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.6, 1.6, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, 264), Vector2(-40, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife3:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4, 1.4, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 40), Vector2(-80, 264), Vector2(-80, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.2, 1.2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 264), Vector2(-120, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_nmdfb"]
+resource_name = "13"
+length = 3.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife9:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 40), Vector2(160, 264), Vector2(160, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife8:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1.2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 40), Vector2(120, 264), Vector2(120, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife7:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 1.4, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 264), Vector2(80, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife6:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6, 1.6, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 264), Vector2(40, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8, 1.8, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 264), Vector2(0, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, 264), Vector2(-40, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife3:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.2, 2.2, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 40), Vector2(-80, 264), Vector2(-80, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.4, 2.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 264), Vector2(-120, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_bsyjc"]
+resource_name = "14"
+length = 3.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife9:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 40), Vector2(160, 264), Vector2(160, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife7:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 264), Vector2(80, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife6:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 264), Vector2(40, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife5:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 264), Vector2(0, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, 264), Vector2(-40, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 40), Vector2(-80, 264), Vector2(-80, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 264), Vector2(-120, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-160, 40), Vector2(-160, 264), Vector2(-160, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_hoxfw"]
+resource_name = "15"
+length = 3.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife9:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 40), Vector2(160, 264), Vector2(160, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife8:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 40), Vector2(120, 264), Vector2(120, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife7:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 264), Vector2(80, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife6:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 264), Vector2(40, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 264), Vector2(0, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, 264), Vector2(-40, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 264), Vector2(-120, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-160, 40), Vector2(-160, 264), Vector2(-160, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_wqyp0"]
+resource_name = "16"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-160, 40), Vector2(-160, 264), Vector2(-160, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 40), Vector2(-80, 264), Vector2(-80, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife5:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 264), Vector2(0, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife7:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 264), Vector2(80, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife9:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 40), Vector2(160, 264), Vector2(160, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 264), Vector2(-120, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, 264), Vector2(-40, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife6:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 264), Vector2(40, 40)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TopKnife/Knife8:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 40), Vector2(120, 264), Vector2(120, 40)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LeftKnife/Knife:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(448, 16)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LeftKnife/Knife3:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(448, 96)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LeftKnife/Knife5:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("RightKnife/Knife2:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(-448, 56)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("RightKnife/Knife4:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(-448, 136)]
+}
+
+[sub_resource type="Animation" id="Animation_v7bk4"]
+resource_name = "17"
+length = 3.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife9:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 40), Vector2(160, 264), Vector2(160, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife8:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1.2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 40), Vector2(120, 264), Vector2(120, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife7:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 1.4, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 264), Vector2(80, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife6:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6, 1.6, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 264), Vector2(40, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8, 1.8, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 264), Vector2(0, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.2, 2.2, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 40), Vector2(-80, 264), Vector2(-80, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.4, 2.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 264), Vector2(-120, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LeftKnife/Knife5:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 2.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(64, 176), Vector2(64, 176), Vector2(0, 176)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LeftKnife/Knife4:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1, 2.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(64, 136), Vector2(64, 136), Vector2(0, 136)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LeftKnife/Knife3:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1, 2.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(64, 96), Vector2(64, 96), Vector2(0, 96)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LeftKnife/Knife2:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 1, 2.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(64, 56), Vector2(64, 56), Vector2(0, 56)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LeftKnife/Knife:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1, 2.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(64, 16), Vector2(64, 16), Vector2(0, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_vah1x"]
+resource_name = "18"
+length = 10.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife9:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 40), Vector2(160, 144), Vector2(160, 144), Vector2(160, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife8:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 40), Vector2(120, 144), Vector2(120, 144), Vector2(120, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife7:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 144), Vector2(80, 144), Vector2(80, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife6:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 144), Vector2(40, 144), Vector2(40, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 144), Vector2(0, 144), Vector2(0, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, 144), Vector2(-40, 144), Vector2(-40, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife3:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 40), Vector2(-80, 144), Vector2(-80, 144), Vector2(-80, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 144), Vector2(-120, 144), Vector2(-120, 40)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TopKnife/Knife:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5, 9.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-160, 40), Vector2(-160, 144), Vector2(-160, 144), Vector2(-160, 40)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RightKnife/Knife5:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 2, 5.5, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(-448, 176), Vector2(-448, 176), Vector2(0, 176)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("RightKnife/Knife4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.5, 2.5, 5.5, 8.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(-448, 136), Vector2(-448, 136), Vector2(0, 136)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("RightKnife/Knife3:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(1, 3, 5.5, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(-448, 96), Vector2(-448, 96), Vector2(0, 96)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LeftKnife/Knife5:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(3, 5, 7.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176), Vector2(448, 176), Vector2(0, 176)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("LeftKnife/Knife4:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(3.5, 5.5, 7.5, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(448, 136), Vector2(448, 136), Vector2(0, 136)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("LeftKnife/Knife3:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(3, 5, 7.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(448, 96), Vector2(448, 96), Vector2(0, 96)]
+}
+
+[sub_resource type="Animation" id="Animation_nl378"]
+resource_name = "20"
+length = 13.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife8:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 40), Vector2(120, 264), Vector2(120, 264), Vector2(120, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife7:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 264), Vector2(80, 264), Vector2(80, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife6:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 264), Vector2(40, 264), Vector2(40, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife5:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 264), Vector2(0, 264), Vector2(0, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, 264), Vector2(-40, 264), Vector2(-40, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 40), Vector2(-80, 264), Vector2(-80, 264), Vector2(-80, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 264), Vector2(-120, 264), Vector2(-120, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-160, 40), Vector2(-160, 264), Vector2(-160, 264), Vector2(-160, 40)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RightKnife/Knife5:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2, 3, 10.5, 11),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(-64, 176), Vector2(-64, 176), Vector2(0, 176)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("LeftKnife/Knife:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(3, 4.5, 6, 8.5, 9.5, 10.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(384, 16), Vector2(0, 16), Vector2(0, 16), Vector2(384, 16), Vector2(0, 16)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LeftKnife/Knife3:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(3, 4.5, 6, 7.5, 8.5, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(384, 96), Vector2(0, 96), Vector2(0, 96), Vector2(384, 96), Vector2(0, 96)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("LeftKnife/Knife4:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(4.5, 6, 7.5, 8.5, 9.5, 10.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(384, 136), Vector2(0, 136), Vector2(0, 136), Vector2(384, 136), Vector2(0, 136)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("LeftKnife/Knife2:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(4.5, 6, 7.5, 8.5, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(384, 56), Vector2(0, 56), Vector2(384, 56), Vector2(0, 56)]
+}
+
+[sub_resource type="Animation" id="Animation_25vq7"]
+resource_name = "2"
+length = 3.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(-448, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(-448, 136)]
+}
+
+[sub_resource type="Animation" id="Animation_a8mqt"]
+resource_name = "20"
+length = 6.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 104), Vector2(0, 104), Vector2(0, 264), Vector2(0, 40), Vector2(0, 40), Vector2(0, 104), Vector2(0, 104), Vector2(0, 264), Vector2(0, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, 104), Vector2(-40, 104), Vector2(-40, 264), Vector2(-40, 40), Vector2(-40, 104), Vector2(-40, 104), Vector2(-40, 264), Vector2(-40, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 40), Vector2(-80, 104), Vector2(-80, 104), Vector2(-80, 264), Vector2(-80, 40), Vector2(-80, 104), Vector2(-80, 104), Vector2(-80, 264), Vector2(-80, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 104), Vector2(-120, 104), Vector2(-120, 264), Vector2(-120, 40), Vector2(-120, 104), Vector2(-120, 104), Vector2(-120, 264), Vector2(-120, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife9:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 40), Vector2(160, 104), Vector2(160, 104), Vector2(160, 264), Vector2(160, 40), Vector2(160, 104), Vector2(160, 104), Vector2(160, 264), Vector2(160, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife8:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 40), Vector2(120, 104), Vector2(120, 104), Vector2(120, 264), Vector2(120, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife7:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 104), Vector2(80, 104), Vector2(80, 264), Vector2(80, 40), Vector2(80, 104), Vector2(80, 104), Vector2(80, 264), Vector2(80, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife6:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 104), Vector2(40, 104), Vector2(40, 264), Vector2(40, 40)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TopKnife/Knife:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(4, 4.5, 5, 5.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-160, 40), Vector2(-160, 104), Vector2(-160, 104), Vector2(-160, 264), Vector2(-160, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_lagin"]
+resource_name = "21"
+length = 13.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife9:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4.5, 5, 7.5, 8, 11.5, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 40), Vector2(160, 224), Vector2(160, 224), Vector2(160, 184), Vector2(160, 184), Vector2(160, 224), Vector2(160, 224), Vector2(152, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife8:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 11.5, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 40), Vector2(120, 224), Vector2(120, 224), Vector2(112, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife7:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 4, 4.5, 11.5, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(80, 40), Vector2(80, 224), Vector2(80, 184), Vector2(80, 184), Vector2(80, 224), Vector2(80, 224), Vector2(72, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife6:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 11.5, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(40, 40), Vector2(40, 224), Vector2(40, 224), Vector2(32, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 4.5, 5, 7.5, 8, 11.5, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 40), Vector2(0, 224), Vector2(0, 224), Vector2(0, 184), Vector2(0, 184), Vector2(0, 224), Vector2(0, 224), Vector2(-8, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 8, 8.5, 11, 11.5, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-40, 40), Vector2(-40, 224), Vector2(-40, 224), Vector2(-40, 184), Vector2(-40, 184), Vector2(-40, 224), Vector2(-48, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife3:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 4, 4.5, 11.5, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-80, 40), Vector2(-80, 224), Vector2(-80, 184), Vector2(-80, 184), Vector2(-80, 224), Vector2(-80, 224), Vector2(-88, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 4, 4.5, 11.5, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-120, 40), Vector2(-120, 224), Vector2(-120, 184), Vector2(-120, 184), Vector2(-120, 224), Vector2(-120, 224), Vector2(-128, 40)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TopKnife/Knife:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1, 11.5, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-160, 40), Vector2(-160, 224), Vector2(-160, 224), Vector2(-168, 40)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RightKnife/Knife5:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1.5, 4, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(-448, 176), Vector2(-448, 176), Vector2(0, 176)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("LeftKnife/Knife5:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(5, 7.5, 8.5, 11),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176), Vector2(448, 176), Vector2(0, 176)]
+}
+
+[sub_resource type="Animation" id="Animation_14xo6"]
+resource_name = "22"
+length = 6.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176), Vector2(0, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(448, 136), Vector2(0, 136)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftKnife/Knife3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(448, 96), Vector2(448, 96), Vector2(0, 96)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftKnife/Knife2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(448, 56), Vector2(0, 56)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftKnife/Knife:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(448, 16), Vector2(0, 16)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightKnife/Knife5:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(-448, 176), Vector2(0, 176)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RightKnife/Knife4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2, 3, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(-448, 136), Vector2(-448, 136), Vector2(0, 136)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RightKnife/Knife3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(-448, 96), Vector2(0, 96)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RightKnife/Knife2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(-448, 56), Vector2(0, 56)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RightKnife/Knife:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(-448, 16), Vector2(0, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_qe3sr"]
+resource_name = "3"
+length = 3.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(-448, 136)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftKnife/Knife3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(448, 96)]
+}
+
+[sub_resource type="Animation" id="Animation_tie6r"]
+resource_name = "4"
+length = 3.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(-448, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(448, 136)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightKnife/Knife3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(-448, 96)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftKnife/Knife2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(448, 56)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RightKnife/Knife:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(-448, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_obbom"]
+resource_name = "5"
+length = 3.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(448, 136)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftKnife/Knife2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(448, 56)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftKnife/Knife:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(448, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_gpo7f"]
+resource_name = "6"
+length = 2.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(-448, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(448, 136)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightKnife/Knife3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(-448, 96)]
+}
+
+[sub_resource type="Animation" id="Animation_knc03"]
+resource_name = "7"
+length = 4.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(448, 136)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftKnife/Knife3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(448, 96)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftKnife/Knife2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(448, 56)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftKnife/Knife:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(448, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_huuxl"]
+resource_name = "8"
+length = 4.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(448, 136)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftKnife/Knife3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(448, 96)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftKnife/Knife2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(448, 56)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftKnife/Knife:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(448, 16)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightKnife/Knife5:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(-448, 176)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RightKnife/Knife4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(-448, 136)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RightKnife/Knife3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(-448, 96)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RightKnife/Knife2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(-448, 56)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RightKnife/Knife:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(-448, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_i0cd6"]
+resource_name = "9"
+length = 4.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(448, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftKnife/Knife4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(448, 136)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftKnife/Knife3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(448, 96)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftKnife/Knife2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(448, 56)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftKnife/Knife:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(448, 16)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightKnife/Knife5:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 176), Vector2(-448, 176)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RightKnife/Knife4:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 136), Vector2(-448, 136)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RightKnife/Knife3:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 96), Vector2(-448, 96)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RightKnife/Knife2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.5, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(-448, 56)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RightKnife/Knife:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(-448, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_00ay6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftKnife/Knife5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightKnife/Knife5:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 176)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RightKnife/Knife4:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 136)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeftKnife/Knife3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 96)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LeftKnife/Knife4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 136)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RightKnife/Knife3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 96)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LeftKnife/Knife2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 56)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RightKnife/Knife:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 16)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("LeftKnife/Knife:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 16)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RightKnife/Knife2:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 56)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("TopKnife/Knife:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-160, 40)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("TopKnife/Knife3:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-80, 40)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("TopKnife/Knife5:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 40)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("TopKnife/Knife7:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 40)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("TopKnife/Knife9:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 40)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("TopKnife/Knife2:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-120, 40)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("TopKnife/Knife4:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-40, 40)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("TopKnife/Knife6:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 40)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("TopKnife/Knife8:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_iou2j"]
+resource_name = "end"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopKnife/Knife9:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopKnife/Knife8:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 40)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopKnife/Knife7:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TopKnife/Knife6:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TopKnife/Knife5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopKnife/Knife4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-40, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TopKnife/Knife3:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-80, 40)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TopKnife/Knife2:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-120, 40)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TopKnife/Knife:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-160, 40)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RightKnife/Knife5:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 176)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("RightKnife/Knife4:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 136)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("RightKnife/Knife3:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 96)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("RightKnife/Knife2:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 56)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("RightKnife/Knife:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 16)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("LeftKnife/Knife5:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 176)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("LeftKnife/Knife4:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 136)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("LeftKnife/Knife3:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 96)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("LeftKnife/Knife2:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 56)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("LeftKnife/Knife:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5b1jx"]
+_data = {
+&"1": SubResource("Animation_5b1jx"),
+&"10": SubResource("Animation_ng0v4"),
+&"11": SubResource("Animation_ggr37"),
+&"12": SubResource("Animation_ewbru"),
+&"13": SubResource("Animation_nmdfb"),
+&"14": SubResource("Animation_bsyjc"),
+&"15": SubResource("Animation_hoxfw"),
+&"16": SubResource("Animation_wqyp0"),
+&"17": SubResource("Animation_v7bk4"),
+&"18": SubResource("Animation_vah1x"),
+&"19": SubResource("Animation_nl378"),
+&"2": SubResource("Animation_25vq7"),
+&"20": SubResource("Animation_a8mqt"),
+&"21": SubResource("Animation_lagin"),
+&"22": SubResource("Animation_14xo6"),
+&"3": SubResource("Animation_qe3sr"),
+&"4": SubResource("Animation_tie6r"),
+&"5": SubResource("Animation_obbom"),
+&"6": SubResource("Animation_gpo7f"),
+&"7": SubResource("Animation_knc03"),
+&"8": SubResource("Animation_huuxl"),
+&"9": SubResource("Animation_i0cd6"),
+&"RESET": SubResource("Animation_00ay6"),
+&"end": SubResource("Animation_iou2j")
+}
+
+[node name="Scene245" instance=ExtResource("1_qv2sm")]
+script = ExtResource("2_kefcf")
+bgm = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_5b1jx")
+}
+
+[node name="CDTimer" type="Timer" parent="." index="1"]
+one_shot = true
+
+[node name="Sky" parent="Background/Environment" index="1"]
+visible = false
+
+[node name="Cloud" parent="Background/Environment" index="2"]
+visible = false
+
+[node name="WaterTop" parent="Background/Environment" index="3"]
+visible = false
+
+[node name="WaterMid" parent="Background/Environment" index="4"]
+visible = false
+
+[node name="WaterBottom" parent="Background/Environment" index="5"]
+visible = false
+
+[node name="Tile" parent="Background/Prop" index="0"]
+position = Vector2(-4, -4)
+tile_map_data = PackedByteArray("AAAuAP7/BwACAAMAAAAtAP7/BwACAAMAAAAsAP7/BwACAAMAAAArAP7/BwACAAMAAAAqAP7/BwACAAMAAAApAP7/BwACAAMAAAAoAP7/BwACAAMAAAAnAP7/BwACAAMAAAAmAP7/BwACAAMAAAAlAP7/BwACAAMAAAAkAP7/BwACAAMAAAAjAP7/BwACAAMAAAAiAP7/BwACAAMAAAAhAP7/BwACAAMAAAAgAP7/BwACAAMAAAAfAP7/BwACAAMAAAAeAP7/BwACAAMAAAAdAP7/BwACAAMAAAAcAP7/BwACAAMAAAAbAP7/BwACAAMAAAAaAP7/BwACAAMAAAAZAP7/BwACAAMAAAAYAP7/BwACAAMAAAAXAP7/BwACAAMAAAAWAP7/BwACAAMAAAAVAP7/BwACAAMAAAAUAP7/BwACAAMAAAATAP7/BwACAAMAAAASAP7/BwACAAMAAAARAP7/BwACAAMAAAAQAP7/BwACAAMAAAAPAP7/BwACAAMAAAAOAP7/BwACAAMAAAANAP7/BwACAAMAAAAMAP7/BwACAAMAAAALAP7/BwACAAMAAAAKAP7/BwACAAMAAAAJAP7/BwACAAMAAAAIAP7/BwACAAMAAAAHAP7/BwACAAMAAAAGAP7/BwACAAMAAAAFAP7/BwACAAMAAAAEAP7/BwACAAMAAAADAP7/BwACAAMAAAACAP7/BwACAAMAAAABAP7/BwACAAMAAAAvAP7/BwADAAMAAAAAAP7/BwABAAMAAAAwABgABwALAAMAAAAwABcABwALAAAAAAAwABYABAADAAIAAAAwABUABwALAAMAAAAwABQABwALAAIAAAAwABMABwALAAIAAAAwABIABwALAAAAAAAwABEABAADAAIAAAAwABAABwALAAMAAAAwAA8ABwALAAIAAAAwAA4ABwALAAIAAAAwAA0ABwALAAAAAAAwAAwABAADAAIAAAAwAAsABwALAAMAAAAwAAoABwALAAIAAAAwAAkABwALAAIAAAAwAAgABwALAAAAAAAwAAcABAADAAIAAAAwAAYABwALAAMAAAAwAAUABwALAAIAAAAwAAQABwALAAIAAAAwAAMABwALAAAAAAAwAAIABAADAAIAAAAwAAEABwALAAMAAAAwAAAABwALAAAAAAAvABgABwAJAAMAAAAvABcABwAKAAAAAAAvABYABAACAAIAAAAvABUABwAJAAMAAAAvABQABwAJAAIAAAAvABMABwAJAAIAAAAvABIABwAKAAAAAAAvABEABAACAAIAAAAvABAABwAJAAMAAAAvAA8ABwAKAAEAAAAvAA4ABwAKAAEAAAAvAA0ABwAKAAAAAAAvAAwABAACAAIAAAAvAAsABwAJAAMAAAAvAAoABwAJAAIAAAAvAAkABwAJAAIAAAAvAAgABwAKAAAAAAAvAAcABAACAAIAAAAvAAYABwAJAAMAAAAvAAUABwAKAAEAAAAvAAQABwAJAAIAAAAvAAMABwAKAAAAAAAvAAIABAACAAIAAAAvAAEABwAJAAMAAAAvAAAABwAKAAAAAAAuABgABwAJAAMAAAAuABcABwAKAAAAAAAuABYABAACAAIAAAAuABUABwAJAAMAAAAuABQABwAKAAEAAAAuABMABwAKAAEAAAAuABIABwAKAAAAAAAuABEABAACAAIAAAAuABAABwAJAAMAAAAuAA8ABwAJAAIAAAAuAA4ABwAJAAIAAAAuAA0ABwAKAAAAAAAuAAwABAACAAIAAAAuAAsABwAJAAMAAAAuAAoABwAJAAIAAAAuAAkABwAJAAIAAAAuAAgABwAKAAAAAAAuAAcABAACAAIAAAAuAAYABwAJAAMAAAAuAAUABwAJAAIAAAAuAAQABwAKAAEAAAAuAAMABwAKAAAAAAAuAAIABAACAAIAAAAuAAEABwAJAAMAAAAuAAAABwAKAAAAAAAtABgABwAIAAMAAAAtABcABwAIAAAAAAAtABYABAACAAIAAAAtABUABwAIAAMAAAAtABQABwAIAAEAAAAtABMABwAIAAEAAAAtABIABwAIAAAAAAAtABEABAACAAIAAAAtABAABwAIAAMAAAAtAA8ABwAIAAEAAAAtAA4ABwAIAAEAAAAtAA0ABwAIAAAAAAAtAAwABAACAAIAAAAtAAsABwAIAAMAAAAtAAoABwAIAAEAAAAtAAkABwAIAAEAAAAtAAgABwAIAAAAAAAtAAcABAACAAIAAAAtAAYABwAIAAMAAAAtAAUABwAIAAEAAAAtAAQABwAIAAEAAAAtAAMABwAIAAAAAAAtAAIABAACAAIAAAAtAAEABwAIAAMAAAAtAAAABwAIAAAAAAAsABgABAAAAAMAAAAsABcABAAAAAIAAAAsABYABAACAAEAAAAsABUABAAAAAIAAAAsABQABAAAAAIAAAAsABMABAAAAAIAAAAsABIABAAAAAIAAAAsABEABAACAAEAAAAsABAABAAAAAIAAAAsAA8ABAAAAAIAAAAsAA4ABAAAAAIAAAAsAA0ABAAAAAIAAAAsAAwABAACAAEAAAAsAAsABAAAAAIAAAAsAAoABAAAAAIAAAAsAAkABAAAAAIAAAAsAAgABAAAAAIAAAAsAAcABAACAAEAAAAsAAYABAAAAAIAAAAsAAUABAAAAAIAAAAsAAQABAAAAAIAAAAsAAMABAAAAAIAAAAsAAIABAACAAEAAAAsAAEABAAAAAIAAAAsAAAABAAAAAEAAAArABgABwALAAMAAAArABcABwALAAAAAAArABYABAACAAIAAAArABUABwALAAMAAAArABQABwALAAIAAAArABMABwALAAIAAAArABIABwALAAAAAAArABEABAACAAIAAAArABAABwALAAMAAAArAA8ABwALAAIAAAArAA4ABwALAAIAAAArAA0ABwALAAAAAAArAAwABAACAAIAAAArAAsABwALAAMAAAArAAoABwALAAIAAAArAAkABwALAAIAAAArAAgABwALAAAAAAArAAcABAACAAIAAAArAAYABwALAAMAAAArAAUABwALAAIAAAArAAQABwALAAIAAAArAAMABwALAAAAAAArAAIABAACAAIAAAArAAEABwALAAMAAAArAAAABwALAAAAAAAqABgABwAJAAMAAAAqABcABwAKAAAAAAAqABYABAACAAIAAAAqABUABwAJAAMAAAAqABQABwAJAAIAAAAqABMABwAJAAIAAAAqABIABwAKAAAAAAAqABEABAACAAIAAAAqABAABwAJAAMAAAAqAA8ABwAKAAEAAAAqAA4ABwAJAAIAAAAqAA0ABwAKAAAAAAAqAAwABAACAAIAAAAqAAsABwAJAAMAAAAqAAoABwAJAAIAAAAqAAkABwAJAAIAAAAqAAgABwAKAAAAAAAqAAcABAACAAIAAAAqAAYABwAJAAMAAAAqAAUABwAJAAIAAAAqAAQABwAJAAIAAAAqAAMABwAKAAAAAAAqAAIABAACAAIAAAAqAAEABwAJAAMAAAAqAAAABwAKAAAAAAApABgABwAJAAMAAAApABcABwAKAAAAAAApABYABAACAAIAAAApABUABwAJAAMAAAApABQABwAJAAIAAAApABMABwAJAAIAAAApABIABwAKAAAAAAApABEABAACAAIAAAApABAABwAJAAMAAAApAA8ABwAJAAIAAAApAA4ABwAKAAEAAAApAA0ABwAKAAAAAAApAAwABAACAAIAAAApAAsABwAJAAMAAAApAAoABwAKAAEAAAApAAkABwAJAAIAAAApAAgABwAKAAAAAAApAAcABAACAAIAAAApAAYABwAJAAMAAAApAAUABwAJAAIAAAApAAQABwAKAAEAAAApAAMABwAKAAAAAAApAAIABAACAAIAAAApAAEABwAJAAMAAAApAAAABwAKAAAAAAAoABgABwAIAAMAAAAoABcABwAIAAAAAAAoABYABAACAAIAAAAoABUABwAIAAMAAAAoABQABwAIAAEAAAAoABMABwAIAAEAAAAoABIABwAIAAAAAAAoABEABAACAAIAAAAoABAABwAIAAMAAAAoAA8ABwAIAAEAAAAoAA4ABwAIAAEAAAAoAA0ABwAIAAAAAAAoAAwABAACAAIAAAAoAAsABwAIAAMAAAAoAAoABwAIAAEAAAAoAAkABwAIAAEAAAAoAAgABwAIAAAAAAAoAAcABAACAAIAAAAoAAYABwAIAAMAAAAoAAUABwAIAAEAAAAoAAQABwAIAAEAAAAoAAMABwAIAAAAAAAoAAIABAACAAIAAAAoAAEABwAIAAMAAAAoAAAABwAIAAAAAAAnABgABAAAAAMAAAAnABcABAAAAAIAAAAnABYABAACAAEAAAAnABUABAAAAAIAAAAnABQABAAAAAIAAAAnABMABAAAAAIAAAAnABIABAAAAAIAAAAnABEABAACAAEAAAAnABAABAAAAAIAAAAnAA8ABAAAAAIAAAAnAA4ABAAAAAIAAAAnAA0ABAAAAAIAAAAnAAwABAACAAEAAAAnAAsABAAAAAIAAAAnAAoABAAAAAIAAAAnAAkABAAAAAIAAAAnAAgABAAAAAIAAAAnAAcABAACAAEAAAAnAAYABAAAAAIAAAAnAAUABAAAAAIAAAAnAAQABAAAAAIAAAAnAAMABAAAAAIAAAAnAAIABAACAAEAAAAnAAEABAAAAAIAAAAnAAAABAAAAAEAAAAmABgABwALAAMAAAAmABcABwALAAAAAAAmABYABAACAAIAAAAmABUABwALAAMAAAAmABQABwALAAIAAAAmABMABwALAAIAAAAmABIABwALAAAAAAAmABEABAACAAIAAAAmABAABwALAAMAAAAmAA8ABwALAAIAAAAmAA4ABwALAAIAAAAmAA0ABwALAAAAAAAmAAwABAACAAIAAAAmAAsABwALAAMAAAAmAAoABwALAAIAAAAmAAkABwALAAIAAAAmAAgABwALAAAAAAAmAAcABAACAAIAAAAmAAYABwALAAMAAAAmAAUABwALAAIAAAAmAAQABwALAAIAAAAmAAMABwALAAAAAAAmAAIABAACAAIAAAAmAAEABwALAAMAAAAmAAAABwALAAAAAAAlABgABwAJAAMAAAAlABcABwAKAAAAAAAlABYABAACAAIAAAAlABUABwAJAAMAAAAlABQABwAJAAIAAAAlABMABwAKAAEAAAAlABIABwAKAAAAAAAlABEABAACAAIAAAAlABAABwAJAAMAAAAlAA8ABwAJAAIAAAAlAA4ABwAJAAIAAAAlAA0ABwAKAAAAAAAlAAwABAACAAIAAAAlAAsABwAJAAMAAAAlAAoABwAKAAEAAAAlAAkABwAJAAIAAAAlAAgABwAKAAAAAAAlAAcABAACAAIAAAAlAAYABwAJAAMAAAAlAAUABwAJAAIAAAAlAAQABwAKAAEAAAAlAAMABwAKAAAAAAAlAAIABAACAAIAAAAlAAEABwAJAAMAAAAlAAAABwAKAAAAAAAkABgABwAJAAMAAAAkABcABwAKAAAAAAAkABYABAACAAIAAAAkABUABwAJAAMAAAAkABQABwAKAAEAAAAkABMABwAKAAEAAAAkABIABwAKAAAAAAAkABEABAACAAIAAAAkABAABwAJAAMAAAAkAA8ABwAJAAIAAAAkAA4ABwAJAAIAAAAkAA0ABwAKAAAAAAAkAAwABAACAAIAAAAkAAsABwAJAAMAAAAkAAoABwAJAAIAAAAkAAkABwAJAAIAAAAkAAgABwAKAAAAAAAkAAcABAACAAIAAAAkAAYABwAJAAMAAAAkAAUABwAJAAIAAAAkAAQABwAJAAIAAAAkAAMABwAKAAAAAAAkAAIABAACAAIAAAAkAAEABwAJAAMAAAAkAAAABwAKAAAAAAAjABgABwAIAAMAAAAjABcABwAIAAAAAAAjABYABAACAAIAAAAjABUABwAIAAMAAAAjABQABwAIAAEAAAAjABMABwAIAAEAAAAjABIABwAIAAAAAAAjABEABAACAAIAAAAjABAABwAIAAMAAAAjAA8ABwAIAAEAAAAjAA4ABwAIAAEAAAAjAA0ABwAIAAAAAAAjAAwABAACAAIAAAAjAAsABwAIAAMAAAAjAAoABwAIAAEAAAAjAAkABwAIAAEAAAAjAAgABwAIAAAAAAAjAAcABAACAAIAAAAjAAYABwAIAAMAAAAjAAUABwAIAAEAAAAjAAQABwAIAAEAAAAjAAMABwAIAAAAAAAjAAIABAACAAIAAAAjAAEABwAIAAMAAAAjAAAABwAIAAAAAAAiABgABAAAAAMAAAAiABcABAAAAAIAAAAiABYABAACAAEAAAAiABUABAAAAAIAAAAiABQABAAAAAIAAAAiABMABAAAAAIAAAAiABIABAAAAAIAAAAiABEABAACAAEAAAAiABAABAAAAAIAAAAiAA8ABAAAAAIAAAAiAA4ABAAAAAIAAAAiAA0ABAAAAAIAAAAiAAwABAACAAEAAAAiAAsABAAAAAIAAAAiAAoABAAAAAIAAAAiAAkABAAAAAIAAAAiAAgABAAAAAIAAAAiAAcABAACAAEAAAAiAAYABAAAAAIAAAAiAAUABAAAAAIAAAAiAAQABAAAAAIAAAAiAAMABAAAAAIAAAAiAAIABAACAAEAAAAiAAEABAAAAAIAAAAiAAAABAAAAAEAAAAhABgABwALAAMAAAAhABcABwALAAAAAAAhABYABAACAAIAAAAhABUABwALAAMAAAAhABQABwALAAIAAAAhABMABwALAAIAAAAhABIABwALAAAAAAAhABEABAACAAIAAAAhABAABwALAAMAAAAhAA8ABwALAAIAAAAhAA4ABwALAAIAAAAhAA0ABwALAAAAAAAhAAwABAACAAIAAAAhAAsABwALAAMAAAAhAAoABwALAAIAAAAhAAkABwALAAIAAAAhAAgABwALAAAAAAAhAAcABAACAAIAAAAhAAYABwALAAMAAAAhAAUABwALAAIAAAAhAAQABwALAAIAAAAhAAMABwALAAAAAAAhAAIABAACAAIAAAAhAAEABwALAAMAAAAhAAAABwALAAAAAAAgABgABwAJAAMAAAAgABcABwAKAAAAAAAgABYABAACAAIAAAAgABUABwAJAAMAAAAgABQABwAKAAEAAAAgABMABwAJAAIAAAAgABIABwAKAAAAAAAgABEABAACAAIAAAAgABAABwAJAAMAAAAgAA8ABwAJAAIAAAAgAA4ABwAKAAEAAAAgAA0ABwAKAAAAAAAgAAwABAACAAIAAAAgAAsABwAJAAMAAAAgAAoABwAJAAIAAAAgAAkABwAKAAEAAAAgAAgABwAKAAAAAAAgAAcABAACAAIAAAAgAAYABwAJAAMAAAAgAAUABwAKAAEAAAAgAAQABwAJAAIAAAAgAAMABwAKAAAAAAAgAAIABAACAAIAAAAgAAEABwAJAAMAAAAgAAAABwAKAAAAAAAfABgABwAJAAMAAAAfABcABwAKAAAAAAAfABYABAACAAIAAAAfABUABwAJAAMAAAAfABQABwAKAAEAAAAfABMABwAJAAIAAAAfABIABwAKAAAAAAAfABEABAACAAIAAAAfABAABwAJAAMAAAAfAA8ABwAKAAEAAAAfAA4ABwAKAAEAAAAfAA0ABwAKAAAAAAAfAAwABAACAAIAAAAfAAsABwAJAAMAAAAfAAoABwAJAAIAAAAfAAkABwAJAAIAAAAfAAgABwAKAAAAAAAfAAcABAACAAIAAAAfAAYABwAJAAMAAAAfAAUABwAJAAIAAAAfAAQABwAJAAIAAAAfAAMABwAKAAAAAAAfAAIABAACAAIAAAAfAAEABwAJAAMAAAAfAAAABwAKAAAAAAAeABgABwAIAAMAAAAeABcABwAIAAAAAAAeABYABAACAAIAAAAeABUABwAIAAMAAAAeABQABwAIAAEAAAAeABMABwAIAAEAAAAeABIABwAIAAAAAAAeABEABAACAAIAAAAeABAABwAIAAMAAAAeAA8ABwAIAAEAAAAeAA4ABwAIAAEAAAAeAA0ABwAIAAAAAAAeAAwABAACAAIAAAAeAAsABwAIAAMAAAAeAAoABwAIAAEAAAAeAAkABwAIAAEAAAAeAAgABwAIAAAAAAAeAAcABAACAAIAAAAeAAYABwAIAAMAAAAeAAUABwAIAAEAAAAeAAQABwAIAAEAAAAeAAMABwAIAAAAAAAeAAIABAACAAIAAAAeAAEABwAIAAMAAAAeAAAABwAIAAAAAAAdABgABAAAAAMAAAAdABcABAAAAAIAAAAdABYABAACAAEAAAAdABUABAAAAAIAAAAdABQABAAAAAIAAAAdABMABAAAAAIAAAAdABIABAAAAAIAAAAdABEABAACAAEAAAAdABAABAAAAAIAAAAdAA8ABAAHAAIAAAAdAA4ABAALAAIAAAAdAA0ABAALAAIAAAAdAAwABAALAAEAAAAdAAsABAALAAIAAAAdAAoABAAHAAEAAAAdAAkABAAAAAIAAAAdAAgABAAAAAIAAAAdAAcABAACAAEAAAAdAAYABAAAAAIAAAAdAAUABAAAAAIAAAAdAAQABAAAAAIAAAAdAAMABAAAAAIAAAAdAAIABAACAAEAAAAdAAEABAAAAAIAAAAdAAAABAAAAAEAAAAcABgABwALAAMAAAAcABcABwALAAAAAAAcABYABAACAAIAAAAcABUABwALAAMAAAAcABQABwALAAIAAAAcABMABwALAAIAAAAcABIABwALAAAAAAAcABEABAACAAIAAAAcABAABwADAAMAAAAcAA8ABAAJAAMAAAAcAA4ABAAKAAEAAAAcAA0ABAAJAAIAAAAcAAwABAAKAAEAAAAcAAsABAAKAAEAAAAcAAoABAAKAAAAAAAcAAkABwALAAMAAAAcAAgABwALAAAAAAAcAAcABAACAAIAAAAcAAYABwALAAMAAAAcAAUABwALAAIAAAAcAAQABwALAAIAAAAcAAMABwALAAAAAAAcAAIABAACAAIAAAAcAAEABwALAAMAAAAcAAAABwALAAAAAAAbABgABwAJAAMAAAAbABcABwAKAAAAAAAbABYABAACAAIAAAAbABUABwAJAAMAAAAbABQABwAKAAEAAAAbABMABwAJAAIAAAAbABIABwAKAAAAAAAbABEABAACAAIAAAAbABAABwACAAMAAAAbAA8ABAAJAAMAAAAbAA4ABAAKAAEAAAAbAA0ABAAJAAIAAAAbAAwABAAJAAIAAAAbAAsABAAJAAIAAAAbAAoABAAKAAAAAAAbAAkABwAJAAMAAAAbAAgABwAKAAAAAAAbAAcABAACAAIAAAAbAAYABwAJAAMAAAAbAAUABwAJAAIAAAAbAAQABwAKAAEAAAAbAAMABwAKAAAAAAAbAAIABAACAAIAAAAbAAEABwAJAAMAAAAbAAAABwAKAAAAAAAaABgABwAJAAMAAAAaABcABwAKAAAAAAAaABYABAACAAIAAAAaABUABwAJAAMAAAAaABQABwAKAAEAAAAaABMABwAJAAIAAAAaABIABwAKAAAAAAAaABEABAACAAIAAAAaABAABwACAAMAAAAaAA8ABAAJAAMAAAAaAA4ABAAKAAEAAAAaAA0ABAAKAAEAAAAaAAwABAAJAAIAAAAaAAsABAAKAAEAAAAaAAoABAAKAAAAAAAaAAkABwAJAAMAAAAaAAgABwAKAAAAAAAaAAcABAACAAIAAAAaAAYABwAJAAMAAAAaAAUABwAKAAEAAAAaAAQABwAKAAEAAAAaAAMABwAKAAAAAAAaAAIABAACAAIAAAAaAAEABwAJAAMAAAAaAAAABwAKAAAAAAAZABgABwAIAAMAAAAZABcABwAIAAAAAAAZABYABAACAAIAAAAZABUABwAIAAMAAAAZABQABwAIAAEAAAAZABMABwAIAAEAAAAZABIABwAIAAAAAAAZABEABAACAAIAAAAZABAABwABAAMAAAAZAA8ABAAJAAMAAAAZAA4ABAAKAAEAAAAZAA0ABAAKAAEAAAAZAAwABAAKAAEAAAAZAAsABAAJAAIAAAAZAAoABAAKAAAAAAAZAAkABwAIAAMAAAAZAAgABwAIAAAAAAAZAAcABAACAAIAAAAZAAYABwAIAAMAAAAZAAUABwAIAAEAAAAZAAQABwAIAAEAAAAZAAMABwAIAAAAAAAZAAIABAACAAIAAAAZAAEABwAIAAMAAAAZAAAABwAIAAAAAAAYABgABAAAAAMAAAAYABcABAAAAAIAAAAYABYABAACAAEAAAAYABUABAAAAAIAAAAYABQABAAAAAIAAAAYABMABAAAAAIAAAAYABIABAAAAAIAAAAYABEABAACAAEAAAAYABAABAAAAAIAAAAYAA8ABAAKAAMAAAAYAA4ABAAJAAIAAAAYAA0ABAAJAAIAAAAYAAwABAAJAAIAAAAYAAsABAAJAAIAAAAYAAoABAAJAAAAAAAYAAkABAAAAAIAAAAYAAgABAAAAAIAAAAYAAcABAACAAEAAAAYAAYABAAAAAIAAAAYAAUABAAAAAIAAAAYAAQABAAAAAIAAAAYAAMABAAAAAIAAAAYAAIABAACAAEAAAAYAAEABAAAAAIAAAAYAAAABAAAAAEAAAAXABgABwALAAMAAAAXABcABwALAAAAAAAXABYABAACAAIAAAAXABUABwALAAMAAAAXABQABwALAAIAAAAXABMABwALAAIAAAAXABIABwALAAAAAAAXABEABAACAAIAAAAXABAABwADAAMAAAAXAA8ABAAJAAMAAAAXAA4ABAAKAAEAAAAXAA0ABAAJAAIAAAAXAAwABAAJAAIAAAAXAAsABAAJAAIAAAAXAAoABAAKAAAAAAAXAAkABwALAAMAAAAXAAgABwALAAAAAAAXAAcABAACAAIAAAAXAAYABwALAAMAAAAXAAUABwALAAIAAAAXAAQABwALAAIAAAAXAAMABwALAAAAAAAXAAIABAACAAIAAAAXAAEABwALAAMAAAAXAAAABwALAAAAAAAWABgABwAJAAMAAAAWABcABwAKAAAAAAAWABYABAACAAIAAAAWABUABwAJAAMAAAAWABQABwAJAAIAAAAWABMABwAJAAIAAAAWABIABwAKAAAAAAAWABEABAACAAIAAAAWABAABwACAAMAAAAWAA8ABAAJAAMAAAAWAA4ABAAJAAIAAAAWAA0ABAAJAAIAAAAWAAwABAAKAAEAAAAWAAsABAAKAAEAAAAWAAoABAAKAAAAAAAWAAkABwAJAAMAAAAWAAgABwAKAAAAAAAWAAcABAACAAIAAAAWAAYABwAJAAMAAAAWAAUABwAJAAIAAAAWAAQABwAKAAEAAAAWAAMABwAKAAAAAAAWAAIABAACAAIAAAAWAAEABwAJAAMAAAAWAAAABwAKAAAAAAAVABgABwAJAAMAAAAVABcABwAKAAAAAAAVABYABAACAAIAAAAVABUABwAJAAMAAAAVABQABwAKAAEAAAAVABMABwAJAAIAAAAVABIABwAKAAAAAAAVABEABAACAAIAAAAVABAABwACAAMAAAAVAA8ABAAJAAMAAAAVAA4ABAAKAAEAAAAVAA0ABAAJAAIAAAAVAAwABAAJAAIAAAAVAAsABAAKAAEAAAAVAAoABAAKAAAAAAAVAAkABwAJAAMAAAAVAAgABwAKAAAAAAAVAAcABAACAAIAAAAVAAYABwAJAAMAAAAVAAUABwAKAAEAAAAVAAQABwAJAAIAAAAVAAMABwAKAAAAAAAVAAIABAACAAIAAAAVAAEABwAJAAMAAAAVAAAABwAKAAAAAAAUABgABwAIAAMAAAAUABcABwAIAAAAAAAUABYABAACAAIAAAAUABUABwAIAAMAAAAUABQABwAIAAEAAAAUABMABwAIAAEAAAAUABIABwAIAAAAAAAUABEABAACAAIAAAAUABAABwABAAMAAAAUAA8ABAAJAAMAAAAUAA4ABAAKAAEAAAAUAA0ABAAKAAEAAAAUAAwABAAJAAIAAAAUAAsABAAJAAIAAAAUAAoABAAKAAAAAAAUAAkABwAIAAMAAAAUAAgABwAIAAAAAAAUAAcABAACAAIAAAAUAAYABwAIAAMAAAAUAAUABwAIAAEAAAAUAAQABwAIAAEAAAAUAAMABwAIAAAAAAAUAAIABAACAAIAAAAUAAEABwAIAAMAAAAUAAAABwAIAAAAAAATABgABAAAAAMAAAATABcABAAAAAIAAAATABYABAACAAEAAAATABUABAAAAAIAAAATABQABAAAAAIAAAATABMABAAAAAIAAAATABIABAAAAAIAAAATABEABAACAAEAAAATABAABAAAAAIAAAATAA8ABAAEAAIAAAATAA4ABAAIAAEAAAATAA0ABAAIAAEAAAATAAwABAAIAAIAAAATAAsABAAIAAEAAAATAAoABAAEAAEAAAATAAkABAAAAAIAAAATAAgABAAAAAIAAAATAAcABAACAAEAAAATAAYABAAAAAIAAAATAAUABAAAAAIAAAATAAQABAAAAAIAAAATAAMABAAAAAIAAAATAAIABAACAAEAAAATAAEABAAAAAIAAAATAAAABAAAAAEAAAASABgABwALAAMAAAASABcABwALAAAAAAASABYABAACAAIAAAASABUABwALAAMAAAASABQABwALAAIAAAASABMABwALAAIAAAASABIABwALAAAAAAASABEABAACAAIAAAASABAABwALAAMAAAASAA8ABwALAAIAAAASAA4ABwALAAIAAAASAA0ABwALAAAAAAASAAwABAACAAIAAAASAAsABwALAAMAAAASAAoABwALAAIAAAASAAkABwALAAIAAAASAAgABwALAAAAAAASAAcABAACAAIAAAASAAYABwALAAMAAAASAAUABwALAAIAAAASAAQABwALAAIAAAASAAMABwALAAAAAAASAAIABAACAAIAAAASAAEABwALAAMAAAASAAAABwALAAAAAAARABgABwAJAAMAAAARABcABwAKAAAAAAARABYABAACAAIAAAARABUABwAJAAMAAAARABQABwAJAAIAAAARABMABwAJAAIAAAARABIABwAKAAAAAAARABEABAACAAIAAAARABAABwAJAAMAAAARAA8ABwAKAAEAAAARAA4ABwAKAAEAAAARAA0ABwAKAAAAAAARAAwABAACAAIAAAARAAsABwAJAAMAAAARAAoABwAKAAEAAAARAAkABwAJAAIAAAARAAgABwAKAAAAAAARAAcABAACAAIAAAARAAYABwAJAAMAAAARAAUABwAKAAEAAAARAAQABwAKAAEAAAARAAMABwAKAAAAAAARAAIABAACAAIAAAARAAEABwAJAAMAAAARAAAABwAKAAAAAAAQABgABwAJAAMAAAAQABcABwAKAAAAAAAQABYABAACAAIAAAAQABUABwAJAAMAAAAQABQABwAKAAEAAAAQABMABwAKAAEAAAAQABIABwAKAAAAAAAQABEABAACAAIAAAAQABAABwAJAAMAAAAQAA8ABwAJAAIAAAAQAA4ABwAKAAEAAAAQAA0ABwAKAAAAAAAQAAwABAACAAIAAAAQAAsABwAJAAMAAAAQAAoABwAJAAIAAAAQAAkABwAJAAIAAAAQAAgABwAKAAAAAAAQAAcABAACAAIAAAAQAAYABwAJAAMAAAAQAAUABwAJAAIAAAAQAAQABwAJAAIAAAAQAAMABwAKAAAAAAAQAAIABAACAAIAAAAQAAEABwAJAAMAAAAQAAAABwAKAAAAAAAPABgABwAIAAMAAAAPABcABwAIAAAAAAAPABYABAACAAIAAAAPABUABwAIAAMAAAAPABQABwAIAAEAAAAPABMABwAIAAEAAAAPABIABwAIAAAAAAAPABEABAACAAIAAAAPABAABwAIAAMAAAAPAA8ABwAIAAEAAAAPAA4ABwAIAAEAAAAPAA0ABwAIAAAAAAAPAAwABAACAAIAAAAPAAsABwAIAAMAAAAPAAoABwAIAAEAAAAPAAkABwAIAAEAAAAPAAgABwAIAAAAAAAPAAcABAACAAIAAAAPAAYABwAIAAMAAAAPAAUABwAIAAEAAAAPAAQABwAIAAEAAAAPAAMABwAIAAAAAAAPAAIABAACAAIAAAAPAAEABwAIAAMAAAAPAAAABwAIAAAAAAAOABgABAAAAAMAAAAOABcABAAAAAIAAAAOABYABAACAAEAAAAOABUABAAAAAIAAAAOABQABAAAAAIAAAAOABMABAAAAAIAAAAOABIABAAAAAIAAAAOABEABAACAAEAAAAOABAABAAAAAIAAAAOAA8ABAAAAAIAAAAOAA4ABAAAAAIAAAAOAA0ABAAAAAIAAAAOAAwABAACAAEAAAAOAAsABAAAAAIAAAAOAAoABAAAAAIAAAAOAAkABAAAAAIAAAAOAAgABAAAAAIAAAAOAAcABAACAAEAAAAOAAYABAAAAAIAAAAOAAUABAAAAAIAAAAOAAQABAAAAAIAAAAOAAMABAAAAAIAAAAOAAIABAACAAEAAAAOAAEABAAAAAIAAAAOAAAABAAAAAEAAAANABgABwALAAMAAAANABcABwALAAAAAAANABYABAACAAIAAAANABUABwALAAMAAAANABQABwALAAIAAAANABMABwALAAIAAAANABIABwALAAAAAAANABEABAACAAIAAAANABAABwALAAMAAAANAA8ABwALAAIAAAANAA4ABwALAAIAAAANAA0ABwALAAAAAAANAAwABAACAAIAAAANAAsABwALAAMAAAANAAoABwALAAIAAAANAAkABwALAAIAAAANAAgABwALAAAAAAANAAcABAACAAIAAAANAAYABwALAAMAAAANAAUABwALAAIAAAANAAQABwALAAIAAAANAAMABwALAAAAAAANAAIABAACAAIAAAANAAEABwALAAMAAAANAAAABwALAAAAAAAMABgABwAJAAMAAAAMABcABwAKAAAAAAAMABYABAACAAIAAAAMABUABwAJAAMAAAAMABQABwAKAAEAAAAMABMABwAKAAEAAAAMABIABwAKAAAAAAAMABEABAACAAIAAAAMABAABwAJAAMAAAAMAA8ABwAJAAIAAAAMAA4ABwAJAAIAAAAMAA0ABwAKAAAAAAAMAAwABAACAAIAAAAMAAsABwAJAAMAAAAMAAoABwAJAAIAAAAMAAkABwAKAAEAAAAMAAgABwAKAAAAAAAMAAcABAACAAIAAAAMAAYABwAJAAMAAAAMAAUABwAJAAIAAAAMAAQABwAKAAEAAAAMAAMABwAKAAAAAAAMAAIABAACAAIAAAAMAAEABwAJAAMAAAAMAAAABwAKAAAAAAALABgABwAJAAMAAAALABcABwAKAAAAAAALABYABAACAAIAAAALABUABwAJAAMAAAALABQABwAJAAIAAAALABMABwAJAAIAAAALABIABwAKAAAAAAALABEABAACAAIAAAALABAABwAJAAMAAAALAA8ABwAKAAEAAAALAA4ABwAJAAIAAAALAA0ABwAKAAAAAAALAAwABAACAAIAAAALAAsABwAJAAMAAAALAAoABwAKAAEAAAALAAkABwAKAAEAAAALAAgABwAKAAAAAAALAAcABAACAAIAAAALAAYABwAJAAMAAAALAAUABwAKAAEAAAALAAQABwAJAAIAAAALAAMABwAKAAAAAAALAAIABAACAAIAAAALAAEABwAJAAMAAAALAAAABwAKAAAAAAAKABgABwAIAAMAAAAKABcABwAIAAAAAAAKABYABAACAAIAAAAKABUABwAIAAMAAAAKABQABwAIAAEAAAAKABMABwAIAAEAAAAKABIABwAIAAAAAAAKABEABAACAAIAAAAKABAABwAIAAMAAAAKAA8ABwAIAAEAAAAKAA4ABwAIAAEAAAAKAA0ABwAIAAAAAAAKAAwABAACAAIAAAAKAAsABwAIAAMAAAAKAAoABwAIAAEAAAAKAAkABwAIAAEAAAAKAAgABwAIAAAAAAAKAAcABAACAAIAAAAKAAYABwAIAAMAAAAKAAUABwAIAAEAAAAKAAQABwAIAAEAAAAKAAMABwAIAAAAAAAKAAIABAACAAIAAAAKAAEABwAIAAMAAAAKAAAABwAIAAAAAAAJABgABAAAAAMAAAAJABcABAAAAAIAAAAJABYABAACAAEAAAAJABUABAAAAAIAAAAJABQABAAAAAIAAAAJABMABAAAAAIAAAAJABIABAAAAAIAAAAJABEABAACAAEAAAAJABAABAAAAAIAAAAJAA8ABAAAAAIAAAAJAA4ABAAAAAIAAAAJAA0ABAAAAAIAAAAJAAwABAACAAEAAAAJAAsABAAAAAIAAAAJAAoABAAAAAIAAAAJAAkABAAAAAIAAAAJAAgABAAAAAIAAAAJAAcABAACAAEAAAAJAAYABAAAAAIAAAAJAAUABAAAAAIAAAAJAAQABAAAAAIAAAAJAAMABAAAAAIAAAAJAAIABAACAAEAAAAJAAEABAAAAAIAAAAJAAAABAAAAAEAAAAIABgABwALAAMAAAAIABcABwALAAAAAAAIABYABAACAAIAAAAIABUABwALAAMAAAAIABQABwALAAIAAAAIABMABwALAAIAAAAIABIABwALAAAAAAAIABEABAACAAIAAAAIABAABwALAAMAAAAIAA8ABwALAAIAAAAIAA4ABwALAAIAAAAIAA0ABwALAAAAAAAIAAwABAACAAIAAAAIAAsABwALAAMAAAAIAAoABwALAAIAAAAIAAkABwALAAIAAAAIAAgABwALAAAAAAAIAAcABAACAAIAAAAIAAYABwALAAMAAAAIAAUABwALAAIAAAAIAAQABwALAAIAAAAIAAMABwALAAAAAAAIAAIABAACAAIAAAAIAAEABwALAAMAAAAIAAAABwALAAAAAAAHABgABwAJAAMAAAAHABcABwAKAAAAAAAHABYABAACAAIAAAAHABUABwAJAAMAAAAHABQABwAJAAIAAAAHABMABwAKAAEAAAAHABIABwAKAAAAAAAHABEABAACAAIAAAAHABAABwAJAAMAAAAHAA8ABwAKAAEAAAAHAA4ABwAKAAEAAAAHAA0ABwAKAAAAAAAHAAwABAACAAIAAAAHAAsABwAJAAMAAAAHAAoABwAKAAEAAAAHAAkABwAKAAEAAAAHAAgABwAKAAAAAAAHAAcABAACAAIAAAAHAAYABwAJAAMAAAAHAAUABwAJAAIAAAAHAAQABwAJAAIAAAAHAAMABwAKAAAAAAAHAAIABAACAAIAAAAHAAEABwAJAAMAAAAHAAAABwAKAAAAAAAGABgABwAJAAMAAAAGABcABwAKAAAAAAAGABYABAACAAIAAAAGABUABwAJAAMAAAAGABQABwAKAAEAAAAGABMABwAKAAEAAAAGABIABwAKAAAAAAAGABEABAACAAIAAAAGABAABwAJAAMAAAAGAA8ABwAJAAIAAAAGAA4ABwAJAAIAAAAGAA0ABwAKAAAAAAAGAAwABAACAAIAAAAGAAsABwAJAAMAAAAGAAoABwAKAAEAAAAGAAkABwAKAAEAAAAGAAgABwAKAAAAAAAGAAcABAACAAIAAAAGAAYABwAJAAMAAAAGAAUABwAKAAEAAAAGAAQABwAKAAEAAAAGAAMABwAKAAAAAAAGAAIABAACAAIAAAAGAAEABwAJAAMAAAAGAAAABwAKAAAAAAAFABgABwAIAAMAAAAFABcABwAIAAAAAAAFABYABAACAAIAAAAFABUABwAIAAMAAAAFABQABwAIAAEAAAAFABMABwAIAAEAAAAFABIABwAIAAAAAAAFABEABAACAAIAAAAFABAABwAIAAMAAAAFAA8ABwAIAAEAAAAFAA4ABwAIAAEAAAAFAA0ABwAIAAAAAAAFAAwABAACAAIAAAAFAAsABwAIAAMAAAAFAAoABwAIAAEAAAAFAAkABwAIAAEAAAAFAAgABwAIAAAAAAAFAAcABAACAAIAAAAFAAYABwAIAAMAAAAFAAUABwAIAAEAAAAFAAQABwAIAAEAAAAFAAMABwAIAAAAAAAFAAIABAACAAIAAAAFAAEABwAIAAMAAAAFAAAABwAIAAAAAAAEABgABAAAAAMAAAAEABcABAAAAAIAAAAEABYABAACAAEAAAAEABUABAAAAAIAAAAEABQABAAAAAIAAAAEABMABAAAAAIAAAAEABIABAAAAAIAAAAEABEABAACAAEAAAAEABAABAAAAAIAAAAEAA8ABAAAAAIAAAAEAA4ABAAAAAIAAAAEAA0ABAAAAAIAAAAEAAwABAACAAEAAAAEAAsABAAAAAIAAAAEAAoABAAAAAIAAAAEAAkABAAAAAIAAAAEAAgABAAAAAIAAAAEAAcABAACAAEAAAAEAAYABAAAAAIAAAAEAAUABAAAAAIAAAAEAAQABAAAAAIAAAAEAAMABAAAAAIAAAAEAAIABAACAAEAAAAEAAEABAAAAAIAAAAEAAAABAAAAAEAAAADABgABwALAAMAAAADABcABwALAAAAAAADABYABAACAAIAAAADABUABwALAAMAAAADABQABwALAAIAAAADABMABwALAAIAAAADABIABwALAAAAAAADABEABAACAAIAAAADABAABwALAAMAAAADAA8ABwALAAIAAAADAA4ABwALAAIAAAADAA0ABwALAAAAAAADAAwABAACAAIAAAADAAsABwALAAMAAAADAAoABwALAAIAAAADAAkABwALAAIAAAADAAgABwALAAAAAAADAAcABAACAAIAAAADAAYABwALAAMAAAADAAUABwALAAIAAAADAAQABwALAAIAAAADAAMABwALAAAAAAADAAIABAACAAIAAAADAAEABwALAAMAAAADAAAABwALAAAAAAACABgABwAJAAMAAAACABcABwAKAAAAAAACABYABAACAAIAAAACABUABwAJAAMAAAACABQABwAKAAEAAAACABMABwAJAAIAAAACABIABwAKAAAAAAACABEABAACAAIAAAACABAABwAJAAMAAAACAA8ABwAKAAEAAAACAA4ABwAJAAIAAAACAA0ABwAKAAAAAAACAAwABAACAAIAAAACAAsABwAJAAMAAAACAAoABwAKAAEAAAACAAkABwAJAAIAAAACAAgABwAKAAAAAAACAAcABAACAAIAAAACAAYABwAJAAMAAAACAAUABwAJAAIAAAACAAQABwAJAAIAAAACAAMABwAKAAAAAAACAAIABAACAAIAAAACAAEABwAJAAMAAAACAAAABwAKAAAAAAABABgABwAJAAMAAAABABcABwAKAAAAAAABABYABAACAAIAAAABABUABwAJAAMAAAABABQABwAKAAEAAAABABMABwAKAAEAAAABABIABwAKAAAAAAABABEABAACAAIAAAABABAABwAJAAMAAAABAA8ABwAJAAIAAAABAA4ABwAJAAIAAAABAA0ABwAKAAAAAAABAAwABAACAAIAAAABAAsABwAJAAMAAAABAAoABwAJAAIAAAABAAkABwAJAAIAAAABAAgABwAKAAAAAAABAAcABAACAAIAAAABAAYABwAJAAMAAAABAAUABwAJAAIAAAABAAQABwAJAAIAAAABAAMABwAKAAAAAAABAAIABAACAAIAAAABAAEABwAJAAMAAAABAAAABwAKAAAAAAAAABgABwAIAAMAAAAAABcABwAIAAAAAAAAABYABAABAAIAAAAAABUABwAIAAMAAAAAABQABwAIAAEAAAAAABMABwAIAAEAAAAAABIABwAIAAAAAAAAABEABAABAAIAAAAAABAABwAIAAMAAAAAAA8ABwAIAAEAAAAAAA4ABwAIAAEAAAAAAA0ABwAIAAAAAAAAAAwABAABAAIAAAAAAAsABwAIAAMAAAAAAAoABwAIAAEAAAAAAAkABwAIAAEAAAAAAAgABwAIAAAAAAAAAAcABAABAAIAAAAAAAYABwAIAAMAAAAAAAUABwAIAAEAAAAAAAQABwAIAAEAAAAAAAMABwAIAAAAAAAAAAIABAABAAIAAAAAAAEABwAIAAMAAAAAAAAABwAIAAAAAAA=")
+
+[node name="FinalBread" parent="." index="3" instance=ExtResource("3_2jkly")]
+position = Vector2(192, 120)
+
+[node name="WholeWheatBread" parent="." index="4" instance=ExtResource("5_iou2j")]
+position = Vector2(-40, -16)
+
+[node name="LeftKnife" type="Node2D" parent="." index="5"]
+position = Vector2(-32, 0)
+metadata/_edit_lock_ = true
+
+[node name="Knife" parent="LeftKnife" index="0" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 16)
+
+[node name="Knife2" parent="LeftKnife" index="1" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 56)
+
+[node name="Knife3" parent="LeftKnife" index="2" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 96)
+
+[node name="Knife4" parent="LeftKnife" index="3" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 136)
+
+[node name="Knife5" parent="LeftKnife" index="4" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 176)
+
+[node name="RightKnife" type="Node2D" parent="." index="6"]
+position = Vector2(416, 0)
+metadata/_edit_lock_ = true
+
+[node name="Knife" parent="RightKnife" index="0" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 16)
+
+[node name="Knife2" parent="RightKnife" index="1" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 56)
+
+[node name="Knife3" parent="RightKnife" index="2" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 96)
+
+[node name="Knife4" parent="RightKnife" index="3" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 136)
+
+[node name="Knife5" parent="RightKnife" index="4" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 176)
+
+[node name="TopKnife" type="Node2D" parent="." index="7"]
+position = Vector2(192, -88)
+metadata/_edit_lock_ = true
+
+[node name="Knife" parent="TopKnife" index="0" instance=ExtResource("2_2p68q")]
+position = Vector2(-160, 40)
+
+[node name="Knife2" parent="TopKnife" index="1" instance=ExtResource("2_2p68q")]
+position = Vector2(-120, 40)
+
+[node name="Knife3" parent="TopKnife" index="2" instance=ExtResource("2_2p68q")]
+position = Vector2(-80, 40)
+
+[node name="Knife4" parent="TopKnife" index="3" instance=ExtResource("2_2p68q")]
+position = Vector2(-40, 40)
+
+[node name="Knife5" parent="TopKnife" index="4" instance=ExtResource("2_2p68q")]
+position = Vector2(0, 40)
+
+[node name="Knife6" parent="TopKnife" index="5" instance=ExtResource("2_2p68q")]
+position = Vector2(40, 40)
+
+[node name="Knife7" parent="TopKnife" index="6" instance=ExtResource("2_2p68q")]
+position = Vector2(80, 40)
+
+[node name="Knife8" parent="TopKnife" index="7" instance=ExtResource("2_2p68q")]
+position = Vector2(120, 40)
+
+[node name="Knife9" parent="TopKnife" index="8" instance=ExtResource("2_2p68q")]
+position = Vector2(160, 40)
+
+[node name="GameTile" parent="." index="8"]
+tile_map_data = PackedByteArray("AAABABwAEgAJAAMAAAABABsAEgAKAAEAAAABABoAEgAJAAIAAAABABkAEgAKAAEAAAABABgAEgAKAAAAAAAAABwAEgAJAAMAAAAAABsAEgAJAAIAAAAAABoAEgAKAAEAAAAAABkAEgAKAAEAAAAAABgAEgAKAAAAAAD//xwAEgAJAAMAAAD//xsAEgAKAAEAAAD//xoAEgAJAAIAAAD//xkAEgAJAAIAAAD//xgAEgAKAAAAAAD+/xwAEgAIAAMAAAD+/xsAEgAIAAEAAAD+/xoAEgAIAAEAAAD+/xkAEgAIAAEAAAD+/xgAEgAEAAEAAAD+/xcAEgAAAAIAAAD+/xYAEgAAAAIAAAD+/xUAEgAAAAIAAAD+/xQAEgAAAAIAAAD+/xMAEgAAAAIAAAD+/xIAEgAAAAIAAAD+/xEAEgAAAAIAAAD+/xAAEgAAAAIAAAD+/w8AEgAAAAIAAAD+/w4AEgAAAAIAAAD+/w0AEgAAAAIAAAD+/wwAEgAAAAIAAAD+/wsAEgAAAAIAAAD+/woAEgAAAAIAAAD+/wkAEgAAAAIAAAD+/wgAEgAAAAIAAAD+/wcAEgAAAAIAAAD+/wYAEgAAAAIAAAD+/wUAEgAAAAIAAAD+/wQAEgAAAAIAAAD+/wMAEgAAAAIAAAD+/wIAEgAAAAIAAAD+/wEAEgAAAAIAAAD+/wAAEgAAAAIAAAD+////EgAAAAIAAAD+//7/EgAAAAEAAAAwABwAEgAJAAMAAAAwABsAEgAJAAIAAAAwABoAEgAJAAIAAAAwABkAEgAKAAEAAAAwABgAEgAKAAAAAAAvABwAEgAJAAMAAAAvABsAEgAKAAEAAAAvABoAEgAKAAEAAAAvABkAEgAKAAEAAAAvABgAEgAKAAAAAAAuABwAEgAJAAMAAAAuABsAEgAKAAEAAAAuABoAEgAJAAIAAAAuABkAEgAKAAEAAAAuABgAEgAKAAAAAAAtABwAEgAJAAMAAAAtABsAEgAKAAEAAAAtABoAEgAJAAIAAAAtABkAEgAJAAIAAAAsABwAEgAJAAMAAAAsABsAEgAKAAEAAAAsABoAEgAJAAIAAAAsABkAEgAJAAIAAAArABwAEgAJAAMAAAArABsAEgAKAAEAAAArABoAEgAKAAEAAAArABkAEgAKAAEAAAAqABwAEgAJAAMAAAAqABsAEgAJAAIAAAAqABoAEgAJAAIAAAAqABkAEgAKAAEAAAApABwAEgAJAAMAAAApABsAEgAJAAIAAAApABoAEgAJAAIAAAApABkAEgAJAAIAAAAoABwAEgAJAAMAAAAoABsAEgAJAAIAAAAoABoAEgAKAAEAAAAoABkAEgAJAAIAAAAnABwAEgAJAAMAAAAnABsAEgAJAAIAAAAnABoAEgAKAAEAAAAnABkAEgAJAAIAAAAmABwAEgAJAAMAAAAmABsAEgAKAAEAAAAmABoAEgAKAAEAAAAmABkAEgAKAAEAAAAlABwAEgAJAAMAAAAlABsAEgAJAAIAAAAlABoAEgAJAAIAAAAlABkAEgAJAAIAAAAkABwAEgAJAAMAAAAkABsAEgAKAAEAAAAkABoAEgAKAAEAAAAkABkAEgAJAAIAAAAjABwAEgAJAAMAAAAjABsAEgAJAAIAAAAjABoAEgAKAAEAAAAjABkAEgAKAAEAAAAiABwAEgAJAAMAAAAiABsAEgAKAAEAAAAiABoAEgAJAAIAAAAiABkAEgAJAAIAAAAhABwAEgAJAAMAAAAhABsAEgAKAAEAAAAhABoAEgAKAAEAAAAhABkAEgAKAAEAAAAgABwAEgAJAAMAAAAgABsAEgAJAAIAAAAgABoAEgAKAAEAAAAgABkAEgAJAAIAAAAfABwAEgAJAAMAAAAfABsAEgAKAAEAAAAfABoAEgAJAAIAAAAfABkAEgAJAAIAAAAeABwAEgAJAAMAAAAeABsAEgAKAAEAAAAeABoAEgAKAAEAAAAeABkAEgAKAAEAAAAdABwAEgAJAAMAAAAdABsAEgAKAAEAAAAdABoAEgAJAAIAAAAdABkAEgAJAAIAAAAcABwAEgAJAAMAAAAcABsAEgAJAAIAAAAcABoAEgAKAAEAAAAcABkAEgAJAAIAAAAbABwAEgAJAAMAAAAbABsAEgAJAAIAAAAbABoAEgAJAAIAAAAbABkAEgAJAAIAAAAaABwAEgAJAAMAAAAaABsAEgAKAAEAAAAaABoAEgAKAAEAAAAaABkAEgAKAAEAAAAZABwAEgAJAAMAAAAZABsAEgAKAAEAAAAZABoAEgAJAAIAAAAZABkAEgAKAAEAAAAYABwAEgAJAAMAAAAYABsAEgAJAAIAAAAYABoAEgAJAAIAAAAYABkAEgAKAAEAAAAXABwAEgAJAAMAAAAXABsAEgAKAAEAAAAXABoAEgAKAAEAAAAXABkAEgAJAAIAAAAWABwAEgAJAAMAAAAWABsAEgAJAAIAAAAWABoAEgAJAAIAAAAWABkAEgAJAAIAAAAVABwAEgAJAAMAAAAVABsAEgAJAAIAAAAVABoAEgAJAAIAAAAVABkAEgAKAAEAAAAUABwAEgAJAAMAAAAUABsAEgAKAAEAAAAUABoAEgAKAAEAAAAUABkAEgAJAAIAAAATABwAEgAJAAMAAAATABsAEgAJAAIAAAATABoAEgAKAAEAAAATABkAEgAJAAIAAAASABwAEgAJAAMAAAASABsAEgAKAAEAAAASABoAEgAKAAEAAAASABkAEgAJAAIAAAARABwAEgAJAAMAAAARABsAEgAJAAIAAAARABoAEgAKAAEAAAARABkAEgAKAAEAAAAQABwAEgAJAAMAAAAQABsAEgAKAAEAAAAQABoAEgAJAAIAAAAQABkAEgAKAAEAAAAPABwAEgAJAAMAAAAPABsAEgAJAAIAAAAPABoAEgAKAAEAAAAPABkAEgAKAAEAAAAOABwAEgAJAAMAAAAOABsAEgAJAAIAAAAOABoAEgAJAAIAAAAOABkAEgAKAAEAAAANABwAEgAJAAMAAAANABsAEgAJAAIAAAANABoAEgAJAAIAAAANABkAEgAKAAEAAAAMABwAEgAJAAMAAAAMABsAEgAJAAIAAAAMABoAEgAKAAEAAAAMABkAEgAJAAIAAAALABwAEgAJAAMAAAALABsAEgAJAAIAAAALABoAEgAJAAIAAAALABkAEgAJAAIAAAAKABwAEgAJAAMAAAAKABsAEgAJAAIAAAAKABoAEgAJAAIAAAAKABkAEgAKAAEAAAAJABwAEgAJAAMAAAAJABsAEgAJAAIAAAAJABoAEgAKAAEAAAAJABkAEgAKAAEAAAAIABwAEgAJAAMAAAAIABsAEgAKAAEAAAAIABoAEgAKAAEAAAAIABkAEgAJAAIAAAAHABwAEgAJAAMAAAAHABsAEgAJAAIAAAAHABoAEgAKAAEAAAAHABkAEgAKAAEAAAAGABwAEgAJAAMAAAAGABsAEgAJAAIAAAAGABoAEgAJAAIAAAAGABkAEgAKAAEAAAAFABwAEgAJAAMAAAAFABsAEgAJAAIAAAAFABoAEgAJAAIAAAAFABkAEgAJAAIAAAAEABwAEgAJAAMAAAAEABsAEgAKAAEAAAAEABoAEgAJAAIAAAAEABkAEgAKAAEAAAADABwAEgAJAAMAAAADABsAEgAJAAIAAAADABoAEgAKAAEAAAADABkAEgAJAAIAAAACABwAEgAJAAMAAAACABsAEgAJAAIAAAACABoAEgAJAAIAAAACABkAEgAKAAEAAAAxABwAEgALAAMAAAAxABsAEgALAAIAAAAxABoAEgALAAIAAAAxABkAEgALAAIAAAAxABgAEgAHAAEAAAAxABcAEgAAAAIAAAAxABYAEgAAAAIAAAAxABUAEgAAAAIAAAAxABQAEgAAAAIAAAAxABMAEgAAAAIAAAAxABIAEgAAAAIAAAAxABEAEgAAAAIAAAAxABAAEgAAAAIAAAAxAA8AEgAAAAIAAAAxAA4AEgAAAAIAAAAxAA0AEgAAAAIAAAAxAAwAEgAAAAIAAAAxAAsAEgAAAAIAAAAxAAoAEgAAAAIAAAAxAAkAEgAAAAIAAAAxAAgAEgAAAAIAAAAxAAcAEgAAAAIAAAAxAAYAEgAAAAIAAAAxAAUAEgAAAAIAAAAxAAQAEgAAAAIAAAAxAAMAEgAAAAIAAAAxAAIAEgAAAAIAAAAxAAEAEgAAAAIAAAAxAAAAEgAAAAIAAAAxAP//EgAAAAIAAAAxAP7/EgAAAAEAAAABAPz/EgABAAAAAAABAP3/EgAAAAMAAAAuAPz/EgADAAAAAAAuAP3/EgAAAAMAAAAtABgAEgAKAAAAAAAsABgAEgAKAAAAAAArABgAEgAKAAAAAAAqABgAEgAKAAAAAAApABgAEgAKAAAAAAAoABgAEgAKAAAAAAAnABgAEgAKAAAAAAAmABgAEgAKAAAAAAAlABgAEgAKAAAAAAAkABgAEgAKAAAAAAAjABgAEgAKAAAAAAAiABgAEgAKAAAAAAAhABgAEgAKAAAAAAAgABgAEgAKAAAAAAAfABgAEgAKAAAAAAAeABgAEgAKAAAAAAAdABgAEgAKAAAAAAAcABgAEgAKAAAAAAAbABgAEgAKAAAAAAAaABgAEgAKAAAAAAAZABgAEgAKAAAAAAAYABgAEgAKAAAAAAAXABgAEgAKAAAAAAAWABgAEgAKAAAAAAAVABgAEgAKAAAAAAAUABgAEgAKAAAAAAATABgAEgAKAAAAAAASABgAEgAKAAAAAAARABgAEgAKAAAAAAAQABgAEgAKAAAAAAAPABgAEgAKAAAAAAAOABgAEgAKAAAAAAANABgAEgAKAAAAAAAMABgAEgAKAAAAAAALABgAEgAKAAAAAAAKABgAEgAKAAAAAAAJABgAEgAKAAAAAAAIABgAEgAKAAAAAAAHABgAEgAKAAAAAAAGABgAEgAKAAAAAAAFABgAEgAKAAAAAAAEABgAEgAKAAAAAAADABgAEgAKAAAAAAACABgAEgAKAAAAAAAuABcABwAAAAMAAAAuABYABwAAAAIAAAAuABUABwAAAAIAAAAuABQABwAAAAIAAAAuABMABwAAAAIAAAAuABIABwAAAAIAAAAuABEABwAAAAIAAAAuABAABwAAAAIAAAAuAA8ABwAAAAIAAAAuAA4ABwAAAAIAAAAuAA0ABwAAAAIAAAAuAAwABwAAAAIAAAAuAAsABwAAAAIAAAAuAAoABwAAAAIAAAAuAAkABwAAAAIAAAAuAAgABwAAAAIAAAAuAAcABwAAAAIAAAAuAAYABwAAAAIAAAAuAAUABwAAAAIAAAAuAAQABwAAAAIAAAAuAAMABwAAAAIAAAAuAAIABwAAAAIAAAAuAAEABwAAAAIAAAAuAAAABwAAAAIAAAAuAP//BwAAAAIAAAAuAP7/BwAAAAEAAAABABcABwAAAAMAAAABABYABwAAAAIAAAABABUABwAAAAIAAAABABQABwAAAAIAAAABABMABwAAAAIAAAABABIABwAAAAIAAAABABEABwAAAAIAAAABABAABwAAAAIAAAABAA8ABwAAAAIAAAABAA4ABwAAAAIAAAABAA0ABwAAAAIAAAABAAwABwAAAAIAAAABAAsABwAAAAIAAAABAAoABwAAAAIAAAABAAkABwAAAAIAAAABAAgABwAAAAIAAAABAAcABwAAAAIAAAABAAYABwAAAAIAAAABAAUABwAAAAIAAAABAAQABwAAAAIAAAABAAMABwAAAAIAAAABAAIABwAAAAIAAAABAAEABwAAAAIAAAABAAAABwAAAAIAAAABAP//BwAAAAIAAAABAP7/BwAAAAEAAAAtAPz/EgACAAMAAAAsAPz/EgACAAMAAAArAPz/EgACAAMAAAAqAPz/EgACAAMAAAApAPz/EgACAAMAAAAoAPz/EgACAAMAAAAnAPz/EgACAAMAAAAmAPz/EgACAAMAAAAlAPz/EgACAAMAAAAkAPz/EgACAAMAAAAjAPz/EgACAAMAAAAiAPz/EgACAAMAAAAhAPz/EgACAAMAAAAgAPz/EgACAAMAAAAfAPz/EgACAAMAAAAeAPz/EgACAAMAAAAdAPz/EgACAAMAAAAcAPz/EgACAAMAAAAbAPz/EgACAAMAAAAaAPz/EgACAAMAAAAZAPz/EgACAAMAAAAYAPz/EgACAAMAAAAXAPz/EgACAAMAAAAWAPz/EgACAAMAAAAVAPz/EgACAAMAAAAUAPz/EgACAAMAAAATAPz/EgACAAMAAAASAPz/EgACAAMAAAARAPz/EgACAAMAAAAQAPz/EgACAAMAAAAPAPz/EgACAAMAAAAOAPz/EgACAAMAAAANAPz/EgACAAMAAAAMAPz/EgACAAMAAAALAPz/EgACAAMAAAAKAPz/EgACAAMAAAAJAPz/EgACAAMAAAAIAPz/EgACAAMAAAAHAPz/EgACAAMAAAAGAPz/EgACAAMAAAAFAPz/EgACAAMAAAAEAPz/EgACAAMAAAADAPz/EgACAAMAAAACAPz/EgACAAMAAAA=")
+
+[node name="EndParticle" type="Node2D" parent="Units" index="0"]
+
+[node name="DefeatParticle" type="GPUParticles2D" parent="Units/EndParticle" index="0"]
+modulate = Color(1, 0.92156863, 0.34117648, 1)
+position = Vector2(168, 88)
+emitting = false
+amount = 20
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("6_5b1jx")
+
+[node name="DefeatParticle2" type="GPUParticles2D" parent="Units/EndParticle" index="1"]
+modulate = Color(1, 0.92156863, 0.34117648, 1)
+position = Vector2(184, 112)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("6_5b1jx")
+
+[node name="DefeatParticle3" type="GPUParticles2D" parent="Units/EndParticle" index="2"]
+modulate = Color(1, 0.92156863, 0.34117648, 1)
+position = Vector2(200, 88)
+emitting = false
+amount = 20
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("6_5b1jx")
+
+[node name="DefeatParticle4" type="GPUParticles2D" parent="Units/EndParticle" index="3"]
+modulate = Color(1, 0.92156863, 0.34117648, 1)
+position = Vector2(216, 112)
+emitting = false
+amount = 20
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("6_5b1jx")
+
+[node name="Player" parent="." index="10"]
+position = Vector2(192, 192)
+
+[node name="GameCamera" parent="." index="11"]
+position = Vector2(192, 192)
+
+[node name="DarkLight" type="DirectionalLight2D" parent="Lights" index="2"]
+blend_mode = 1
+range_layer_min = -10
+range_layer_max = 10
+
+[node name="EditorLight" type="DirectionalLight2D" parent="Lights" index="3"]
+editor_only = true
+range_layer_min = -10
+range_layer_max = 10
+
+[node name="EntryPoint" parent="Entrances" index="0" instance=ExtResource("3_amf8b")]
+position = Vector2(192, 8)
+location = 2
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="completed" from="FinalBread" to="." method="_on_final_bread_completed"]
+[connection signal="defeated" from="WholeWheatBread" to="." method="_on_whole_wheat_bread_defeated"]
+[connection signal="finished" from="Units/EndParticle/DefeatParticle" to="." method="_on_defeat_particle_finished"]
+[connection signal="finished" from="Units/EndParticle/DefeatParticle2" to="." method="_on_defeat_particle_2_finished"]
+[connection signal="finished" from="Units/EndParticle/DefeatParticle3" to="." method="_on_defeat_particle_3_finished"]
+[connection signal="finished" from="Units/EndParticle/DefeatParticle4" to="." method="_on_defeat_particle_4_finished"]

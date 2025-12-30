@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://8pr4evigewjk"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_wei7x"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_0ojeu"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="3_0ojeu"]
+[ext_resource type="Texture2D" uid="uid://bvwkfqxv6kd4a" path="res://asset/texture/unit/npc/candy.webp" id="3_ipxtq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ipxtq"]
+resource_local_to_scene = true
+shader = ExtResource("2_0ojeu")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ipxtq"]
+size = Vector2(32, 8)
+
+[node name="Candy" instance=ExtResource("1_wei7x")]
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_ipxtq")
+position = Vector2(0, -8)
+texture = ExtResource("3_ipxtq")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_ipxtq")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("DialogContent")
+
+[node name="DialogContent" parent="Dialog" index="3" instance=ExtResource("3_0ojeu")]
+can_end = true
+message = Array[String](["CANDY_0", "CANDY_1", "CANDY_2", "CANDY_3", "CANDY_4", "CANDY_5", "CANDY_6"])

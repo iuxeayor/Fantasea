@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccy71qgseitov"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_usxqt"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_uh5a8"]
+[ext_resource type="Texture2D" uid="uid://75ui3p23llru" path="res://asset/texture/unit/npc/ketchup.webp" id="3_uh5a8"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_mg6rr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mg6rr"]
+resource_local_to_scene = true
+shader = ExtResource("2_uh5a8")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mg6rr"]
+size = Vector2(32, 8)
+
+[node name="Ketchup" instance=ExtResource("1_usxqt")]
+turn = false
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_mg6rr")
+position = Vector2(0, -8)
+texture = ExtResource("3_uh5a8")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_mg6rr")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+position = Vector2(0, -24)
+root_dialog = NodePath("DialogContent")
+
+[node name="DialogContent" parent="Dialog" index="3" instance=ExtResource("4_mg6rr")]
+can_end = true
+message = Array[String](["KETCHUP_0", "KETCHUP_1", "KETCHUP_2"])

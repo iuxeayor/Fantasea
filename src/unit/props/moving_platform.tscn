@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl8hf7jgd2srq"]
+
+[ext_resource type="Script" uid="uid://b8om2uvt8g5wd" path="res://src/unit/props/moving_platform.gd" id="1_ls2nf"]
+
+[node name="MovingPlatform" type="StaticBody2D"]
+collision_layer = 524544
+collision_mask = 655360
+script = ExtResource("1_ls2nf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../AnimatableBody2D")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+collision_layer = 513
+collision_mask = 0
+
+[node name="AnimatableCollision" type="CollisionShape2D" parent="AnimatableBody2D"]

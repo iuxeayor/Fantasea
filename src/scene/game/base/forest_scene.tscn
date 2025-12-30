@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://drwpijhad8ye1"]
+
+[ext_resource type="PackedScene" uid="uid://d3f8si3p73axf" path="res://src/scene/scene.tscn" id="1_sy1ig"]
+[ext_resource type="Script" uid="uid://cqg144512x0cf" path="res://src/scene/game/base/forest_scene.gd" id="2_ceuu2"]
+[ext_resource type="Texture2D" uid="uid://bc4uklbywi465" path="res://asset/texture/background/forest_trunk_far.webp" id="3_ceuu2"]
+[ext_resource type="AudioStream" uid="uid://bjmlecy5oal2i" path="res://asset/music/forest.ogg" id="3_nftsa"]
+[ext_resource type="Texture2D" uid="uid://drxhjtek1x0qv" path="res://asset/texture/background/forest_leaf_top.webp" id="4_ceuu2"]
+[ext_resource type="Texture2D" uid="uid://hnh1p8nakjs2" path="res://asset/texture/background/forest_leaf_bottom_far.webp" id="5_ceuu2"]
+[ext_resource type="Texture2D" uid="uid://efespqybkve8" path="res://asset/texture/background/forest_leaf_bottom_near.webp" id="6_ceuu2"]
+
+[node name="ForestScene" instance=ExtResource("1_sy1ig")]
+script = ExtResource("2_ceuu2")
+scene_environment = 1
+bgm = ExtResource("3_nftsa")
+scene_name = "SCENE_FOREST"
+
+[node name="TrunkFar" type="Parallax2D" parent="Background/Environment" index="1"]
+scroll_scale = Vector2(0.5, 0.3)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/TrunkFar" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("3_ceuu2")
+
+[node name="LeafTop" type="Parallax2D" parent="Background/Environment" index="2"]
+scroll_scale = Vector2(0.8, 0.2)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/LeafTop" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("4_ceuu2")
+
+[node name="LeafBottomFar" type="Parallax2D" parent="Background/Environment" index="3"]
+scroll_scale = Vector2(0.8, 0.2)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/LeafBottomFar" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("5_ceuu2")
+
+[node name="LeafBottomNear" type="Parallax2D" parent="Background/Environment" index="4"]
+scroll_scale = Vector2(0.9, 0.1)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/LeafBottomNear" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("6_ceuu2")
+
+[node name="EnvironmentLight" type="DirectionalLight2D" parent="Lights" index="0"]
+color = Color(1, 0.827451, 0.658824, 1)
+energy = 0.15
+blend_mode = 2
+range_layer_min = -10
+range_layer_max = 10

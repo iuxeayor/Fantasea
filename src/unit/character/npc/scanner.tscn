@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4nh1ovydxgwd"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_oqq8o"]
+[ext_resource type="Script" uid="uid://b0kl84tivcoxm" path="res://src/unit/character/npc/scanner.gd" id="2_3t1nl"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_vn3v3"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="3_vn3v3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3t1nl"]
+resource_local_to_scene = true
+shader = ExtResource("2_vn3v3")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_oqq8o"]
+b = Vector2(0, -8)
+
+[node name="Scanner" instance=ExtResource("1_oqq8o")]
+script = ExtResource("2_3t1nl")
+direction = 1
+turn = false
+
+[node name="Graphics" parent="." index="1"]
+scale = Vector2(1, 1)
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_3t1nl")
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("SegmentShape2D_oqq8o")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+position = Vector2(0, -33)
+root_dialog = NodePath("Start")
+
+[node name="Start" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("3_vn3v3")]
+can_end = true
+message = Array[String](["SCANNER_START_0"])
+target = {
+"SCANNER_SCAN": NodePath("Scan")
+}
+
+[node name="Scan" parent="Dialog/Start" index="0" instance=ExtResource("3_vn3v3")]
+can_end = true
+can_release_control = false
+message = Array[String](["SCANNER_SCAN_0", "SCANNER_SCAN_1", "SCANNER_SCAN_2", "SCANNER_SCAN_3", "SCANNER_SCAN_4", "SCANNER_SCAN_5", "SCANNER_SCAN_6", "SCANNER_SCAN_7"])
+
+[connection signal="ended" from="Dialog/Start/Scan" to="." method="_on_scan_ended"]

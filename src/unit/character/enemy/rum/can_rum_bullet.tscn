@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpthou0c6y3qq"]
+
+[ext_resource type="PackedScene" uid="uid://buxr1rvcq82df" path="res://src/unit/character/enemy/rigid_bullet.tscn" id="1_8b3ps"]
+[ext_resource type="Texture2D" uid="uid://d1m6dl7e3ljm5" path="res://asset/texture/unit/enemy/rum/can_rum_bullet.webp" id="2_32mfx"]
+[ext_resource type="Script" uid="uid://bkdaomoosroom" path="res://src/unit/character/enemy/rum/can_rum_bullet.gd" id="2_a4s50"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_32mfx"]
+friction = 0.8
+bounce = 0.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_32mfx"]
+radius = 4.0
+
+[node name="CanRumBullet" instance=ExtResource("1_8b3ps")]
+collision_mask = 259
+physics_material_override = SubResource("PhysicsMaterial_32mfx")
+script = ExtResource("2_a4s50")
+obj_name = &"can_rum_bullet"
+rolling_friction = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_32mfx")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_32mfx")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 2
+
+[node name="LifeTimer" parent="." index="5"]
+wait_time = 2.0

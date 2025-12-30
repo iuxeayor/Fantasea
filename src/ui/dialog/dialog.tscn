@@ -1,0 +1,166 @@
+[gd_scene load_steps=12 format=3 uid="uid://dekecjlka8xp5"]
+
+[ext_resource type="Script" uid="uid://c8db5js1odbvn" path="res://src/ui/dialog/dialog.gd" id="1_s0kj8"]
+[ext_resource type="Theme" uid="uid://bgy04crxgdyk3" path="res://src/asset/theme/dialog_theme.tres" id="2_0dg1q"]
+[ext_resource type="PackedScene" uid="uid://b7v51rrr0jw7m" path="res://src/ui/dialog/dialog_button.tscn" id="3_pmgsx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qxi24"]
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_0jvam"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_atwn2"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5pof5"]
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_c2gma"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_f2ebk"]
+resource_name = "close"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2qbj8"]
+resource_name = "open"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j2c8i"]
+_data = {
+&"RESET": SubResource("Animation_c2gma"),
+&"close": SubResource("Animation_f2ebk"),
+&"open": SubResource("Animation_2qbj8")
+}
+
+[node name="Dialog" type="Node2D"]
+z_index = 10
+material = SubResource("CanvasItemMaterial_qxi24")
+script = ExtResource("1_s0kj8")
+hide_disabled = null
+
+[node name="Arrow" type="Line2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(1.6, 0.444444)
+points = PackedVector2Array(0, 0, 0, -54)
+width = 8.0
+width_curve = SubResource("Curve_0jvam")
+default_color = Color(0, 0, 0, 1)
+
+[node name="Frame" type="PanelContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -32.0
+offset_right = 36.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_0dg1q")
+
+[node name="Content" type="VBoxContainer" parent="Frame"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Message" type="RichTextLabel" parent="Frame/Content"]
+material = SubResource("CanvasItemMaterial_atwn2")
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="Options" type="VBoxContainer" parent="Frame/Content"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="NextButton" parent="Frame/Content" instance=ExtResource("3_pmgsx")]
+visible = false
+material = SubResource("CanvasItemMaterial_5pof5")
+layout_mode = 2
+text = "→"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j2c8i")
+}
+
+[connection signal="pressed" from="Frame/Content/NextButton" to="." method="_on_next_button_pressed"]

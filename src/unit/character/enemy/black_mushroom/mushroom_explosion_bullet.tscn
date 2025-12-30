@@ -1,0 +1,148 @@
+[gd_scene load_steps=9 format=3 uid="uid://tep8yma3yuvk"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_la11f"]
+[ext_resource type="Texture2D" uid="uid://bhwe0dgom0rfc" path="res://asset/texture/unit/enemy/black_mushroom/explosion.webp" id="2_c4csh"]
+[ext_resource type="Script" uid="uid://creo7iao8tg26" path="res://src/unit/character/enemy/black_mushroom/mushroom_explosion_bullet.gd" id="2_sce3c"]
+[ext_resource type="Material" uid="uid://cf1yr7gtjqgte" path="res://src/asset/particle/big_explosion.tres" id="3_lindq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4csh"]
+radius = 1.0
+
+[sub_resource type="Animation" id="Animation_sce3c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lindq"]
+resource_name = "explosion"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:shape:radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 48.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sce3c"]
+_data = {
+&"RESET": SubResource("Animation_sce3c"),
+&"explosion": SubResource("Animation_lindq")
+}
+
+[node name="MushroomExplosionBullet" instance=ExtResource("1_la11f")]
+script = ExtResource("2_sce3c")
+obj_name = &"mushroom_explosion_bullet"
+dead_on_collide = 0
+dead_on_hit = false
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_c4csh")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_c4csh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+libraries = {
+&"": SubResource("AnimationLibrary_sce3c")
+}
+
+[node name="ExplosionParticle" type="GPUParticles2D" parent="." index="8"]
+emitting = false
+amount = 80
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_lindq")

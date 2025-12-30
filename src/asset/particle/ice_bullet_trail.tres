@@ -1,0 +1,19 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=2 format=3 uid="uid://bnpb7qyrgsbu"]
+
+[ext_resource type="Texture2D" uid="uid://c42ew34tvwt57" path="res://src/asset/curve/fade_out.tres" id="1_x4q66"]
+
+[resource]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 4, 1)
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = ExtResource("1_x4q66")
+alpha_curve = ExtResource("1_x4q66")

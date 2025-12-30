@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg2ivcghouj2k"]
+
+[ext_resource type="Script" uid="uid://bf850bxtt6t32" path="res://src/global/platform_manager.gd" id="1_m7o6r"]
+
+[node name="PlatformManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_m7o6r")
+
+[node name="SteamPushTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="SteamPushTimer" to="." method="_on_steam_push_timer_timeout"]

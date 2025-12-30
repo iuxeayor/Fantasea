@@ -1,0 +1,216 @@
+[gd_scene load_steps=13 format=3 uid="uid://ca4io3detv6y5"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_tnufa"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_7isbq"]
+[ext_resource type="Script" uid="uid://djo2k7x6rmj4b" path="res://src/unit/character/npc/mantou.gd" id="2_bhb82"]
+[ext_resource type="Texture2D" uid="uid://dyi6yusn0r380" path="res://asset/texture/unit/npc/mantou.webp" id="3_tdmqv"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_w12wn"]
+[ext_resource type="Texture2D" uid="uid://dgbiuek40dakx" path="res://asset/texture/unit/npc/mantou_write.webp" id="5_n3d10"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tieaf"]
+resource_local_to_scene = true
+shader = ExtResource("2_7isbq")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2pgv"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_bhb82"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_tdmqv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_o2fue"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_tdmqv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n3d10"]
+resource_name = "write"
+length = 1.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_n3d10")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n3d10"]
+_data = {
+&"RESET": SubResource("Animation_bhb82"),
+&"idle": SubResource("Animation_o2fue"),
+&"write": SubResource("Animation_n3d10")
+}
+
+[node name="Mantou" instance=ExtResource("1_tnufa")]
+script = ExtResource("2_bhb82")
+direction = 1
+turn = false
+
+[node name="Graphics" parent="." index="1"]
+scale = Vector2(1, 1)
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_tieaf")
+position = Vector2(0, -11)
+texture = ExtResource("3_tdmqv")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_s2pgv")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_n3d10")
+}
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+position = Vector2(0, -21)
+root_dialog = NodePath("Info")
+
+[node name="Start" parent="Dialog" index="0" node_paths=PackedStringArray("target") instance=ExtResource("4_w12wn")]
+can_release_control = false
+message = Array[String](["MANTOU_START_0", "MANTOU_START_1", "MANTOU_START_2"])
+target = {
+"MANTOU_REQUEST": NodePath("Request")
+}
+
+[node name="Request" parent="Dialog/Start" index="0" node_paths=PackedStringArray("target") instance=ExtResource("4_w12wn")]
+can_release_control = false
+message = Array[String](["MANTOU_REQUEST_0", "MANTOU_REQUEST_1", "MANTOU_REQUEST_2"])
+target = {
+"MANTOU_REPLY": NodePath("Reply")
+}
+
+[node name="Reply" parent="Dialog/Start/Request" index="0" instance=ExtResource("4_w12wn")]
+can_end = true
+can_release_control = false
+message = Array[String](["MANTOU_REPLY_0", "MANTOU_REPLY_1", "MANTOU_REPLY_2", "MANTOU_REPLY_3", "MANTOU_REPLY_4"])
+
+[node name="Busy" parent="Dialog" index="3" instance=ExtResource("4_w12wn")]
+can_end = true
+message = Array[String](["MANTOU_BUSY_0"])
+
+[node name="Info" parent="Dialog" index="4" node_paths=PackedStringArray("target") instance=ExtResource("4_w12wn")]
+can_end = true
+message = Array[String](["MANTOU_INFO"])
+target = {
+"MANTOU_THANKS": NodePath("Thanks"),
+"MANTOU_WORLD": NodePath("World")
+}
+
+[node name="World" parent="Dialog/Info" index="0" node_paths=PackedStringArray("target") instance=ExtResource("4_w12wn")]
+message = Array[String](["MANTOU_WORLD_0", "MANTOU_WORLD_1", "MANTOU_WORLD_2", "MANTOU_WORLD_3"])
+target = {
+"DIALOG_RETURN": NodePath("..")
+}
+
+[node name="Thanks" parent="Dialog/Info" index="1" node_paths=PackedStringArray("target") instance=ExtResource("4_w12wn")]
+message = Array[String](["MANTOU_THANKS_0", "MANTOU_THANKS_1", "MANTOU_THANKS_2", "MANTOU_THANKS_3", "MANTOU_THANKS_4"])
+target = {
+"DIALOG_RETURN": NodePath("..")
+}
+
+[connection signal="ended" from="Dialog/Start/Request/Reply" to="." method="_on_reply_ended"]
+[connection signal="ended" from="Dialog/Info" to="." method="_on_info_ended"]

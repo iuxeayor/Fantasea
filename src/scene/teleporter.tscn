@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bictjaq7mapmy"]
+
+[ext_resource type="Script" uid="uid://clckpsr8b3n5t" path="res://src/scene/teleporter.gd" id="1_ipdt8"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bxpno"]
+b = Vector2(0, 216)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_67al4"]
+b = Vector2(384, 0)
+
+[node name="Teleporter" type="Area2D" groups=["teleporter"]]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_ipdt8")
+
+[node name="VerticalCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_bxpno")
+debug_color = Color(1, 1, 0, 0.419608)
+
+[node name="HorizontalCollision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("SegmentShape2D_67al4")
+disabled = true
+debug_color = Color(1, 1, 0, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

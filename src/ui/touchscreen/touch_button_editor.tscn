@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c42cse2ovr2tk"]
+
+[ext_resource type="Script" uid="uid://d0gku2dhoumn1" path="res://src/ui/touchscreen/touch_button_editor.gd" id="1_vlxyl"]
+
+[node name="TouchButtonEditor" type="Node2D" groups=["touch_button_editor"]]
+script = ExtResource("1_vlxyl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)

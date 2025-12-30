@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://xrxofmjyjqbr"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_w5uws"]
+[ext_resource type="Texture2D" uid="uid://cchse48dhxjch" path="res://asset/texture/unit/item/sweet_jiuniang.webp" id="2_hulr2"]
+
+[node name="SweetJiuniang" instance=ExtResource("1_w5uws")]
+item_id = "sweet_jiuniang"
+message = "ITEM_SWEET_JIUNIANG"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_hulr2")

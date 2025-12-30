@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://l0bh3ioiln"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_cqxpt"]
+[ext_resource type="Shader" uid="uid://bh7sfp6qvhqtb" path="res://src/asset/shader/outline.gdshader" id="2_x7l04"]
+[ext_resource type="Texture2D" uid="uid://ymmh8xr4lu" path="res://asset/texture/unit/enemy/bubble_tea/boba_bullet.webp" id="3_84kiy"]
+[ext_resource type="Material" uid="uid://bxh4fkf88hmab" path="res://src/asset/particle/small_bullet_disappear.tres" id="4_84kiy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kyhs"]
+shader = ExtResource("2_x7l04")
+shader_parameter/color = Color(0.666667, 0.666667, 0.666667, 1)
+shader_parameter/width = 0.1
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hsov"]
+radius = 0.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ggpkw"]
+radius = 1.0
+
+[node name="BobaBullet" instance=ExtResource("1_cqxpt")]
+obj_name = &"boba_bullet"
+rotation_speed = 1.0
+
+[node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_2kyhs")
+texture = ExtResource("3_84kiy")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_0hsov")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_ggpkw")
+
+[node name="LifeTimer" parent="." index="3"]
+wait_time = 2.0
+
+[node name="ParticleQueue" parent="." index="5"]
+overwrite_color = Color(0.364706, 0.172549, 0.156863, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_84kiy")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_84kiy")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+visible = false

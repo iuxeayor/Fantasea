@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj2dlv0uh7e60"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_klnsl"]
+[ext_resource type="Script" uid="uid://b6kb3py4jrkdd" path="res://src/unit/character/npc/gum.gd" id="2_kw6ck"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_uxtum"]
+[ext_resource type="Texture2D" uid="uid://dkv3ebmw2okxs" path="res://asset/texture/unit/npc/gum.webp" id="3_uxtum"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_in3g6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_in3g6"]
+resource_local_to_scene = true
+shader = ExtResource("2_uxtum")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxtum"]
+size = Vector2(32, 8)
+
+[node name="Gum" instance=ExtResource("1_klnsl")]
+script = ExtResource("2_kw6ck")
+story = 0
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_in3g6")
+position = Vector2(0, -8)
+texture = ExtResource("3_uxtum")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_uxtum")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("First")
+
+[node name="First" parent="Dialog" index="3" instance=ExtResource("4_in3g6")]
+can_end = true
+message = Array[String](["GUM_FIRST_0", "GUM_FIRST_1", "GUM_FIRST_2", "GUM_FIRST_3", "GUM_FIRST_4", "GUM_FIRST_5", "GUM_FIRST_6"])
+
+[node name="Top" parent="Dialog" index="4" instance=ExtResource("4_in3g6")]
+can_end = true
+message = Array[String](["GUM_TOP_0", "GUM_TOP_1", "GUM_TOP_2", "GUM_TOP_3"])
+
+[node name="Boss" parent="Dialog" index="5" instance=ExtResource("4_in3g6")]
+can_end = true
+message = Array[String](["GUM_BOSS_0", "GUM_BOSS_1", "GUM_BOSS_2", "GUM_BOSS_3"])

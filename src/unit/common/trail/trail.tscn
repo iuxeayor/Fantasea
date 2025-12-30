@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdyiolatg7q8"]
+
+[ext_resource type="Script" uid="uid://dtgno1syutn34" path="res://src/unit/common/trail/trail.gd" id="1_8yplw"]
+
+[node name="Trail" type="Line2D"]
+show_behind_parent = true
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("1_8yplw")

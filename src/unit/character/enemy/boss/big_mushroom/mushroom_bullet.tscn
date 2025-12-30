@@ -1,0 +1,129 @@
+[gd_scene load_steps=14 format=3 uid="uid://c85g721vuyqal"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_ai1ma"]
+[ext_resource type="Texture2D" uid="uid://debfe8211fe4a" path="res://asset/texture/unit/enemy/boss/big_mushroom/mushroom_bullet.webp" id="2_iuhno"]
+[ext_resource type="Script" uid="uid://cwqoultv5j3v6" path="res://src/unit/character/enemy/boss/big_mushroom/mushroom_bullet.gd" id="2_vqj7t"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="3_me3qw"]
+[ext_resource type="PackedScene" uid="uid://ctjmfotnke34v" path="res://src/unit/common/hitbox/hitbox.tscn" id="5_8tfav"]
+[ext_resource type="Material" uid="uid://yde4ci5cmj0x" path="res://src/asset/particle/big_mushroom_left_hit.tres" id="5_n4el4"]
+[ext_resource type="Material" uid="uid://011fr56vojs2" path="res://src/asset/particle/big_bullet_disappear.tres" id="6_8tfav"]
+[ext_resource type="Material" uid="uid://c7efixq18m2t1" path="res://src/asset/particle/big_mushroom_right_hit.tres" id="6_me3qw"]
+[ext_resource type="Material" uid="uid://doex7fenwp4d5" path="res://src/asset/particle/big_mushroom_ground_hit.tres" id="7_8tfav"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8tfav"]
+resource_local_to_scene = true
+shader = ExtResource("3_me3qw")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuhno"]
+size = Vector2(24, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iuhno"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_me3qw"]
+radius = 12.0
+
+[node name="MushroomBullet" instance=ExtResource("1_ai1ma")]
+script = ExtResource("2_vqj7t")
+obj_name = &"mushroom_bullet"
+gravity = 600.0
+dead_on_collide = 0
+dead_on_hit = false
+
+[node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_8tfav")
+texture = ExtResource("2_iuhno")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+shape = SubResource("RectangleShape2D_iuhno")
+
+[node name="Hitbox" parent="." index="2"]
+visible = false
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_iuhno")
+
+[node name="Hurtbox" parent="." index="3" instance=ExtResource("5_8tfav")]
+visible = false
+collision_layer = 1024
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_me3qw")
+
+[node name="ExplosionTimer" type="Timer" parent="." index="4"]
+wait_time = 5.0
+one_shot = true
+
+[node name="LifeTimer" parent="." index="5"]
+wait_time = 6.0
+
+[node name="ParticleQueue" parent="." index="7"]
+overwrite_color = Color(0.223529, 0.121569, 0.129412, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("6_8tfav")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("6_8tfav")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="8"]
+visible = false
+
+[node name="LeftWallChecker" type="RayCast2D" parent="." index="9"]
+position = Vector2(-11, 0)
+target_position = Vector2(-2, 0)
+
+[node name="LeftHitParticle" type="GPUParticles2D" parent="LeftWallChecker" index="0"]
+modulate = Color(0.541176, 0.282353, 0.211765, 1)
+position = Vector2(-1, 0)
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("5_n4el4")
+
+[node name="RightWallChecker" type="RayCast2D" parent="." index="10"]
+position = Vector2(11, 0)
+target_position = Vector2(2, 0)
+
+[node name="RightHitParticle" type="GPUParticles2D" parent="RightWallChecker" index="0"]
+modulate = Color(0.541176, 0.282353, 0.211765, 1)
+position = Vector2(1, 0)
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("6_me3qw")
+
+[node name="GroundChecker" type="RayCast2D" parent="." index="11"]
+position = Vector2(0, 11)
+target_position = Vector2(0, 2)
+
+[node name="GroundHitParticle" type="GPUParticles2D" parent="GroundChecker" index="0"]
+modulate = Color(0.352941, 0.772549, 0.309804, 1)
+position = Vector2(0, 1)
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("7_8tfav")
+
+[connection signal="collided" from="Hurtbox" to="." method="_on_hurtbox_collided"]

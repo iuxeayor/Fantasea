@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://c55q24dq35fig"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_cmktl"]
+[ext_resource type="Texture2D" uid="uid://dipugt2ivs8g8" path="res://asset/texture/unit/enemy/boss/ice/ice_bullet.webp" id="2_cjltk"]
+[ext_resource type="Script" uid="uid://xi3kghe0fgg8" path="res://src/unit/character/enemy/boss/ice/ice_bullet.gd" id="2_m7t5q"]
+[ext_resource type="Material" uid="uid://bnatntgbvdg8y" path="res://src/asset/particle/ice_bullet_disappear.tres" id="4_7ox5y"]
+[ext_resource type="Texture2D" uid="uid://cjt2jdc5ytaq7" path="res://asset/texture/unit/enemy/boss/ice/ice_bullet_trail_particle.webp" id="4_klb03"]
+[ext_resource type="Material" uid="uid://bnpb7qyrgsbu" path="res://src/asset/particle/ice_bullet_trail.tres" id="6_7ox5y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m7t5q"]
+radius = 8.0
+
+[node name="IceBullet" instance=ExtResource("1_cmktl")]
+script = ExtResource("2_m7t5q")
+obj_name = &"ice_bullet"
+rotate_with_velocity = true
+dead_on_collide = 0
+dead_on_hit = false
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_cjltk")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_m7t5q")
+
+[node name="ParticlePoint" parent="." index="4"]
+position = Vector2(4, 0)
+
+[node name="ParticleQueue" parent="." index="5"]
+overwrite_color = Color(0.0470588, 0.945098, 1, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_7ox5y")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_7ox5y")
+
+[node name="TrailParticle" type="GPUParticles2D" parent="." index="6"]
+position = Vector2(-4, 0)
+amount = 6
+texture = ExtResource("4_klb03")
+process_material = ExtResource("6_7ox5y")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="7"]
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(6.4, 1.6)

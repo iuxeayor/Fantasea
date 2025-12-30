@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://lwd2g1ugoraa"]
+
+[ext_resource type="Script" uid="uid://cddx2ix5dsfov" path="res://src/ui/hud/status_dot.gd" id="1_e00fr"]
+
+[node name="StatusDot" type="TextureProgressBar"]
+offset_right = 8.0
+offset_bottom = 8.0
+value = 50.0
+script = ExtResource("1_e00fr")

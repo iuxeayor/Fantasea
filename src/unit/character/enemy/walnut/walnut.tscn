@@ -1,0 +1,270 @@
+[gd_scene load_steps=22 format=3 uid="uid://871fmv38hrd8"]
+
+[ext_resource type="PackedScene" uid="uid://uhmn6jvb8pf2" path="res://src/unit/character/enemy/enemy.tscn" id="1_ha8cu"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_464iv"]
+[ext_resource type="Texture2D" uid="uid://rkg366d2vedo" path="res://asset/texture/unit/enemy/walnut/idle.webp" id="3_464iv"]
+[ext_resource type="Script" uid="uid://cjlyed3rdu8i8" path="res://src/unit/common/behavior_tree/sequence.gd" id="4_3qmd8"]
+[ext_resource type="Script" uid="uid://dsd2h2jexq7ig" path="res://src/unit/character/enemy/behavior/is_alive.gd" id="5_nii5m"]
+[ext_resource type="Script" uid="uid://be7bgphyblv17" path="res://src/unit/character/enemy/behavior/is_knockback.gd" id="6_qjof6"]
+[ext_resource type="Script" uid="uid://b5skciich7bs3" path="res://src/unit/common/behavior_tree/inverter.gd" id="7_larce"]
+[ext_resource type="Script" uid="uid://cp6fi8qibdmcj" path="res://src/unit/character/enemy/behavior/is_falling.gd" id="8_2b0xw"]
+[ext_resource type="Script" uid="uid://dndwb24t0am6q" path="res://src/unit/character/enemy/behavior/turn_by_checker.gd" id="9_gns52"]
+[ext_resource type="Script" uid="uid://j1g8lbwu4scg" path="res://src/unit/character/enemy/behavior/ground_move.gd" id="10_b5gy8"]
+[ext_resource type="Texture2D" uid="uid://clotvqj7qmhme" path="res://asset/texture/unit/enemy/walnut/walk.webp" id="11_nii5m"]
+[ext_resource type="Texture2D" uid="uid://cq5ig1cpi4y5" path="res://asset/texture/unit/enemy/walnut/hurt.webp" id="11_qjof6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_73677"]
+resource_local_to_scene = true
+shader = ExtResource("2_464iv")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73677"]
+size = Vector2(20, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxf6b"]
+size = Vector2(22, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_464iv"]
+size = Vector2(22, 24)
+
+[sub_resource type="Animation" id="Animation_3qmd8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_464iv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_krbh1"]
+resource_name = "hurt"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_qjof6")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_11afa"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_464iv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bxd1h"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_nii5m")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ka0et"]
+_data = {
+&"RESET": SubResource("Animation_3qmd8"),
+&"hurt": SubResource("Animation_krbh1"),
+&"idle": SubResource("Animation_11afa"),
+&"walk": SubResource("Animation_bxd1h")
+}
+
+[node name="Walnut" instance=ExtResource("1_ha8cu")]
+enemy_name = &"walnut"
+knockback_speed = 0.0
+
+[node name="Status" parent="." index="0"]
+max_health = 60
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_73677")
+position = Vector2(0, -12)
+texture = ExtResource("3_464iv")
+
+[node name="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_73677")
+
+[node name="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+visible = true
+position = Vector2(0, -12.5)
+shape = SubResource("RectangleShape2D_qxf6b")
+
+[node name="WallChecker" type="RayCast2D" parent="Graphics" index="3"]
+position = Vector2(0, -1)
+target_position = Vector2(12, 0)
+collision_mask = 513
+
+[node name="GroundChecker" type="RayCast2D" parent="Graphics" index="4"]
+position = Vector2(11, -1)
+target_position = Vector2(0, 2)
+collision_mask = 3
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_464iv")
+
+[node name="HurtParticleQueue" parent="." index="4"]
+overwrite_color = Color(0.541176, 0.282353, 0.211765, 1)
+
+[node name="Sequence" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource("4_3qmd8")
+
+[node name="IsAlive" type="Node" parent="BehaviorTree/Sequence" index="0"]
+script = ExtResource("5_nii5m")
+
+[node name="IsKnockback" type="Node" parent="BehaviorTree/Sequence" index="1"]
+script = ExtResource("6_qjof6")
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Sequence" index="2"]
+script = ExtResource("7_larce")
+
+[node name="IsFalling" type="Node" parent="BehaviorTree/Sequence/Inverter" index="0"]
+script = ExtResource("8_2b0xw")
+
+[node name="TurnByChecker" type="Node" parent="BehaviorTree/Sequence" index="3" node_paths=PackedStringArray("checkers")]
+script = ExtResource("9_gns52")
+checkers = [NodePath("../../../Graphics/WallChecker"), NodePath("../../../Graphics/GroundChecker")]
+checkers_logic = Array[bool]([true, false])
+
+[node name="GroundMove" type="Node" parent="BehaviorTree/Sequence" index="4"]
+script = ExtResource("10_b5gy8")
+speed = 30.0
+
+[node name="HealthBar" parent="." index="7"]
+offset_top = -26.0
+offset_bottom = -25.0
+
+[node name="AnimationPlayer" parent="." index="8"]
+libraries = {
+&"": SubResource("AnimationLibrary_ka0et")
+}

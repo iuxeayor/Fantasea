@@ -1,0 +1,333 @@
+[gd_scene load_steps=26 format=3 uid="uid://dbdu7t6o5780c"]
+
+[ext_resource type="PackedScene" uid="uid://uhmn6jvb8pf2" path="res://src/unit/character/enemy/enemy.tscn" id="1_l1ufa"]
+[ext_resource type="Script" uid="uid://4fgxnts5nvtc" path="res://src/unit/character/enemy/bubble_tea/bubble_tea.gd" id="2_wmxjr"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="3_elhxc"]
+[ext_resource type="Texture2D" uid="uid://b2lewfpfucpvn" path="res://asset/texture/unit/enemy/bubble_tea/idle.webp" id="4_38lqp"]
+[ext_resource type="Script" uid="uid://cjlyed3rdu8i8" path="res://src/unit/common/behavior_tree/sequence.gd" id="5_uhwh2"]
+[ext_resource type="Script" uid="uid://dsd2h2jexq7ig" path="res://src/unit/character/enemy/behavior/is_alive.gd" id="6_2dpbw"]
+[ext_resource type="Script" uid="uid://be7bgphyblv17" path="res://src/unit/character/enemy/behavior/is_knockback.gd" id="7_0rvip"]
+[ext_resource type="Script" uid="uid://dlfubv7fe53h2" path="res://src/unit/character/enemy/behavior/idle.gd" id="8_5gytq"]
+[ext_resource type="Script" uid="uid://bkikt1rhlnjj6" path="res://src/unit/common/behavior_tree/waiter.gd" id="9_4xkof"]
+[ext_resource type="Script" uid="uid://dcdqipynb3wtt" path="res://src/unit/character/enemy/bubble_tea/behavior/seek_player.gd" id="9_anxjt"]
+[ext_resource type="Script" uid="uid://5y1so101x3s" path="res://src/unit/character/enemy/bubble_tea/behavior/attack.gd" id="12_kj41l"]
+[ext_resource type="Script" uid="uid://16403h7gnuvo" path="res://src/unit/character/enemy/bubble_tea/behavior/aim.gd" id="12_yd4ya"]
+[ext_resource type="Texture2D" uid="uid://d2hbtxrfn118" path="res://asset/texture/unit/enemy/bubble_tea/attack.webp" id="13_elhxc"]
+[ext_resource type="Texture2D" uid="uid://cqkwxprser7to" path="res://asset/texture/unit/enemy/bubble_tea/hurt.webp" id="14_elhxc"]
+[ext_resource type="Texture2D" uid="uid://con0bgb0kqllx" path="res://asset/texture/unit/enemy/bubble_tea/seek.webp" id="15_elhxc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_38lqp"]
+resource_local_to_scene = true
+shader = ExtResource("3_elhxc")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1by0n"]
+size = Vector2(12, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eahn7"]
+size = Vector2(14, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7j1f"]
+size = Vector2(14, 21)
+
+[sub_resource type="Animation" id="Animation_l1nv4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_38lqp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_puekx"]
+resource_name = "attack"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_elhxc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_akmew"]
+resource_name = "hurt"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_elhxc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_qssm5"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_38lqp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_p616b"]
+resource_name = "seek"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_elhxc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0n74f"]
+_data = {
+&"RESET": SubResource("Animation_l1nv4"),
+&"attack": SubResource("Animation_puekx"),
+&"hurt": SubResource("Animation_akmew"),
+&"idle": SubResource("Animation_qssm5"),
+&"seek": SubResource("Animation_p616b")
+}
+
+[node name="BubbleTea" instance=ExtResource("1_l1ufa")]
+script = ExtResource("2_wmxjr")
+enemy_name = &"bubble_tea"
+
+[node name="Status" parent="." index="0"]
+max_health = 14
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_38lqp")
+position = Vector2(0, -12)
+texture = ExtResource("4_38lqp")
+
+[node name="ShootPoint" type="Marker2D" parent="Graphics" index="1"]
+position = Vector2(3, -20)
+
+[node name="PlayerChecker" type="RayCast2D" parent="Graphics" index="2"]
+position = Vector2(3, -20)
+target_position = Vector2(21, 0)
+collision_mask = 5
+
+[node name="Laser" type="Line2D" parent="Graphics/PlayerChecker" index="0"]
+points = PackedVector2Array(0, 0, 21, 0)
+width = 0.5
+default_color = Color(0.917647, 0.196078, 0.235294, 0.8)
+sharp_limit = 0.0
+antialiased = true
+
+[node name="LaserChecker" type="RayCast2D" parent="Graphics/PlayerChecker" index="1"]
+target_position = Vector2(768, 0)
+
+[node name="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_1by0n")
+
+[node name="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+visible = true
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_eahn7")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_p7j1f")
+
+[node name="HurtParticleQueue" parent="." index="4"]
+overwrite_color = Color(0.74902, 0.435294, 0.290196, 1)
+
+[node name="Sequence" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource("5_uhwh2")
+
+[node name="IsAlive" type="Node" parent="BehaviorTree/Sequence" index="0"]
+script = ExtResource("6_2dpbw")
+
+[node name="IsKockback" type="Node" parent="BehaviorTree/Sequence" index="1"]
+script = ExtResource("7_0rvip")
+
+[node name="Idle" type="Node" parent="BehaviorTree/Sequence" index="2"]
+script = ExtResource("8_5gytq")
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Sequence" index="3"]
+script = ExtResource("9_4xkof")
+random_offset = 0.5
+
+[node name="SeekPlayer" type="Node" parent="BehaviorTree/Sequence" index="4"]
+script = ExtResource("9_anxjt")
+wait_time = 2.0
+
+[node name="Aim" type="Node" parent="BehaviorTree/Sequence" index="5"]
+script = ExtResource("12_yd4ya")
+wait_time = 0.5
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Sequence" index="6"]
+script = ExtResource("9_4xkof")
+time = 0.5
+
+[node name="Attack" type="Node" parent="BehaviorTree/Sequence" index="7"]
+script = ExtResource("12_kj41l")
+
+[node name="Waiter3" type="Node" parent="BehaviorTree/Sequence" index="8"]
+script = ExtResource("9_4xkof")
+time = 0.2
+
+[node name="HealthBar" parent="." index="7"]
+offset_top = -24.0
+offset_bottom = -23.0
+
+[node name="AnimationPlayer" parent="." index="8"]
+libraries = {
+&"": SubResource("AnimationLibrary_0n74f")
+}

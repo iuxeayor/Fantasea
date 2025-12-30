@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://dgaevlfaq4q6q"]
+
+[ext_resource type="PackedScene" uid="uid://cdxvi0h6hjrbb" path="res://src/unit/character/enemy/boss/boss.tscn" id="1_5rbvv"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_beha5"]
+[ext_resource type="Script" uid="uid://vrag0i4v631b" path="res://src/unit/character/enemy/boss/whole_wheat_bread/whole_wheat_bread.gd" id="2_v5jel"]
+[ext_resource type="Script" uid="uid://p0yn5ixp2w53" path="res://src/unit/common/behavior_tree/action.gd" id="3_beha5"]
+[ext_resource type="Texture2D" uid="uid://2ahmpup0x36r" path="res://asset/texture/unit/enemy/boss/whole_wheat_bread/idle.webp" id="3_phnd2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_phnd2"]
+resource_local_to_scene = true
+shader = ExtResource("2_beha5")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjcly"]
+size = Vector2(78, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5jel"]
+size = Vector2(80, 40)
+
+[sub_resource type="Animation" id="Animation_v5jel"]
+resource_name = "hurt"
+
+[sub_resource type="Animation" id="Animation_phnd2"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v5jel"]
+_data = {
+&"hurt": SubResource("Animation_v5jel"),
+&"idle": SubResource("Animation_phnd2")
+}
+
+[node name="WholeWheatBread" instance=ExtResource("1_5rbvv")]
+script = ExtResource("2_v5jel")
+direction = 1
+
+[node name="Status" parent="." index="0"]
+max_health = 1200
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_phnd2")
+position = Vector2(0, -20)
+texture = ExtResource("3_phnd2")
+hframes = 4
+
+[node name="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_qjcly")
+
+[node name="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_v5jel")
+
+[node name="ActionTimer" type="Timer" parent="." index="3"]
+one_shot = true
+
+[node name="AnimationPlayer" parent="." index="6"]
+libraries = {
+&"": SubResource("AnimationLibrary_v5jel")
+}
+
+[node name="Action" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource("3_beha5")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[connection signal="timeout" from="ActionTimer" to="." method="_on_action_timer_timeout"]

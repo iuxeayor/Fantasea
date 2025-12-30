@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0p4y5wruya2e"]
+
+[ext_resource type="PackedScene" uid="uid://buxr1rvcq82df" path="res://src/unit/character/enemy/rigid_bullet.tscn" id="1_vrgmr"]
+[ext_resource type="Texture2D" uid="uid://dflxfexe6xeri" path="res://asset/texture/unit/enemy/salad/tomato_bullet.webp" id="2_ch65j"]
+[ext_resource type="Material" uid="uid://bxh4fkf88hmab" path="res://src/asset/particle/small_bullet_disappear.tres" id="3_6q3jb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_vrgmr"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6q3jb"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ch65j"]
+radius = 3.0
+
+[node name="TomatoBullet" instance=ExtResource("1_vrgmr")]
+physics_material_override = SubResource("PhysicsMaterial_vrgmr")
+obj_name = &"tomato_bullet"
+rolling_friction = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ch65j")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+shape = SubResource("CircleShape2D_6q3jb")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_ch65j")
+
+[node name="ParticleQueue" parent="." index="4"]
+overwrite_color = Color(0.768627, 0.141176, 0.188235, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 10
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_6q3jb")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 10
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_6q3jb")
+
+[node name="LifeTimer" parent="." index="5"]
+wait_time = 4.0
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="7"]
+position = Vector2(1.52588e-05, 42)
+scale = Vector2(19.2, 15)

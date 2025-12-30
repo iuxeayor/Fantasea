@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://fjatroqtjmnh"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_72qbd"]
+[ext_resource type="Texture2D" uid="uid://4yt7to6l3dqb" path="res://asset/texture/unit/enemy/yogurt/yogurt_bullet.webp" id="2_cw75j"]
+[ext_resource type="Material" uid="uid://f77h6jgodmtw" path="res://src/asset/particle/mid_bullet_disappear.tres" id="3_dwavg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwavg"]
+size = Vector2(5, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7lo1"]
+size = Vector2(7, 4)
+
+[node name="YogurtBullet" instance=ExtResource("1_72qbd")]
+obj_name = &"yogurt_bullet"
+gravity = 900.0
+rotate_with_velocity = true
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = -1.5708
+texture = ExtResource("2_cw75j")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_dwavg")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_h7lo1")
+
+[node name="ParticlePoint" parent="." index="4"]
+position = Vector2(3, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_dwavg")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_dwavg")

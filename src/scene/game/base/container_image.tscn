@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8lburics1r5o"]
+
+[ext_resource type="Texture2D" uid="uid://lef85tsukafa" path="res://asset/texture/prop/ship/container.webp" id="1_2f73k"]
+[ext_resource type="Script" uid="uid://d22k1huxwb36c" path="res://src/scene/game/base/container_image.gd" id="2_7xoqf"]
+
+[node name="ContainerImage" type="Sprite2D"]
+texture = ExtResource("1_2f73k")
+hframes = 6
+script = ExtResource("2_7xoqf")

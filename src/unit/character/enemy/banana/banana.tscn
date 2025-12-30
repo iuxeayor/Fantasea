@@ -1,0 +1,482 @@
+[gd_scene load_steps=37 format=3 uid="uid://c1c53g8qopr73"]
+
+[ext_resource type="PackedScene" uid="uid://uhmn6jvb8pf2" path="res://src/unit/character/enemy/enemy.tscn" id="1_hk05c"]
+[ext_resource type="Script" uid="uid://dqvtlpjisudsm" path="res://src/unit/character/enemy/banana/banana.gd" id="2_odcgt"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="3_p7xm3"]
+[ext_resource type="Texture2D" uid="uid://c83hopvpos0b" path="res://asset/texture/unit/enemy/banana/idle.webp" id="4_0o6jp"]
+[ext_resource type="Script" uid="uid://cjlyed3rdu8i8" path="res://src/unit/common/behavior_tree/sequence.gd" id="8_quroc"]
+[ext_resource type="Script" uid="uid://c0jqttfbq8i83" path="res://src/unit/common/behavior_tree/parallel.gd" id="9_26wnw"]
+[ext_resource type="Script" uid="uid://bgpau0064accl" path="res://src/unit/character/enemy/banana/behavior/seek_player.gd" id="9_b6knh"]
+[ext_resource type="Script" uid="uid://b8l0itb1mcdl1" path="res://src/unit/common/behavior_tree/succeeder.gd" id="10_2qsjh"]
+[ext_resource type="Script" uid="uid://hjo2hvko5sdk" path="res://src/unit/common/behavior_tree/selector.gd" id="10_6bdph"]
+[ext_resource type="Script" uid="uid://dsd2h2jexq7ig" path="res://src/unit/character/enemy/behavior/is_alive.gd" id="10_j58sa"]
+[ext_resource type="Script" uid="uid://b5skciich7bs3" path="res://src/unit/common/behavior_tree/inverter.gd" id="11_inyvl"]
+[ext_resource type="Script" uid="uid://cp6fi8qibdmcj" path="res://src/unit/character/enemy/behavior/is_falling.gd" id="12_bxaui"]
+[ext_resource type="Script" uid="uid://be7bgphyblv17" path="res://src/unit/character/enemy/behavior/is_knockback.gd" id="13_kwqm2"]
+[ext_resource type="Script" uid="uid://dndwb24t0am6q" path="res://src/unit/character/enemy/behavior/turn_by_checker.gd" id="14_bdebd"]
+[ext_resource type="Script" uid="uid://j1g8lbwu4scg" path="res://src/unit/character/enemy/behavior/ground_move.gd" id="15_kkvut"]
+[ext_resource type="Script" uid="uid://bkikt1rhlnjj6" path="res://src/unit/common/behavior_tree/waiter.gd" id="16_hmmsy"]
+[ext_resource type="Script" uid="uid://cuupubhneyed6" path="res://src/unit/character/enemy/banana/behavior/can_attack.gd" id="17_66b4m"]
+[ext_resource type="Script" uid="uid://coyomgwvqqgq6" path="res://src/unit/character/enemy/banana/behavior/attack_animate.gd" id="18_akh5i"]
+[ext_resource type="Script" uid="uid://dru2a0c5g7sww" path="res://src/unit/character/enemy/banana/behavior/attack.gd" id="19_tobei"]
+[ext_resource type="Script" uid="uid://cfgiis6pfterb" path="res://src/unit/character/enemy/behavior/turn_by_player_location.gd" id="21_fwni7"]
+[ext_resource type="Texture2D" uid="uid://sqnqug0hbsoc" path="res://asset/texture/unit/enemy/banana/throw.webp" id="21_u5dub"]
+[ext_resource type="Texture2D" uid="uid://orkpat4n6dus" path="res://asset/texture/unit/enemy/banana/hurt.webp" id="22_u5dub"]
+[ext_resource type="Texture2D" uid="uid://wh74r812jm0e" path="res://asset/texture/unit/enemy/banana/seek.webp" id="23_u5dub"]
+[ext_resource type="Texture2D" uid="uid://bu6h31uid1x60" path="res://asset/texture/unit/enemy/banana/walk.webp" id="24_u5dub"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sl5rx"]
+resource_local_to_scene = true
+shader = ExtResource("3_p7xm3")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgo50"]
+size = Vector2(12, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ui6wh"]
+size = Vector2(16, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2bod"]
+size = Vector2(15, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_up1be"]
+size = Vector2(288, 144)
+
+[sub_resource type="Animation" id="Animation_01b1s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_0o6jp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Sprite2D:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nbx7p"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("21_u5dub")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b7nrp"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("22_u5dub")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_dkhy3"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_0o6jp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ehj1l"]
+resource_name = "seek"
+length = 0.5
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_u5dub")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ik8d4"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("24_u5dub")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7avfr"]
+_data = {
+&"RESET": SubResource("Animation_01b1s"),
+&"attack": SubResource("Animation_nbx7p"),
+&"hurt": SubResource("Animation_b7nrp"),
+&"idle": SubResource("Animation_dkhy3"),
+&"seek": SubResource("Animation_ehj1l"),
+&"walk": SubResource("Animation_ik8d4")
+}
+
+[node name="Banana" instance=ExtResource("1_hk05c")]
+script = ExtResource("2_odcgt")
+enemy_name = &"banana"
+
+[node name="Status" parent="." index="0"]
+max_health = 8
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_sl5rx")
+position = Vector2(0, -8)
+texture = ExtResource("4_0o6jp")
+
+[node name="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_lgo50")
+
+[node name="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+visible = true
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_ui6wh")
+
+[node name="WallChecker" type="RayCast2D" parent="Graphics" index="3"]
+position = Vector2(0, -1)
+target_position = Vector2(10, 0)
+collision_mask = 513
+
+[node name="GroundChecker" type="RayCast2D" parent="Graphics" index="4"]
+position = Vector2(9, -1)
+target_position = Vector2(0, 2)
+collision_mask = 3
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0.5, -8)
+shape = SubResource("RectangleShape2D_l2bod")
+
+[node name="HurtParticleQueue" parent="." index="4"]
+overwrite_color = Color(1, 0.784314, 0.145098, 1)
+
+[node name="PlayerChecker" type="Area2D" parent="." index="5"]
+visible = false
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerChecker" index="0"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_up1be")
+debug_color = Color(1, 0.784314, 0.145098, 0.12549)
+
+[node name="Sequence" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource("8_quroc")
+
+[node name="IsAlive" type="Node" parent="BehaviorTree/Sequence" index="0"]
+script = ExtResource("10_j58sa")
+
+[node name="IsKockback" type="Node" parent="BehaviorTree/Sequence" index="1"]
+script = ExtResource("13_kwqm2")
+
+[node name="Selector" type="Node" parent="BehaviorTree/Sequence" index="2"]
+script = ExtResource("10_6bdph")
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Sequence/Selector" index="0"]
+script = ExtResource("8_quroc")
+
+[node name="SeekPlayer" type="Node" parent="BehaviorTree/Sequence/Selector/Sequence" index="0" node_paths=PackedStringArray("player_checker")]
+script = ExtResource("9_b6knh")
+wait_time = 0.8
+player_checker = NodePath("../../../../../PlayerChecker")
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Sequence/Selector/Sequence" index="1"]
+script = ExtResource("16_hmmsy")
+time = 0.1
+
+[node name="SeekPlayer2" type="Node" parent="BehaviorTree/Sequence/Selector/Sequence" index="2" node_paths=PackedStringArray("player_checker")]
+script = ExtResource("9_b6knh")
+wait_time = 0.8
+player_checker = NodePath("../../../../../PlayerChecker")
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Sequence/Selector" index="1"]
+script = ExtResource("11_inyvl")
+
+[node name="Parallel" type="Node" parent="BehaviorTree/Sequence/Selector/Inverter" index="0"]
+script = ExtResource("9_26wnw")
+
+[node name="Succeeder" type="Node" parent="BehaviorTree/Sequence/Selector/Inverter/Parallel" index="0"]
+script = ExtResource("10_2qsjh")
+
+[node name="Move" type="Node" parent="BehaviorTree/Sequence/Selector/Inverter/Parallel/Succeeder" index="0"]
+script = ExtResource("8_quroc")
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Sequence/Selector/Inverter/Parallel/Succeeder/Move" index="0"]
+script = ExtResource("11_inyvl")
+
+[node name="IsFalling" type="Node" parent="BehaviorTree/Sequence/Selector/Inverter/Parallel/Succeeder/Move/Inverter" index="0"]
+script = ExtResource("12_bxaui")
+
+[node name="TurnByChecker" type="Node" parent="BehaviorTree/Sequence/Selector/Inverter/Parallel/Succeeder/Move" index="1" node_paths=PackedStringArray("checkers")]
+script = ExtResource("14_bdebd")
+checkers = [NodePath("../../../../../../../../Graphics/WallChecker"), NodePath("../../../../../../../../Graphics/GroundChecker")]
+checkers_logic = Array[bool]([true, false])
+
+[node name="GroundMove" type="Node" parent="BehaviorTree/Sequence/Selector/Inverter/Parallel/Succeeder/Move" index="2"]
+script = ExtResource("15_kkvut")
+speed = 20.0
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Sequence/Selector/Inverter/Parallel" index="1"]
+script = ExtResource("16_hmmsy")
+time = 1.4
+random_offset = 0.2
+
+[node name="CanAttack" type="Node" parent="BehaviorTree/Sequence" index="3"]
+script = ExtResource("17_66b4m")
+
+[node name="AttackAnimate" type="Node" parent="BehaviorTree/Sequence" index="4"]
+script = ExtResource("18_akh5i")
+wait_time = 0.3
+
+[node name="Attack" type="Node" parent="BehaviorTree/Sequence" index="5"]
+script = ExtResource("19_tobei")
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Sequence" index="6"]
+script = ExtResource("16_hmmsy")
+time = 0.4
+
+[node name="TurnByPlayerLocation" type="Node" parent="BehaviorTree/Sequence" index="7"]
+script = ExtResource("21_fwni7")
+invert = true
+
+[node name="Parallel2" type="Node" parent="BehaviorTree/Sequence" index="8"]
+script = ExtResource("9_26wnw")
+
+[node name="Succeeder" type="Node" parent="BehaviorTree/Sequence/Parallel2" index="0"]
+script = ExtResource("10_2qsjh")
+
+[node name="Move" type="Node" parent="BehaviorTree/Sequence/Parallel2/Succeeder" index="0"]
+script = ExtResource("8_quroc")
+
+[node name="IsAlive" type="Node" parent="BehaviorTree/Sequence/Parallel2/Succeeder/Move" index="0"]
+script = ExtResource("10_j58sa")
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Sequence/Parallel2/Succeeder/Move" index="1"]
+script = ExtResource("11_inyvl")
+
+[node name="IsFalling" type="Node" parent="BehaviorTree/Sequence/Parallel2/Succeeder/Move/Inverter" index="0"]
+script = ExtResource("12_bxaui")
+
+[node name="IsKnockback" type="Node" parent="BehaviorTree/Sequence/Parallel2/Succeeder/Move" index="2"]
+script = ExtResource("13_kwqm2")
+
+[node name="TurnByChecker" type="Node" parent="BehaviorTree/Sequence/Parallel2/Succeeder/Move" index="3" node_paths=PackedStringArray("checkers")]
+script = ExtResource("14_bdebd")
+checkers = [NodePath("../../../../../../Graphics/WallChecker"), NodePath("../../../../../../Graphics/GroundChecker")]
+checkers_logic = Array[bool]([true, false])
+
+[node name="GroundMove" type="Node" parent="BehaviorTree/Sequence/Parallel2/Succeeder/Move" index="4"]
+script = ExtResource("15_kkvut")
+speed = 20.0
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Sequence/Parallel2" index="1"]
+script = ExtResource("16_hmmsy")
+time = 1.4
+random_offset = 0.2
+
+[node name="HealthBar" parent="." index="8"]
+offset_top = -18.0
+offset_bottom = -17.0
+
+[node name="AnimationPlayer" parent="." index="9"]
+libraries = {
+&"": SubResource("AnimationLibrary_7avfr")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

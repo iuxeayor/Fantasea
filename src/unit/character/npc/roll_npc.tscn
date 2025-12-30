@@ -1,0 +1,138 @@
+[gd_scene load_steps=13 format=3 uid="uid://5xpjibc8bybd"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_40dnf"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_dq37p"]
+[ext_resource type="Script" uid="uid://ugjk1lix0uep" path="res://src/unit/character/npc/roll_npc.gd" id="2_eljrc"]
+[ext_resource type="Texture2D" uid="uid://cspthvwxnqdso" path="res://asset/texture/unit/npc/roll.webp" id="3_dq37p"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_d0oca"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0oca"]
+resource_local_to_scene = true
+shader = ExtResource("2_dq37p")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eljrc"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_dq37p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_d0oca"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h1d2x"]
+resource_name = "kneel"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_eljrc"]
+resource_name = "stand"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eljrc"]
+_data = {
+&"RESET": SubResource("Animation_dq37p"),
+&"idle": SubResource("Animation_d0oca"),
+&"kneel": SubResource("Animation_h1d2x"),
+&"stand": SubResource("Animation_eljrc")
+}
+
+[node name="RollNpc" instance=ExtResource("1_40dnf")]
+script = ExtResource("2_eljrc")
+animation_name = &"idle"
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_d0oca")
+position = Vector2(0, -11)
+texture = ExtResource("3_dq37p")
+hframes = 5
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_eljrc")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_eljrc")
+}
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Start")
+hide_disabled = false
+
+[node name="Start" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("4_d0oca")]
+can_release_control = false
+message = Array[String](["ROLL_START_0", "ROLL_START_1"])
+target = {
+"ROLL_BATTLE": NodePath("../Battle"),
+"ROLL_REJECT": NodePath("../Reject")
+}
+
+[node name="Reject" parent="Dialog" index="4" node_paths=PackedStringArray("target") instance=ExtResource("4_d0oca")]
+can_release_control = false
+message = Array[String](["ROLL_REJECT_0", "ROLL_REJECT_1"])
+target = {
+"ROLL_BATTLE_REJECT": NodePath("../Battle")
+}
+
+[node name="Battle" parent="Dialog" index="5" instance=ExtResource("4_d0oca")]
+can_end = true
+can_release_control = false
+message = Array[String](["ROLL_BATTLE_0"])
+
+[node name="End" parent="Dialog" index="6" instance=ExtResource("4_d0oca")]
+can_end = true
+message = Array[String](["ROLL_END_0", "ROLL_END_1"])
+
+[connection signal="ended" from="Dialog/Battle" to="." method="_on_battle_ended"]

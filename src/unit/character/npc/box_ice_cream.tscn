@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://cymbnvk4t2wk7"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_8u3as"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_n8btp"]
+[ext_resource type="Texture2D" uid="uid://tslpk6opxwjj" path="res://asset/texture/unit/npc/box_ice_cream.webp" id="3_n8btp"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="5_xiv65"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j35uh"]
+resource_local_to_scene = true
+shader = ExtResource("2_n8btp")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8btp"]
+size = Vector2(32, 8)
+
+[node name="BoxIceCream" instance=ExtResource("1_8u3as")]
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_j35uh")
+position = Vector2(0, -12)
+texture = ExtResource("3_n8btp")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_n8btp")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+position = Vector2(0, -22)
+root_dialog = NodePath("Info")
+
+[node name="Info" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("5_xiv65")]
+can_end = true
+message = Array[String](["BOX_ICE_CREAM_INFO_0"])
+target = {
+"BOX_ICE_CREAM_CHAT": NodePath("Chat"),
+"DIALOG_ABOUT": NodePath("About")
+}
+
+[node name="Chat" parent="Dialog/Info" index="0" node_paths=PackedStringArray("target") instance=ExtResource("5_xiv65")]
+can_end = true
+message = Array[String](["BOX_ICE_CREAM_CHAT_0", "BOX_ICE_CREAM_CHAT_1", "BOX_ICE_CREAM_CHAT_2", "BOX_ICE_CREAM_CHAT_3"])
+target = {
+"DIALOG_RETURN": NodePath("..")
+}
+
+[node name="About" parent="Dialog/Info" index="1" node_paths=PackedStringArray("target") instance=ExtResource("5_xiv65")]
+can_end = true
+message = Array[String](["BOX_ICE_CREAM_ABOUT_0", "BOX_ICE_CREAM_ABOUT_1", "BOX_ICE_CREAM_ABOUT_2"])
+target = {
+"DIALOG_RETURN": NodePath("..")
+}

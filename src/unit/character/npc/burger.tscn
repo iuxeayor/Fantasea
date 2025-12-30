@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://3rxobovko6vb"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_bg5li"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_qflio"]
+[ext_resource type="Script" uid="uid://ci6yme24h354n" path="res://src/unit/character/npc/burger.gd" id="2_y0ju5"]
+[ext_resource type="Texture2D" uid="uid://dj7l7rtuiokoy" path="res://asset/texture/unit/npc/burger.webp" id="3_5sxfa"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="5_m3ybg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0r867"]
+resource_local_to_scene = true
+shader = ExtResource("2_qflio")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6jdu"]
+size = Vector2(32, 8)
+
+[node name="Burger" instance=ExtResource("1_bg5li")]
+script = ExtResource("2_y0ju5")
+story_stage = 0
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_0r867")
+position = Vector2(0, -8)
+texture = ExtResource("3_5sxfa")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_s6jdu")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Info")
+
+[node name="Info" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("5_m3ybg")]
+can_end = true
+message = Array[String](["BURGER_INFO_0", "BURGER_INFO_1", "BURGER_INFO_2", "BURGER_INFO_3", "BURGER_INFO_4", "BURGER_INFO_5", "BURGER_INFO_6"])
+target = {
+"BURGER_PAID": NodePath("Paid")
+}
+
+[node name="Paid" parent="Dialog/Info" index="0" instance=ExtResource("5_m3ybg")]
+can_end = true
+message = Array[String](["BURGER_PAID_0"])
+
+[node name="Bang" parent="Dialog" index="4" node_paths=PackedStringArray("target") instance=ExtResource("5_m3ybg")]
+can_end = true
+message = Array[String](["BURGER_BANG_0", "BURGER_BANG_1"])
+target = {
+"BURGER_CARD": NodePath("Card"),
+"BURGER_FINAL": NodePath("Final"),
+"BURGER_HIDE": NodePath("Hide")
+}
+
+[node name="Card" parent="Dialog/Bang" index="0" node_paths=PackedStringArray("target") instance=ExtResource("5_m3ybg")]
+can_end = true
+message = Array[String](["BURGER_CARD_0", "BURGER_CARD_1", "BURGER_CARD_2", "BURGER_CARD_3", "BURGER_CARD_4"])
+target = {
+"DIALOG_RETURN": NodePath("..")
+}
+
+[node name="Hide" parent="Dialog/Bang" index="1" node_paths=PackedStringArray("target") instance=ExtResource("5_m3ybg")]
+can_end = true
+message = Array[String](["BURGER_HIDE_0", "BURGER_HIDE_1", "BURGER_HIDE_2", "BURGER_HIDE_3"])
+target = {
+"DIALOG_RETURN": NodePath("..")
+}
+
+[node name="Final" parent="Dialog/Bang" index="2" instance=ExtResource("5_m3ybg")]
+can_end = true
+message = Array[String](["BURGER_FINAL_0", "BURGER_FINAL_1", "BURGER_FINAL_2", "BURGER_FINAL_3", "BURGER_FINAL_4", "BURGER_FINAL_5"])
+
+[connection signal="changed" from="Dialog" to="." method="_on_dialog_changed"]
+[connection signal="ended" from="Dialog/Info/Paid" to="." method="_on_paid_ended"]
+[connection signal="started" from="Dialog/Info/Paid" to="." method="_on_paid_started"]
+[connection signal="ended" from="Dialog/Bang/Final" to="." method="_on_final_ended"]

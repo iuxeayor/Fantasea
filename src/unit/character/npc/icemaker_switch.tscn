@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqbc32qp2m7bd"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_tuk2x"]
+[ext_resource type="Script" uid="uid://083uqp0srhay" path="res://src/unit/character/npc/icemaker_switch.gd" id="2_1jyau"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_q8i52"]
+[ext_resource type="Texture2D" uid="uid://cmtjytcp8tmcr" path="res://asset/texture/prop/snowfield/icemaker_switch.webp" id="3_q8i52"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="5_l30vh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1jyau"]
+resource_local_to_scene = true
+shader = ExtResource("2_q8i52")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l30vh"]
+size = Vector2(8, 8)
+
+[node name="IcemakerSwitch" instance=ExtResource("1_tuk2x")]
+script = ExtResource("2_1jyau")
+turn = false
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_1jyau")
+position = Vector2(0, -8)
+texture = ExtResource("3_q8i52")
+hframes = 2
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_l30vh")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Info")
+
+[node name="Info" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("5_l30vh")]
+can_end = true
+message = Array[String](["ICEMAKER_SWITCH_INFO_0"])
+target = {
+"ICEMAKER_SWITCH_CLOSE": NodePath("Switch")
+}
+
+[node name="Switch" parent="Dialog/Info" index="0" instance=ExtResource("5_l30vh")]
+can_release_control = false
+
+[connection signal="started" from="Dialog/Info/Switch" to="." method="_on_switch_started"]

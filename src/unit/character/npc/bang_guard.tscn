@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5kmyd5n4piln"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_bk5y3"]
+[ext_resource type="Script" uid="uid://cytmiou7u0ouf" path="res://src/unit/character/npc/bang_guard.gd" id="2_ksj0c"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="3_ij54a"]
+[ext_resource type="Texture2D" uid="uid://bqw68x628dxw2" path="res://asset/texture/unit/npc/bang_guard.webp" id="4_hbh8f"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="5_6s3fd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5dwqt"]
+resource_local_to_scene = true
+shader = ExtResource("3_ij54a")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o54dn"]
+size = Vector2(2, 8)
+
+[node name="BangGuard" instance=ExtResource("1_bk5y3")]
+script = ExtResource("2_ksj0c")
+turn = false
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_5dwqt")
+position = Vector2(0, -8)
+texture = ExtResource("4_hbh8f")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_o54dn")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Info")
+
+[node name="Info" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("5_6s3fd")]
+can_end = true
+message = Array[String](["BANG_PARK_INFO_0"])
+target = {
+"BANG_PARK_CARD": NodePath("Card")
+}
+
+[node name="Card" parent="Dialog/Info" index="0" instance=ExtResource("5_6s3fd")]
+can_end = true
+message = Array[String](["BANG_PARK_CARD_0"])
+
+[connection signal="changed" from="Dialog" to="." method="_on_dialog_changed"]
+[connection signal="ended" from="Dialog/Info/Card" to="." method="_on_card_ended"]

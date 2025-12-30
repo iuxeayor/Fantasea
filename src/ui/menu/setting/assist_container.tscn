@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckq6tcyl7wltd"]
+
+[ext_resource type="PackedScene" uid="uid://b0fep0a8toxbc" path="res://src/ui/menu/widget/menu_container.tscn" id="1_7c1tu"]
+[ext_resource type="Script" uid="uid://30px81n5b7ls" path="res://src/ui/menu/setting/assist_container.gd" id="2_3ib41"]
+
+[node name="AssistContainer" instance=ExtResource("1_7c1tu")]
+script = ExtResource("2_3ib41")
+
+[node name="TitleLabel" parent="TitleContainer" index="1"]
+text = "SET_TITLE_ASSIST"
+
+[node name="GridContainer" type="GridContainer" parent="ContentContainer" index="0"]
+layout_mode = 2
+columns = 2
+
+[node name="SpeedLabel" type="Label" parent="ContentContainer/GridContainer" index="0"]
+layout_mode = 2
+text = "SET_ASSIST_SPEED"
+
+[node name="SpeedContainer" type="HBoxContainer" parent="ContentContainer/GridContainer" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpeedSlider" type="HSlider" parent="ContentContainer/GridContainer/SpeedContainer" index="0" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 50.0
+value = 50.0
+scrollable = false
+tick_count = 6
+ticks_position = 3
+
+[node name="SpeedNumber" type="Label" parent="ContentContainer/GridContainer/SpeedContainer" index="1"]
+layout_mode = 2
+text = "50%"
+
+[node name="EasyCheck" type="CheckButton" parent="ContentContainer" index="1" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SET_ASSIST_EASY"
+
+[node name="AutoAttackCheck" type="CheckButton" parent="ContentContainer" index="2" groups=["menu_option"]]
+layout_mode = 2
+text = "SET_ASSIST_AUTO"
+
+[node name="CloseShakeCheck" type="CheckButton" parent="ContentContainer" index="3" groups=["menu_option"]]
+layout_mode = 2
+text = "SET_ASSIST_CLOSE_SHAKE"
+
+[connection signal="focus_entered" from="ContentContainer/GridContainer/SpeedContainer/SpeedSlider" to="." method="_on_speed_slider_focus_entered"]
+[connection signal="value_changed" from="ContentContainer/GridContainer/SpeedContainer/SpeedSlider" to="." method="_on_speed_slider_value_changed"]
+[connection signal="focus_entered" from="ContentContainer/EasyCheck" to="." method="_on_easy_check_focus_entered"]
+[connection signal="toggled" from="ContentContainer/EasyCheck" to="." method="_on_easy_check_toggled"]
+[connection signal="focus_entered" from="ContentContainer/AutoAttackCheck" to="." method="_on_check_button_focus_entered"]
+[connection signal="toggled" from="ContentContainer/AutoAttackCheck" to="." method="_on_check_button_toggled"]
+[connection signal="focus_entered" from="ContentContainer/CloseShakeCheck" to="." method="_on_close_shake_check_focus_entered"]
+[connection signal="toggled" from="ContentContainer/CloseShakeCheck" to="." method="_on_close_shake_check_toggled"]

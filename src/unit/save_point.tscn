@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkvgfktcyr1so"]
+
+[ext_resource type="Script" uid="uid://d2txitok8piil" path="res://src/unit/save_point.gd" id="1_5c7po"]
+[ext_resource type="Material" uid="uid://dole5h514viq" path="res://src/asset/particle/save_point.tres" id="2_ownnl"]
+[ext_resource type="PackedScene" uid="uid://dekecjlka8xp5" path="res://src/ui/dialog/dialog.tscn" id="3_8qatt"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_up6qs"]
+[ext_resource type="PackedScene" uid="uid://dhp3xvkqaqrid" path="res://src/scene/entry_point.tscn" id="5_c1ka0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfgua"]
+size = Vector2(16, 8)
+
+[node name="SavePoint" type="StaticBody2D" groups=["interact_object", "save_point"]]
+collision_layer = 64
+script = ExtResource("1_5c7po")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_rfgua")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 10
+lifetime = 1.5
+preprocess = 10.0
+randomness = 0.5
+process_material = ExtResource("2_ownnl")
+
+[node name="Dialog" parent="." node_paths=PackedStringArray("root_dialog") instance=ExtResource("3_8qatt")]
+position = Vector2(0, -26)
+root_dialog = NodePath("Main")
+hide_disabled = true
+
+[node name="Main" parent="Dialog" node_paths=PackedStringArray("target") instance=ExtResource("4_up6qs")]
+can_end = true
+message = Array[String](["SAVE_POINT_MAIN"])
+target = {
+"SAVE_POINT_REST": NodePath("Rest"),
+"SAVE_POINT_SLEEPWALK": NodePath("Sleepwalk")
+}
+
+[node name="Rest" parent="Dialog/Main" instance=ExtResource("4_up6qs")]
+can_release_control = false
+
+[node name="Sleepwalk" parent="Dialog/Main" instance=ExtResource("4_up6qs")]
+can_release_control = false
+
+[node name="JumpToPoint" type="Marker2D" parent="."]
+position = Vector2(0, -12)
+
+[node name="SitPoint" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="EntryPoint" parent="." instance=ExtResource("5_c1ka0")]
+position = Vector2(0, -8)
+location = 8
+
+[connection signal="ended" from="Dialog/Main" to="." method="_on_main_ended"]
+[connection signal="started" from="Dialog/Main/Rest" to="." method="_on_rest_started"]
+[connection signal="started" from="Dialog/Main/Sleepwalk" to="." method="_on_sleepwalk_started"]

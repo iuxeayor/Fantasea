@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfsd5l83negfh"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_ppdyk"]
+[ext_resource type="Texture2D" uid="uid://c46i3k2rl0yav" path="res://asset/texture/unit/enemy/boss/peanut_butter/peanut_butter_bullet_big.webp" id="3_2tpjg"]
+[ext_resource type="Material" uid="uid://0axjju2cb7dr" path="res://src/asset/particle/big_peanut_butter_bullet_disappear.tres" id="3_beakr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2tpjg"]
+radius = 1.0
+height = 6.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fj2su"]
+radius = 4.0
+height = 12.0
+
+[node name="BigPeanutButterBullet" instance=ExtResource("1_ppdyk")]
+obj_name = &"big_peanut_butter_bullet"
+gravity = 800.0
+rotate_with_velocity = true
+hit_sfx = "SoftBulletHit"
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = -1.5708
+texture = ExtResource("3_2tpjg")
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2tpjg")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fj2su")
+
+[node name="ParticlePoint" parent="." index="4"]
+position = Vector2(4, 0)
+
+[node name="ParticleQueue" parent="." index="5"]
+overwrite_color = Color(0.74902, 0.435294, 0.290196, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 15
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_beakr")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 15
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_beakr")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+visible = false

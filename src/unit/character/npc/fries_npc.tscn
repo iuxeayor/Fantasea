@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=3 uid="uid://bsehjc14kn00r"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_w47w1"]
+[ext_resource type="Script" uid="uid://dorttrssjere2" path="res://src/unit/character/npc/fries_npc.gd" id="2_ve54l"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_x40n4"]
+[ext_resource type="Texture2D" uid="uid://cegv6hojvwjkb" path="res://asset/texture/unit/npc/fries.webp" id="3_x40n4"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_54een"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_54een"]
+resource_local_to_scene = true
+shader = ExtResource("2_x40n4")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54een"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_54een"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_x40n4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_x40n4"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_x40n4")]
+}
+
+[sub_resource type="Animation" id="Animation_ve54l"]
+resource_name = "stand"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_54een"]
+_data = {
+&"RESET": SubResource("Animation_54een"),
+&"idle": SubResource("Animation_x40n4"),
+&"stand": SubResource("Animation_ve54l")
+}
+
+[node name="FriesNpc" instance=ExtResource("1_w47w1")]
+script = ExtResource("2_ve54l")
+turn = false
+animation_name = &"idle"
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_54een")
+position = Vector2(0, -12)
+texture = ExtResource("3_x40n4")
+hframes = 3
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_54een")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_54een")
+}
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Normal")
+
+[node name="Normal" parent="Dialog" index="3" instance=ExtResource("4_54een")]
+can_end = true
+message = Array[String](["FIRIES_NORMAL_0", "FIRIES_NORMAL_1", "FIRIES_NORMAL_2"])
+
+[node name="End" parent="Dialog" index="4" instance=ExtResource("4_54een")]
+can_end = true
+message = Array[String](["FIRIES_END_0", "FIRIES_END_1"])

@@ -1,0 +1,362 @@
+[gd_scene load_steps=18 format=3 uid="uid://hnhat68tg3qo"]
+
+[ext_resource type="Script" uid="uid://d2inw2do7cec5" path="res://src/ui/hud/status_panel.gd" id="1_vk80p"]
+[ext_resource type="Texture2D" uid="uid://bwl8ugk2lyw2p" path="res://asset/texture/ui/hud/health_grid_frame.webp" id="2_j5edf"]
+[ext_resource type="Script" uid="uid://cyvfs7a76byu0" path="res://src/ui/hud/status_grid.gd" id="2_kup5l"]
+[ext_resource type="PackedScene" uid="uid://b665dd4oa04s" path="res://src/ui/hud/health_dot.tscn" id="3_3l1y3"]
+[ext_resource type="PackedScene" uid="uid://rdrtnesms7v" path="res://src/ui/hud/potion_dot.tscn" id="4_odlx5"]
+[ext_resource type="Texture2D" uid="uid://cj3hg6ciqd65j" path="res://asset/texture/ui/hud/potion_grid_frame.webp" id="5_gwxmf"]
+[ext_resource type="PackedScene" uid="uid://cnqghuw3fk5j5" path="res://src/ui/hud/frame_rate.tscn" id="5_roy3x"]
+[ext_resource type="Script" uid="uid://cshyt6nc26c5i" path="res://src/ui/hud/money.gd" id="7_j5edf"]
+[ext_resource type="Texture2D" uid="uid://b06sthp086cm7" path="res://asset/texture/ui/hud/coin.webp" id="8_ocb61"]
+[ext_resource type="Texture2D" uid="uid://ckjtb4726escp" path="res://asset/texture/ui/hud/boss_health_bar_border.webp" id="10_ocb61"]
+[ext_resource type="Texture2D" uid="uid://dhjjqnj74m25d" path="res://asset/texture/ui/hud/boss_health_bar.webp" id="11_ocb61"]
+[ext_resource type="Script" uid="uid://dfexvln4tmd18" path="res://src/ui/hud/boss_health_bar_container.gd" id="11_roy3x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gwxmf"]
+texture = ExtResource("2_j5edf")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ocb61"]
+texture = ExtResource("5_gwxmf")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x4io4"]
+texture = ExtResource("10_ocb61")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ocb61"]
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_roy3x"]
+color = Color(0, 0, 0, 0)
+vertical = true
+
+[node name="StatusPanel" type="Control" groups=["hud"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_vk80p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 34.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = -1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gwxmf")
+
+[node name="HealthGrid" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -1
+script = ExtResource("2_kup5l")
+
+[node name="HealthDot" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthDot2" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthDot3" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthDot4" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthDot5" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthDot6" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthDot7" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthDot8" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthDot9" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthDot10" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HealthDot11" parent="VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/HealthGrid" instance=ExtResource("3_3l1y3")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Pass" type="Control" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="FrameRate" parent="VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("5_roy3x")]
+layout_mode = 2
+
+[node name="PotionInfo" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="PotionFrame" type="PanelContainer" parent="VBoxContainer/VBoxContainer/PotionInfo"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ocb61")
+
+[node name="PotionGrid" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -1
+script = ExtResource("2_kup5l")
+
+[node name="PotionDot" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionDot2" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionDot3" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionDot4" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionDot5" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionDot6" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionDot7" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionDot8" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionDot9" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionDot10" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionDot11" parent="VBoxContainer/VBoxContainer/PotionInfo/PotionFrame/PotionGrid" instance=ExtResource("4_odlx5")]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PotionStoreInfo" type="Label" parent="VBoxContainer/VBoxContainer/PotionInfo"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 5
+text = "10(-5)"
+vertical_alignment = 1
+
+[node name="MoneyContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+
+[node name="MoneyIcon" type="TextureRect" parent="VBoxContainer/MoneyContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_ocb61")
+stretch_mode = 3
+
+[node name="Money" type="Label" parent="VBoxContainer/MoneyContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 6
+text = "100"
+vertical_alignment = 1
+script = ExtResource("7_j5edf")
+
+[node name="BossHealthBarContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -16.0
+offset_right = -8.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_x4io4")
+script = ExtResource("11_roy3x")
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="BossHealthBarContainer"]
+layout_mode = 2
+mouse_filter = 2
+step = 0.1
+value = 50.0
+nine_patch_stretch = true
+texture_progress = ExtResource("11_ocb61")
+
+[node name="Separators" type="HBoxContainer" parent="BossHealthBarContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Separator1" type="VSeparator" parent="BossHealthBarContainer/Separators"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ocb61")
+
+[node name="Separator2" type="VSeparator" parent="BossHealthBarContainer/Separators"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ocb61")
+
+[node name="Separator3" type="VSeparator" parent="BossHealthBarContainer/Separators"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ocb61")
+
+[node name="Separator4" type="VSeparator" parent="BossHealthBarContainer/Separators"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ocb61")
+
+[node name="Separator5" type="VSeparator" parent="BossHealthBarContainer/Separators"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ocb61")
+
+[node name="Separator6" type="VSeparator" parent="BossHealthBarContainer/Separators"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ocb61")
+
+[node name="Separator7" type="VSeparator" parent="BossHealthBarContainer/Separators"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ocb61")
+
+[node name="Separator8" type="VSeparator" parent="BossHealthBarContainer/Separators"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ocb61")
+
+[node name="Separator9" type="VSeparator" parent="BossHealthBarContainer/Separators"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ocb61")
+
+[node name="Separator10" type="VSeparator" parent="BossHealthBarContainer/Separators"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_roy3x")
+
+[node name="HintContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -88.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+alignment = 2
+
+[node name="DeviceHint" type="Label" parent="HintContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 8
+text = "Keyboard & Mouse"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="NoteUpdateHint" type="Label" parent="HintContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 8
+text = "MAP_UPDATE_HINT"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SaveHint" type="Label" parent="HintContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 8
+text = "SAVE_POINT_SAVING"
+horizontal_alignment = 2
+vertical_alignment = 1

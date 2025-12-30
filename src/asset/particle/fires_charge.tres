@@ -1,0 +1,13 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=2 format=3 uid="uid://do0oum4itcne3"]
+
+[ext_resource type="Texture2D" uid="uid://c42ew34tvwt57" path="res://src/asset/curve/fade_out.tres" id="1_0b07f"]
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -40.0
+scale_max = 2.0
+alpha_curve = ExtResource("1_0b07f")

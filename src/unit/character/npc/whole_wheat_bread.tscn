@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8ch2omi8741r"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_rkwjm"]
+[ext_resource type="Script" uid="uid://d3ousdcock7tj" path="res://src/unit/character/npc/whole_wheat_bread.gd" id="2_mocqn"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_rtpte"]
+[ext_resource type="Texture2D" uid="uid://5psiv1j7n64q" path="res://asset/texture/unit/npc/whole_wheat_bread/whole_wheat_bread.webp" id="3_1jxas"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_8wqb5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bu5xc"]
+resource_local_to_scene = true
+shader = ExtResource("2_rtpte")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5ndm"]
+size = Vector2(32, 8)
+
+[node name="WholeWheatBread" instance=ExtResource("1_rkwjm")]
+script = ExtResource("2_mocqn")
+handle_scene = 0
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_bu5xc")
+position = Vector2(0, -8)
+texture = ExtResource("3_1jxas")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_r5ndm")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Shop")
+
+[node name="Shop" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("4_8wqb5")]
+can_end = true
+message = Array[String](["DIALOG_SHOP_SPECIAL"])
+target = {
+"BUY_MILK_1": NodePath("Milk1"),
+"BUY_MILK_10": NodePath("Milk10")
+}
+
+[node name="Milk1" parent="Dialog/Shop" index="0" node_paths=PackedStringArray("target") instance=ExtResource("4_8wqb5")]
+message = Array[String](["BUY_FINISH"])
+target = {
+"DIALOG_RETURN": NodePath("..")
+}
+
+[node name="Milk10" parent="Dialog/Shop" index="1" node_paths=PackedStringArray("target") instance=ExtResource("4_8wqb5")]
+message = Array[String](["BUY_FINISH"])
+target = {
+"DIALOG_RETURN": NodePath("..")
+}
+
+[connection signal="changed" from="Dialog" to="." method="_on_dialog_changed"]
+[connection signal="started" from="Dialog/Shop/Milk1" to="." method="_on_milk_1_started"]
+[connection signal="started" from="Dialog/Shop/Milk10" to="." method="_on_milk_10_started"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cb01qbv74ltu5"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_yw1ud"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_xp0io"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="3_xp0io"]
+[ext_resource type="Texture2D" uid="uid://c7wfdj48b3mym" path="res://asset/texture/unit/npc/house_sign.webp" id="3_y8ic4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y8ic4"]
+resource_local_to_scene = true
+shader = ExtResource("2_xp0io")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_y8ic4"]
+b = Vector2(0, -8)
+
+[node name="HouseSign" instance=ExtResource("1_yw1ud")]
+direction = 1
+turn = false
+
+[node name="Graphics" parent="." index="1"]
+scale = Vector2(1, 1)
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_y8ic4")
+position = Vector2(0, -8)
+texture = ExtResource("3_y8ic4")
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("SegmentShape2D_y8ic4")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("DialogContent")
+
+[node name="DialogContent" parent="Dialog" index="3" instance=ExtResource("3_xp0io")]
+can_end = true
+message = Array[String](["HOUSE_0", "HOUSE_1", "HOUSE_2"])

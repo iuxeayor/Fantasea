@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6fhu3feq2my5"]
+
+[ext_resource type="PackedScene" uid="uid://d3f8si3p73axf" path="res://src/scene/scene.tscn" id="1_yaw2b"]
+[ext_resource type="Script" uid="uid://wscqy4lv7a6q" path="res://src/scene/game/base/cave_scene.gd" id="2_uk1lf"]
+[ext_resource type="AudioStream" uid="uid://chufe4gjuw4dj" path="res://asset/music/cave.ogg" id="3_idh3r"]
+[ext_resource type="PackedScene" uid="uid://dieqvbruda80k" path="res://src/scene/game/base/player_light.tscn" id="3_txire"]
+
+[sub_resource type="Gradient" id="Gradient_yaw2b"]
+colors = PackedColorArray(1, 0.894118, 0.807843, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uk1lf"]
+gradient = SubResource("Gradient_yaw2b")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[node name="CaveScene" instance=ExtResource("1_yaw2b")]
+script = ExtResource("2_uk1lf")
+scene_environment = 5
+bgm = ExtResource("3_idh3r")
+scene_name = "SCENE_CAVE"
+
+[node name="Environment" parent="Background" index="0"]
+visible = false
+
+[node name="BlurMask" parent="Background" index="1"]
+visible = false
+
+[node name="PlayerLight" parent="Player" index="11" instance=ExtResource("3_txire")]
+position = Vector2(0, -8)
+
+[node name="EditorLight" type="PointLight2D" parent="Player" index="12"]
+position = Vector2(0, -8)
+editor_only = true
+blend_mode = 1
+range_layer_min = -10
+range_layer_max = 10
+texture = SubResource("GradientTexture2D_uk1lf")
+metadata/_edit_lock_ = true
+
+[node name="DarkLight" type="DirectionalLight2D" parent="Lights" index="0"]
+blend_mode = 1
+range_layer_min = -10
+range_layer_max = 10
+
+[node name="EditorLight" type="DirectionalLight2D" parent="Lights" index="1"]
+editor_only = true
+range_layer_min = -10
+range_layer_max = 10

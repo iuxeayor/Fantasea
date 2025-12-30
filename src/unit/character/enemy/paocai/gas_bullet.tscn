@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhhu2lbaw14o8"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_asflh"]
+[ext_resource type="Script" uid="uid://conf181spjgw5" path="res://src/unit/character/enemy/paocai/gas_bullet.gd" id="2_cglms"]
+[ext_resource type="Texture2D" uid="uid://2co38bh12ku5" path="res://asset/texture/unit/enemy/paocai/gas.webp" id="3_dfw4r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dfw4r"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_m4esc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dfw4r"]
+resource_name = "run"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.9), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1, 1.0000001)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m4esc"]
+_data = {
+&"RESET": SubResource("Animation_m4esc"),
+&"run": SubResource("Animation_dfw4r")
+}
+
+[node name="GasBullet" instance=ExtResource("1_asflh")]
+script = ExtResource("2_cglms")
+obj_name = &"gas_bullet"
+dead_on_collide = 0
+dead_on_hit = false
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(2.3841858e-07, 4.4703484e-07)
+texture = ExtResource("3_dfw4r")
+hframes = 4
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_dfw4r")
+
+[node name="LifeTimer" parent="." index="3"]
+wait_time = 5.0
+
+[node name="ReadyTimer" type="Timer" parent="." index="4"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="." index="5"]
+wait_time = 4.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
+libraries = {
+&"": SubResource("AnimationLibrary_m4esc")
+}
+
+[connection signal="timeout" from="ReadyTimer" to="." method="_on_ready_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkmb74ri74fig"]
+
+[ext_resource type="Script" uid="uid://b4nmocy0xx4gv" path="res://src/unit/character/character.gd" id="1_xp0yc"]
+[ext_resource type="Script" uid="uid://bga3fqmonblh6" path="res://src/unit/character/character_status.gd" id="2_0lpfh"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_qy8oq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_78nb6"]
+resource_local_to_scene = true
+shader = ExtResource("2_qy8oq")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[node name="Character" type="CharacterBody2D"]
+collision_layer = 0
+platform_on_leave = 2
+script = ExtResource("1_xp0yc")
+
+[node name="Status" type="Node" parent="."]
+script = ExtResource("2_0lpfh")
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphics"]
+material = SubResource("ShaderMaterial_78nb6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

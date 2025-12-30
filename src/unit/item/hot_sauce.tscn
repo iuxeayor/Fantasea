@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvcpp5nmito6m"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_yng5g"]
+[ext_resource type="Script" uid="uid://nowfa535ljeo" path="res://src/unit/item/hot_sauce.gd" id="2_v0w7b"]
+[ext_resource type="Texture2D" uid="uid://cwy5hws6xegaw" path="res://asset/texture/unit/item/hot_sauce.webp" id="3_aug5j"]
+
+[node name="HotSauce" instance=ExtResource("1_yng5g")]
+script = ExtResource("2_v0w7b")
+item_id = "hot_sauce"
+message = "ITEM_HOT_SAUCE"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_aug5j")

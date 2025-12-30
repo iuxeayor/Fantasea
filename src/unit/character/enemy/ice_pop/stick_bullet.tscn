@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0cpcwx8nmynd"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_p58wb"]
+[ext_resource type="Texture2D" uid="uid://ucljgtvl6ug5" path="res://asset/texture/unit/enemy/ice_pop/stick_bullet.webp" id="2_8pjey"]
+[ext_resource type="Material" uid="uid://bxh4fkf88hmab" path="res://src/asset/particle/small_bullet_disappear.tres" id="3_8wok5"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8pjey"]
+a = Vector2(-5, 0)
+b = Vector2(5, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wok5"]
+size = Vector2(10, 2)
+
+[node name="StickBullet" instance=ExtResource("1_p58wb")]
+obj_name = &"stick_bullet"
+rotate_with_velocity = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_8pjey")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("SegmentShape2D_8pjey")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_8wok5")
+
+[node name="ParticlePoint" parent="." index="4"]
+position = Vector2(5, 0)
+
+[node name="ParticleQueue" parent="." index="5"]
+overwrite_color = Color(0.74902, 0.435294, 0.290196, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_8wok5")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_8wok5")

@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=3 uid="uid://q75dnf61s1hc"]
+
+[ext_resource type="Texture2D" uid="uid://dgn8qd4t4n7ja" path="res://asset/texture/unit/mechanical/railway_horizontal.webp" id="1_w2vol"]
+[ext_resource type="Script" uid="uid://b7aage5dxjrd8" path="res://src/unit/props/railway.gd" id="2_2lrug"]
+[ext_resource type="Texture2D" uid="uid://dvqeponth8mhd" path="res://asset/texture/unit/mechanical/railway_vertical.webp" id="3_5il1o"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_fuuki"]
+a = Vector2(4, -8.88506e-06)
+b = Vector2(-4, 8.88506e-06)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_r0g3t"]
+a = Vector2(-4, -8.583069e-06)
+b = Vector2(3.9999995, 9.536743e-06)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_5il1o"]
+a = Vector2(-4, 0)
+b = Vector2(4, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_p6ii5"]
+a = Vector2(-3.9999995, -1.7166138e-05)
+b = Vector2(4, 1.9073486e-05)
+
+[node name="Railway" type="Control"]
+show_behind_parent = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("2_2lrug")
+
+[node name="HorizontalContainer" type="NinePatchRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_w2vol")
+patch_margin_left = 8
+patch_margin_right = 8
+axis_stretch_horizontal = 1
+
+[node name="Start" type="Control" parent="HorizontalContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="HorizontalContainer/Start" groups=["railway"]]
+collision_layer = 131072
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="HStartCollision" type="CollisionShape2D" parent="HorizontalContainer/Start/StaticBody2D"]
+rotation = 1.5707941
+shape = SubResource("SegmentShape2D_fuuki")
+disabled = true
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="End" type="Control" parent="HorizontalContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="HorizontalContainer/End" groups=["railway"]]
+collision_layer = 131072
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="HEndCollision" type="CollisionShape2D" parent="HorizontalContainer/End/StaticBody2D"]
+rotation = -1.5707941
+shape = SubResource("SegmentShape2D_r0g3t")
+disabled = true
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="VerticalContainer" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_5il1o")
+patch_margin_top = 8
+patch_margin_bottom = 8
+axis_stretch_vertical = 1
+
+[node name="Start" type="Control" parent="VerticalContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="VerticalContainer/Start" groups=["railway"]]
+collision_layer = 131072
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="VStartCollision" type="CollisionShape2D" parent="VerticalContainer/Start/StaticBody2D"]
+rotation = -3.1415882
+shape = SubResource("SegmentShape2D_5il1o")
+disabled = true
+one_way_collision = true
+metadata/_edit_lock_ = true
+
+[node name="End" type="Control" parent="VerticalContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="VerticalContainer/End" groups=["railway"]]
+collision_layer = 131072
+collision_mask = 0
+metadata/_edit_lock_ = true
+
+[node name="VEndCollision" type="CollisionShape2D" parent="VerticalContainer/End/StaticBody2D"]
+shape = SubResource("SegmentShape2D_p6ii5")
+disabled = true
+one_way_collision = true
+metadata/_edit_lock_ = true

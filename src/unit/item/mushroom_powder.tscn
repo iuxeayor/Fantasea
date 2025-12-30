@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds5gtx1ri63pl"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_32l6e"]
+[ext_resource type="Texture2D" uid="uid://2uomg8v8x22f" path="res://asset/texture/unit/item/mushroom_powder.webp" id="2_b2gtw"]
+
+[node name="MushroomPowder" instance=ExtResource("1_32l6e")]
+item_id = "mushroom_powder"
+message = "ITEM_MUSHROOM_POWDER"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_b2gtw")

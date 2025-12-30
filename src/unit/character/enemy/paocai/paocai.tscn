@@ -1,0 +1,140 @@
+[gd_scene load_steps=16 format=3 uid="uid://deyqo18irvqtv"]
+
+[ext_resource type="PackedScene" uid="uid://uhmn6jvb8pf2" path="res://src/unit/character/enemy/enemy.tscn" id="1_qgsu0"]
+[ext_resource type="Script" uid="uid://ix48utbeu1v2" path="res://src/unit/character/enemy/paocai/paocai.gd" id="2_51ds5"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_tqn52"]
+[ext_resource type="Texture2D" uid="uid://bbmlnmaowd4aj" path="res://asset/texture/unit/enemy/paocai/idle.webp" id="3_tqn52"]
+[ext_resource type="Script" uid="uid://p0yn5ixp2w53" path="res://src/unit/common/behavior_tree/action.gd" id="5_3b6dv"]
+[ext_resource type="Texture2D" uid="uid://bb7sbdmt8d0ij" path="res://asset/texture/unit/enemy/paocai/hurt.webp" id="5_smxo0"]
+[ext_resource type="Texture2D" uid="uid://drbxcjnxow6s0" path="res://asset/texture/unit/enemy/paocai/sleep.webp" id="6_mmjd5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnl7w"]
+resource_local_to_scene = true
+shader = ExtResource("2_tqn52")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smxo0"]
+size = Vector2(16, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51ds5"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_smxo0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_tqn52")]
+}
+
+[sub_resource type="Animation" id="Animation_mmjd5"]
+resource_name = "hurt"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_smxo0")]
+}
+
+[sub_resource type="Animation" id="Animation_51ds5"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_tqn52")]
+}
+
+[sub_resource type="Animation" id="Animation_3b6dv"]
+resource_name = "sleep"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_mmjd5")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mmjd5"]
+_data = {
+&"RESET": SubResource("Animation_smxo0"),
+&"hurt": SubResource("Animation_mmjd5"),
+&"idle": SubResource("Animation_51ds5"),
+&"sleep": SubResource("Animation_3b6dv")
+}
+
+[node name="Paocai" instance=ExtResource("1_qgsu0")]
+script = ExtResource("2_51ds5")
+enemy_name = &"paocai"
+random_direction = false
+knockback_speed = 0.0
+hurt_turn = false
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_vnl7w")
+position = Vector2(0, -8)
+texture = ExtResource("3_tqn52")
+
+[node name="Hitbox" parent="Graphics" index="1"]
+visible = false
+disabled = true
+
+[node name="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+visible = true
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_smxo0")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_51ds5")
+
+[node name="AttackTimer" type="Timer" parent="Timers" index="1"]
+wait_time = 0.1
+one_shot = true
+
+[node name="AttackCDTimer" type="Timer" parent="Timers" index="2"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Action" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource("5_3b6dv")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HealthBar" parent="." index="7"]
+offset_top = -18.0
+offset_bottom = -17.0
+
+[node name="AnimationPlayer" parent="." index="8"]
+libraries = {
+&"": SubResource("AnimationLibrary_mmjd5")
+}
+
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]

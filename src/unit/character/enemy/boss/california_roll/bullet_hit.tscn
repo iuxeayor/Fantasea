@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://1mci1j7njrgh"]
+
+[ext_resource type="PackedScene" uid="uid://ctjmfotnke34v" path="res://src/unit/common/hitbox/hitbox.tscn" id="1_4s7pl"]
+[ext_resource type="Script" uid="uid://bljluycv5o3u" path="res://src/unit/character/enemy/boss/california_roll/bullet_hit.gd" id="2_wpvht"]
+[ext_resource type="Texture2D" uid="uid://b0d1mcm3ys3kp" path="res://asset/texture/unit/enemy/boss/california_roll/gunfire.webp" id="3_ngsf8"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wpvht"]
+
+[node name="BulletHit" type="Node2D" groups=["enemy"]]
+script = ExtResource("2_wpvht")
+
+[node name="Hitbox" parent="." instance=ExtResource("1_4s7pl")]
+collision_layer = 16
+damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("SegmentShape2D_wpvht")
+
+[node name="Laser" type="Line2D" parent="Hitbox"]
+width = 0.5
+default_color = Color(0.917647, 0.196078, 0.235294, 0.8)
+antialiased = true
+
+[node name="ShootLine" type="Line2D" parent="Hitbox"]
+width = 1.0
+default_color = Color(1, 0.921569, 0.341176, 1)
+antialiased = true
+
+[node name="Gunfire" type="Sprite2D" parent="."]
+texture = ExtResource("3_ngsf8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://b665dd4oa04s"]
+
+[ext_resource type="PackedScene" uid="uid://lwd2g1ugoraa" path="res://src/ui/hud/status_dot.tscn" id="1_wqmvm"]
+[ext_resource type="Texture2D" uid="uid://gcy1yyldm017" path="res://asset/texture/ui/hud/health_dot_background.webp" id="2_hpp5y"]
+[ext_resource type="Texture2D" uid="uid://ev88ox32msfd" path="res://asset/texture/ui/hud/health_dot_fill.webp" id="3_hpp5y"]
+
+[node name="HealthDot" instance=ExtResource("1_wqmvm")]
+offset_right = 6.0
+offset_bottom = 4.0
+texture_under = ExtResource("2_hpp5y")
+texture_progress = ExtResource("3_hpp5y")

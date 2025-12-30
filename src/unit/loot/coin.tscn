@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1stsjthft2tv"]
+
+[ext_resource type="Script" uid="uid://doyvlmjnswxo2" path="res://src/unit/loot/coin.gd" id="2_x4q1a"]
+[ext_resource type="Texture2D" uid="uid://de6ckc1km30wk" path="res://asset/texture/unit/item/coin.webp" id="3_0fd6g"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0fd6g"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ibgoq"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tojar"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0fd6g"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tfbe6"]
+radius = 48.0
+
+[node name="Coin" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_0fd6g")
+continuous_cd = 1
+script = ExtResource("2_x4q1a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_0fd6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_ibgoq")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../Node/Checker")
+update_rotation = false
+update_scale = false
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Checker" type="Node2D" parent="Node"]
+
+[node name="TileChecker" type="Area2D" parent="Node/Checker"]
+collision_layer = 0
+
+[node name="TileCollision" type="CollisionShape2D" parent="Node/Checker/TileChecker"]
+shape = SubResource("CircleShape2D_tojar")
+disabled = true
+
+[node name="PlayerCollectChecker" type="Area2D" parent="Node/Checker"]
+visible = false
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Checker/PlayerCollectChecker"]
+shape = SubResource("CircleShape2D_0fd6g")
+
+[node name="AttractChecker" type="Area2D" parent="Node/Checker"]
+visible = false
+collision_layer = 0
+collision_mask = 4
+input_pickable = false
+monitorable = false
+
+[node name="AttractCollision" type="CollisionShape2D" parent="Node/Checker/AttractChecker"]
+shape = SubResource("CircleShape2D_tfbe6")
+disabled = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Node/Checker/TileChecker" to="." method="_on_tile_checker_body_entered"]
+[connection signal="body_entered" from="Node/Checker/PlayerCollectChecker" to="." method="_on_player_collect_checker_body_entered"]
+[connection signal="body_entered" from="Node/Checker/AttractChecker" to="." method="_on_attract_checker_body_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

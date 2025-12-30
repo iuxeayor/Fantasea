@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://df8iso7l2ple0"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_esrts"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_7h74d"]
+[ext_resource type="Texture2D" uid="uid://bngh76pyx0bh2" path="res://asset/texture/unit/npc/cracker.webp" id="3_61grh"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_emy60"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ixp8"]
+resource_local_to_scene = true
+shader = ExtResource("2_7h74d")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ep381"]
+size = Vector2(32, 8)
+
+[node name="Cracker" instance=ExtResource("1_esrts")]
+turn = false
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_8ixp8")
+position = Vector2(0, -8)
+texture = ExtResource("3_61grh")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_ep381")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+position = Vector2(0, -15)
+root_dialog = NodePath("Info")
+
+[node name="Info" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("4_emy60")]
+can_end = true
+message = Array[String](["CRACKER_INFO_0", "CRACKER_INFO_1", "CRACKER_INFO_2"])
+target = {
+"CRACKER_CABLE": NodePath("Cable")
+}
+
+[node name="Cable" parent="Dialog/Info" index="0" instance=ExtResource("4_emy60")]
+can_end = true
+message = Array[String](["CRACKER_CABLE_0", "CRACKER_CABLE_1", "CRACKER_CABLE_2", "CRACKER_CABLE_3"])

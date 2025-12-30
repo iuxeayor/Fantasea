@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c34s8exs2vis6"]
+
+[ext_resource type="Script" uid="uid://j5qnrqv4hk0o" path="res://src/unit/loot/milk.gd" id="1_0lma4"]
+[ext_resource type="Texture2D" uid="uid://db7k23a6ownlv" path="res://asset/texture/unit/item/milk_loot.webp" id="2_0lma4"]
+[ext_resource type="PackedScene" uid="uid://ctjmfotnke34v" path="res://src/unit/common/hitbox/hitbox.tscn" id="2_vc2cg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jeofn"]
+size = Vector2(8, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lma4"]
+size = Vector2(8, 10)
+
+[node name="Milk" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_0lma4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("2_0lma4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_jeofn")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_vc2cg")]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_0lma4")
+
+[connection signal="collided" from="Hitbox" to="." method="_on_hitbox_collided"]

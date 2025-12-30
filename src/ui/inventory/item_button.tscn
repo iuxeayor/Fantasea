@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://xkpms7i6gxua"]
+
+[ext_resource type="Script" uid="uid://5u0hrnmbmuuv" path="res://src/ui/inventory/item_button.gd" id="1_d7np7"]
+
+[node name="ItemButton" type="Button" groups=["item_button"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_d7np7")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

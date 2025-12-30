@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://huioqf605xq6"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_nb86o"]
+[ext_resource type="Texture2D" uid="uid://bbr1fkkmgvfp5" path="res://asset/texture/unit/item/fresh_milk.webp" id="2_pdu12"]
+
+[node name="FreshMilk" instance=ExtResource("1_nb86o")]
+item_id = "fresh_milk"
+message = "ITEM_FRESH_MILK"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_pdu12")

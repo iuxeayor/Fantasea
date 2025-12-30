@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://1g4kjgebb02m"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_2cmiu"]
+[ext_resource type="Script" uid="uid://dy582pjyjmdru" path="res://src/unit/item/watermelon_seed.gd" id="2_wy0tt"]
+[ext_resource type="Texture2D" uid="uid://7gvp8e0hyhy" path="res://asset/texture/unit/item/watermelon_seed.webp" id="3_pejlk"]
+
+[node name="WatermelonSeed" instance=ExtResource("1_2cmiu")]
+script = ExtResource("2_wy0tt")
+item_id = "watermelon_seed"
+message = "ITEM_WATERMELON_SEED"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_pejlk")

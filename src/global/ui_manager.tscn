@@ -1,0 +1,180 @@
+[gd_scene load_steps=16 format=3 uid="uid://drs3f3k8g46cv"]
+
+[ext_resource type="Script" uid="uid://bxn1crhxfxu28" path="res://src/global/special_effect.gd" id="1_1gvwj"]
+[ext_resource type="Script" uid="uid://y3ylk3s0dq74" path="res://src/global/ui_manager.gd" id="1_2mxu6"]
+[ext_resource type="PackedScene" uid="uid://hnhat68tg3qo" path="res://src/ui/hud/status_panel.tscn" id="2_m2d86"]
+[ext_resource type="PackedScene" uid="uid://qgcmajatpj1l" path="res://src/ui/inventory/inventory_screen.tscn" id="3_aid8w"]
+[ext_resource type="PackedScene" uid="uid://c36dulx6ekr6x" path="res://src/ui/touchscreen/touchscreen.tscn" id="3_pxx6g"]
+[ext_resource type="Theme" uid="uid://crq7g0buylt15" path="res://src/asset/theme/menu_theme_island.tres" id="3_tsw6n"]
+[ext_resource type="PackedScene" uid="uid://bpwrbf7ouju8s" path="res://src/ui/menu/menu_screen.tscn" id="4_q82ka"]
+[ext_resource type="PackedScene" uid="uid://dext6h0mcv1xh" path="res://src/ui/menu/item_collection_screen.tscn" id="5_qxlbi"]
+[ext_resource type="PackedScene" uid="uid://dj136bdaa60bt" path="res://src/ui/touchscreen/touchscreen_editor.tscn" id="8_p7glv"]
+[ext_resource type="Shader" uid="uid://fp2rndvxrmar" path="res://src/asset/shader/crt.gdshader" id="9_xrt51"]
+[ext_resource type="Shader" uid="uid://b47l0re2ymjhs" path="res://src/asset/shader/grayscale.gdshader" id="10_2x5df"]
+[ext_resource type="PackedScene" uid="uid://xc4y4l81r556" path="res://src/ui/menu/widget/virtual_key_button.tscn" id="10_jajrw"]
+[ext_resource type="Texture2D" uid="uid://jq0ibdpyuu0d" path="res://asset/texture/ui/control/speed_up.webp" id="11_wmot6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2x5df"]
+shader = ExtResource("9_xrt51")
+shader_parameter/resolution = Vector2(384, 216)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.05
+shader_parameter/vignette_amount = 0.5
+shader_parameter/grille_amount = 0.1
+shader_parameter/brightness_boost = 1.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p7glv"]
+shader = ExtResource("10_2x5df")
+
+[node name="UIManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_2mxu6")
+metadata/_edit_horizontal_guides_ = [-224.0, 216.0, 432.0]
+metadata/_edit_vertical_guides_ = [-384.0, 0.0, 384.0, 768.0]
+
+[node name="Hud" type="CanvasLayer" parent="."]
+layer = 50
+
+[node name="StatusPanel" parent="Hud" instance=ExtResource("2_m2d86")]
+visible = false
+z_index = 50
+
+[node name="Touchscreen" parent="Hud" instance=ExtResource("3_pxx6g")]
+process_mode = 3
+visible = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Menu" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Menu" type="Control" parent="Menu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_tsw6n")
+
+[node name="InventoryScreen" parent="Menu/Menu" instance=ExtResource("3_aid8w")]
+process_mode = 2
+visible = false
+z_index = 100
+layout_mode = 1
+
+[node name="MenuScreen" parent="Menu/Menu" instance=ExtResource("4_q82ka")]
+process_mode = 2
+visible = false
+z_index = 100
+layout_mode = 1
+
+[node name="ItemCollectionScreen" parent="Menu/Menu" instance=ExtResource("5_qxlbi")]
+process_mode = 2
+visible = false
+z_index = 100
+layout_mode = 1
+
+[node name="TouchscreenEditor" parent="Menu/Menu" instance=ExtResource("8_p7glv")]
+visible = false
+z_index = 100
+layout_mode = 1
+
+[node name="SpecialEffect" type="Node" parent="."]
+script = ExtResource("1_1gvwj")
+
+[node name="Movie" type="CanvasLayer" parent="SpecialEffect"]
+layer = 99
+
+[node name="TopMovieMask" type="ColorRect" parent="SpecialEffect/Movie"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomMovieMask" type="ColorRect" parent="SpecialEffect/Movie"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SpeedUp" parent="SpecialEffect/Movie/BottomMovieMask" instance=ExtResource("10_jajrw")]
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -15.0
+offset_right = 66.0
+offset_bottom = -2.0
+grow_vertical = 0
+icon = ExtResource("11_wmot6")
+action = &"ui_accept"
+
+[node name="Fade" type="CanvasLayer" parent="SpecialEffect"]
+layer = 99
+visible = false
+
+[node name="FadeMask" type="ColorRect" parent="SpecialEffect/Fade"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Cover" type="CanvasLayer" parent="SpecialEffect"]
+layer = 99
+visible = false
+
+[node name="CoverMask" type="ColorRect" parent="SpecialEffect/Cover"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Filter" type="CanvasLayer" parent="SpecialEffect"]
+layer = 128
+
+[node name="CRTMask" type="ColorRect" parent="SpecialEffect/Filter"]
+visible = false
+material = SubResource("ShaderMaterial_2x5df")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="GrayscaleMask" type="ColorRect" parent="SpecialEffect/Filter"]
+visible = false
+material = SubResource("ShaderMaterial_p7glv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2

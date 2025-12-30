@@ -1,0 +1,280 @@
+[gd_scene load_steps=15 format=3 uid="uid://c12jk7vbp2hys"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_xenu3"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_q3n6t"]
+[ext_resource type="Script" uid="uid://bjh6lij4kc6sb" path="res://src/unit/character/npc/butter_npc.gd" id="2_vvxeo"]
+[ext_resource type="Texture2D" uid="uid://c6ytp7hwk0xnq" path="res://asset/texture/unit/npc/butter.webp" id="3_q3n6t"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="5_csulx"]
+[ext_resource type="Texture2D" uid="uid://tppi05rdqi51" path="res://asset/texture/unit/npc/butter_sit.webp" id="5_s3u6c"]
+[ext_resource type="Texture2D" uid="uid://dfuufuslt4ph3" path="res://asset/texture/unit/npc/butter_walk.webp" id="6_onwwb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvxeo"]
+resource_local_to_scene = true
+shader = ExtResource("2_q3n6t")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csulx"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_s3u6c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_q3n6t")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bpcm7"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_q3n6t")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_onwwb"]
+resource_name = "sit"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_s3u6c")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rw0i7"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_onwwb")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2a1ma"]
+_data = {
+&"RESET": SubResource("Animation_s3u6c"),
+&"idle": SubResource("Animation_bpcm7"),
+&"sit": SubResource("Animation_onwwb"),
+&"walk": SubResource("Animation_rw0i7")
+}
+
+[node name="ButterNpc" instance=ExtResource("1_xenu3")]
+script = ExtResource("2_vvxeo")
+story_stage = 3
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_vvxeo")
+position = Vector2(0, -8)
+texture = ExtResource("3_q3n6t")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_csulx")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_2a1ma")
+}
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+position = Vector2(0, -22)
+root_dialog = NodePath("Relax")
+
+[node name="Meet" parent="Dialog" index="3" instance=ExtResource("5_csulx")]
+can_end = true
+message = Array[String](["BUTTER_MEET_0", "BUTTER_MEET_1", "BUTTER_MEET_2", "BUTTER_MEET_3"])
+
+[node name="Normal" parent="Dialog" index="4" instance=ExtResource("5_csulx")]
+can_end = true
+message = Array[String](["BUTTER_NORMAL_0", "BUTTER_NORMAL_1", "BUTTER_NORMAL_2"])
+
+[node name="Break" parent="Dialog" index="5" instance=ExtResource("5_csulx")]
+can_end = true
+can_release_control = false
+message = Array[String](["BUTTER_BREAK_0", "BUTTER_BREAK_1"])
+
+[node name="Battle" parent="Dialog" index="6" node_paths=PackedStringArray("target") instance=ExtResource("5_csulx")]
+can_release_control = false
+message = Array[String](["BUTTER_BATTLE_0"])
+target = {
+"0_BUTTER_COMPLAIN": NodePath("Complain"),
+"1_BUTTER_COMBAT": NodePath("Combat")
+}
+
+[node name="Complain" parent="Dialog/Battle" index="0" node_paths=PackedStringArray("target") instance=ExtResource("5_csulx")]
+can_release_control = false
+message = Array[String](["BUTTER_COMPLAIN_0", "BUTTER_COMPLAIN_1", "BUTTER_COMPLAIN_2", "BUTTER_COMPLAIN_3", "BUTTER_COMPLAIN_4", "BUTTER_COMPLAIN_5", "BUTTER_COMPLAIN_6", "BUTTER_COMPLAIN_7"])
+target = {
+"BUTTER_CONCEDE": NodePath("Concede")
+}
+
+[node name="Concede" parent="Dialog/Battle/Complain" index="0" node_paths=PackedStringArray("target") instance=ExtResource("5_csulx")]
+can_release_control = false
+message = Array[String](["......", "BUTTER_CONCEDE_0"])
+target = {
+"1_BUTTER_COMBAT": NodePath("../../Combat")
+}
+
+[node name="Combat" parent="Dialog/Battle" index="1" instance=ExtResource("5_csulx")]
+can_end = true
+can_release_control = false
+message = Array[String](["......", "BUTTER_COMBAT_0"])
+
+[node name="Defeat" parent="Dialog" index="7" instance=ExtResource("5_csulx")]
+can_end = true
+can_release_control = false
+message = Array[String](["BUTTER_DEFEAT_0", "BUTTER_DEFEAT_1"])
+
+[node name="End" parent="Dialog" index="8" instance=ExtResource("5_csulx")]
+can_end = true
+can_release_control = false
+message = Array[String](["BUTTER_END_0", "BUTTER_END_1"])
+
+[node name="Relax" parent="Dialog" index="9" node_paths=PackedStringArray("target") instance=ExtResource("5_csulx")]
+can_end = true
+message = Array[String](["BUTTER_RELAX_0", "BUTTER_RELAX_1", "BUTTER_RELAX_2", "BUTTER_RELAX_3"])
+target = {
+"DIALOG_ABOUT": NodePath("About")
+}
+
+[node name="About" parent="Dialog/Relax" index="0" instance=ExtResource("5_csulx")]
+can_end = true
+message = Array[String](["BUTTER_ABOUT_0", "BUTTER_ABOUT_1"])
+
+[node name="Ship" parent="Dialog" index="10" instance=ExtResource("5_csulx")]
+can_end = true
+message = Array[String](["BUTTER_SHIP_0", "BUTTER_SHIP_1", "BUTTER_SHIP_2"])
+
+[connection signal="ended" from="Dialog/Break" to="." method="_on_break_ended"]
+[connection signal="ended" from="Dialog/Battle/Combat" to="." method="_on_combat_ended"]
+[connection signal="ended" from="Dialog/Defeat" to="." method="_on_defeat_ended"]
+[connection signal="ended" from="Dialog/End" to="." method="_on_end_ended"]

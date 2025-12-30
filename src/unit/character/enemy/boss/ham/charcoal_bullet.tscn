@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3oejv6agg7ut"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_b0umm"]
+[ext_resource type="Texture2D" uid="uid://clutqcqh5gx0p" path="res://asset/texture/unit/enemy/boss/ham/charcoal_bullet.webp" id="2_hh33r"]
+[ext_resource type="Script" uid="uid://bnsyo6aq13mwj" path="res://src/unit/character/enemy/boss/ham/charcoal_bullet.gd" id="2_yqp42"]
+[ext_resource type="Material" uid="uid://dj15v7a7ly81c" path="res://src/asset/particle/charcoal_bullet.tres" id="4_dnh3c"]
+[ext_resource type="Material" uid="uid://bxh4fkf88hmab" path="res://src/asset/particle/small_bullet_disappear.tres" id="5_jb25q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hh33r"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yqp42"]
+radius = 4.0
+
+[node name="CharcoalBullet" instance=ExtResource("1_b0umm")]
+script = ExtResource("2_yqp42")
+obj_name = &"charcoal_bullet"
+gravity = 900.0
+rotation_speed = 1.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="0"]
+modulate = Color(0.15294118, 0.15294118, 0.15294118, 1)
+amount = 20
+process_material = ExtResource("4_dnh3c")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_hh33r")
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+shape = SubResource("CircleShape2D_hh33r")
+
+[node name="Hitbox" parent="." index="3"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_yqp42")
+
+[node name="ParticleQueue" parent="." index="6"]
+overwrite_color = Color(0.23921569, 0.23921569, 0.23921569, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("5_jb25q")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("5_jb25q")

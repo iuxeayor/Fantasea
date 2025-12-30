@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://k8h352dwtr3b"]
+
+[ext_resource type="PackedScene" uid="uid://d3f8si3p73axf" path="res://src/scene/scene.tscn" id="1_ukdxd"]
+[ext_resource type="Texture2D" uid="uid://cb2qqpor30kqs" path="res://asset/texture/background/desert_sky.webp" id="2_60cgs"]
+[ext_resource type="Script" uid="uid://c7k4fvx346xlc" path="res://src/scene/game/base/desert_scene.gd" id="2_egcpn"]
+[ext_resource type="Texture2D" uid="uid://ctfk715u0pt1q" path="res://asset/texture/background/desert_hill_far.webp" id="2_ix188"]
+[ext_resource type="AudioStream" uid="uid://d2aadl4gxlsh0" path="res://asset/music/desert.ogg" id="3_442gi"]
+[ext_resource type="Texture2D" uid="uid://dug5xsjc65q3p" path="res://asset/texture/background/desert_hill_mid.webp" id="4_60cgs"]
+[ext_resource type="Texture2D" uid="uid://cdutf85egs1g3" path="res://asset/texture/background/desert_hill_near.webp" id="5_60cgs"]
+[ext_resource type="Texture2D" uid="uid://vc4oq7odvgla" path="res://asset/texture/background/desert_land.webp" id="6_i35fn"]
+
+[node name="DesertScene" instance=ExtResource("1_ukdxd")]
+script = ExtResource("2_egcpn")
+scene_environment = 4
+bgm = ExtResource("3_442gi")
+scene_name = "SCENE_DESERT"
+
+[node name="Sky" type="Parallax2D" parent="Background/Environment" index="1"]
+scroll_scale = Vector2(1, 0)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/Sky" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("2_60cgs")
+
+[node name="HillFar" type="Parallax2D" parent="Background/Environment" index="2"]
+scroll_scale = Vector2(0.8, 0.025)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/HillFar" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("2_ix188")
+
+[node name="HillMid" type="Parallax2D" parent="Background/Environment" index="3"]
+scroll_scale = Vector2(0.85, 0.05)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/HillMid" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("4_60cgs")
+
+[node name="HillNear" type="Parallax2D" parent="Background/Environment" index="4"]
+scroll_scale = Vector2(0.9, 0.1)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/HillNear" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("5_60cgs")
+
+[node name="Land" type="Parallax2D" parent="Background/Environment" index="5"]
+scroll_scale = Vector2(0.95, 0.15)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/Land" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("6_i35fn")
+
+[node name="EnvironmentLight" type="DirectionalLight2D" parent="Lights" index="0"]
+color = Color(1, 0.615686, 0.247059, 1)
+energy = 0.15
+blend_mode = 2
+range_layer_min = -10
+range_layer_max = 10

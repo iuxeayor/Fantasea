@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpi4xr2ddwbxs"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_a8mqv"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_dr2br"]
+[ext_resource type="Texture2D" uid="uid://em1blh7077f8" path="res://asset/texture/unit/npc/instant_noodle.webp" id="3_dr2br"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_x0103"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x0103"]
+resource_local_to_scene = true
+shader = ExtResource("2_dr2br")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0103"]
+size = Vector2(32, 8)
+
+[node name="InstantNoodle" instance=ExtResource("1_a8mqv")]
+direction = 1
+
+[node name="Graphics" parent="." index="1"]
+scale = Vector2(1, 1)
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_x0103")
+position = Vector2(0, -8)
+texture = ExtResource("3_dr2br")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_x0103")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("DialogContent")
+
+[node name="DialogContent" parent="Dialog" index="3" instance=ExtResource("4_x0103")]
+can_end = true
+message = Array[String](["INSTANT_NOODLE_0", "INSTANT_NOODLE_1", "INSTANT_NOODLE_2"])

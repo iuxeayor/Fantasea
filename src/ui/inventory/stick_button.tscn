@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4a6wwh3r4ad"]
+
+[ext_resource type="PackedScene" uid="uid://xkpms7i6gxua" path="res://src/ui/inventory/item_button.tscn" id="1_elp1r"]
+[ext_resource type="Script" uid="uid://dmatj0fa7l6ow" path="res://src/ui/inventory/stick_button.gd" id="2_884t7"]
+
+[node name="StickButton" instance=ExtResource("1_elp1r")]
+script = ExtResource("2_884t7")

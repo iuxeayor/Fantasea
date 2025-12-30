@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://dyti51nb716xa"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_bwxlt"]
+[ext_resource type="Texture2D" uid="uid://cuy14dvtrghuq" path="res://asset/texture/unit/enemy/shaved_ice/ice_powder_bullet.webp" id="2_25jeo"]
+[ext_resource type="Shader" uid="uid://bh7sfp6qvhqtb" path="res://src/asset/shader/outline.gdshader" id="2_wqolm"]
+[ext_resource type="Material" uid="uid://bxh4fkf88hmab" path="res://src/asset/particle/small_bullet_disappear.tres" id="3_u4obq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a6bra"]
+shader = ExtResource("2_wqolm")
+shader_parameter/color = Color(0, 0, 0, 0.666667)
+shader_parameter/width = 0.2
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u4obq"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_25jeo"]
+radius = 0.5
+
+[node name="IcePowderBullet" instance=ExtResource("1_bwxlt")]
+obj_name = &"ice_powder_bullet"
+gravity = 450.0
+rotate_with_velocity = true
+
+[node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_a6bra")
+texture = ExtResource("2_25jeo")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_u4obq")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_25jeo")
+
+[node name="LifeTimer" parent="." index="3"]
+wait_time = 3.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_u4obq")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_u4obq")

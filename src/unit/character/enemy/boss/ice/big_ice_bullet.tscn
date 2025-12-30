@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://wuan4d3i2jk6"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_b82u8"]
+[ext_resource type="Script" uid="uid://bnmiscxv323xd" path="res://src/unit/character/enemy/boss/ice/big_ice_bullet.gd" id="2_xp2fh"]
+[ext_resource type="Texture2D" uid="uid://c0v220tom77yf" path="res://asset/texture/unit/enemy/boss/ice/big_ice_bullet.webp" id="3_3n2jl"]
+[ext_resource type="Texture2D" uid="uid://cjt2jdc5ytaq7" path="res://asset/texture/unit/enemy/boss/ice/ice_bullet_trail_particle.webp" id="4_wcnaj"]
+[ext_resource type="Material" uid="uid://wvp3sgqidt60" path="res://src/asset/particle/big_ice_bullet_trail.tres" id="5_3xrqu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_peli6"]
+radius = 22.0
+
+[node name="BigIceBullet" instance=ExtResource("1_b82u8")]
+script = ExtResource("2_xp2fh")
+obj_name = &"big_ice_bullet"
+rotate_with_velocity = true
+dead_on_collide = 0
+dead_on_hit = false
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_3n2jl")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_peli6")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+position = Vector2(9.53674e-06, -1.90735e-06)
+
+[node name="TrailParticle" type="GPUParticles2D" parent="." index="7"]
+position = Vector2(-8, 0)
+amount = 12
+texture = ExtResource("4_wcnaj")
+lifetime = 2.5
+process_material = ExtResource("5_3xrqu")

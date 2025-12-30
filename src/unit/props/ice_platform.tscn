@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4mp0enlge87s"]
+
+[ext_resource type="Script" uid="uid://nvptwh2gnqbw" path="res://src/unit/props/ice_platform.gd" id="1_56v8p"]
+[ext_resource type="Texture2D" uid="uid://bjhnl8idx4055" path="res://asset/texture/unit/mechanical/ice_platform.webp" id="1_fagcc"]
+[ext_resource type="Material" uid="uid://bf75kbiijxvr7" path="res://src/asset/particle/ice_platform.tres" id="3_ig0e8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fagcc"]
+size = Vector2(32, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56v8p"]
+size = Vector2(30, 1)
+
+[node name="IcePlatform" type="StaticBody2D"]
+collision_layer = 257
+collision_mask = 0
+script = ExtResource("1_56v8p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 4)
+texture = ExtResource("1_fagcc")
+hframes = 3
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+show_behind_parent = true
+offset_left = -14.0
+offset_top = -2.0
+offset_right = 14.0
+offset_bottom = 2.0
+color = Color(0.0470588, 0.945098, 1, 0.333333)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(16, 4)
+shape = SubResource("RectangleShape2D_fagcc")
+
+[node name="PlayerChecker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerChecker"]
+position = Vector2(16, -0.5)
+shape = SubResource("RectangleShape2D_56v8p")
+
+[node name="BreakingTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="BreakTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="RecoveryTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0.803922, 0.976471, 1)
+position = Vector2(16, 4)
+emitting = false
+amount = 40
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_ig0e8")
+
+[connection signal="body_entered" from="PlayerChecker" to="." method="_on_player_checker_body_entered"]
+[connection signal="timeout" from="BreakingTimer" to="." method="_on_breaking_timer_timeout"]
+[connection signal="timeout" from="BreakTimer" to="." method="_on_break_timer_timeout"]
+[connection signal="timeout" from="RecoveryTimer" to="." method="_on_recovery_timer_timeout"]

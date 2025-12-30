@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnqghuw3fk5j5"]
+
+[ext_resource type="Script" uid="uid://ikd3encp44cv" path="res://src/ui/hud/frame_rate.gd" id="1_sy7qt"]
+
+[node name="FrameRate" type="Label"]
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 6
+text = "100"
+horizontal_alignment = 2
+script = ExtResource("1_sy7qt")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="LongTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LongTimer" to="." method="_on_long_timer_timeout"]

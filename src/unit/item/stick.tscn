@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://rg0vc11yh8iq"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_ht1li"]
+[ext_resource type="Script" uid="uid://bsu2hk14rcwd5" path="res://src/unit/item/stick.gd" id="2_77xbj"]
+[ext_resource type="Texture2D" uid="uid://bj51pp0jq3vah" path="res://asset/texture/unit/item/wood_stick.webp" id="3_qr0oe"]
+
+[node name="Stick" instance=ExtResource("1_ht1li")]
+script = ExtResource("2_77xbj")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_qr0oe")

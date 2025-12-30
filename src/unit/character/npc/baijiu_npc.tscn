@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnd57w61sgtsb"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_0lq5d"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_5fudd"]
+[ext_resource type="Script" uid="uid://dpsm432ffxer1" path="res://src/unit/character/npc/baijiu_npc.gd" id="2_m1nc2"]
+[ext_resource type="Texture2D" uid="uid://dhursrl1o3p85" path="res://asset/texture/unit/npc/baijiu.webp" id="3_5fudd"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_ipk8r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ipk8r"]
+resource_local_to_scene = true
+shader = ExtResource("2_5fudd")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1nc2"]
+size = Vector2(8, 8)
+
+[node name="BaijiuNpc" instance=ExtResource("1_0lq5d")]
+script = ExtResource("2_m1nc2")
+turn = false
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_ipk8r")
+position = Vector2(0, -8)
+texture = ExtResource("3_5fudd")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_m1nc2")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Normal")
+
+[node name="Normal" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("4_ipk8r")]
+can_end = true
+message = Array[String](["BAIJIU_NORMAL_0", "BAIJIU_NORMAL_1", "BAIJIU_NORMAL_2"])
+target = {
+"BAIJIU_BATTLE": NodePath("../Battle")
+}
+
+[node name="Battle" parent="Dialog" index="4" instance=ExtResource("4_ipk8r")]
+can_release_control = false
+
+[node name="End" parent="Dialog" index="5" instance=ExtResource("4_ipk8r")]
+can_end = true
+message = Array[String](["BAIJIU_END"])
+
+[connection signal="started" from="Dialog/Battle" to="." method="_on_battle_started"]

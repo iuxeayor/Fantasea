@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2g1ep1bl2ue8"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_qmciy"]
+[ext_resource type="Script" uid="uid://juq02dr404cx" path="res://src/unit/character/npc/crab_stick.gd" id="2_2r6qn"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_mmbxc"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_2o6vb"]
+[ext_resource type="Texture2D" uid="uid://j0shexseft6x" path="res://asset/texture/unit/npc/crab_stick.webp" id="4_2r6qn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o6vb"]
+resource_local_to_scene = true
+shader = ExtResource("2_mmbxc")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmciy"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_2o6vb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mmbxc"]
+resource_name = "write"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2o6vb"]
+_data = {
+&"RESET": SubResource("Animation_2o6vb"),
+&"write": SubResource("Animation_mmbxc")
+}
+
+[node name="CrabStick" instance=ExtResource("1_qmciy")]
+script = ExtResource("2_2r6qn")
+story_location = 0
+turn = false
+animation_name = &"write"
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_2o6vb")
+position = Vector2(0, -8)
+texture = ExtResource("4_2r6qn")
+hframes = 2
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_qmciy")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_2o6vb")
+}
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Watermelon")
+
+[node name="Watermelon" parent="Dialog" index="3" instance=ExtResource("4_2o6vb")]
+can_end = true
+message = Array[String](["CRAB_WATERMELON_0", "CRAB_WATERMELON_1", "CRAB_WATERMELON_2"])
+
+[node name="Lemon" parent="Dialog" index="4" instance=ExtResource("4_2o6vb")]
+can_end = true
+message = Array[String](["CRAB_LEMON_0", "CRAB_LEMON_1", "CRAB_LEMON_2"])
+
+[node name="Mushroom" parent="Dialog" index="5" instance=ExtResource("4_2o6vb")]
+can_end = true
+message = Array[String](["CRAB_MUSHROOM_0", "CRAB_MUSHROOM_1", "CRAB_MUSHROOM_2", "CRAB_MUSHROOM_3"])
+
+[node name="BigMushroom" parent="Dialog" index="6" instance=ExtResource("4_2o6vb")]
+can_end = true
+message = Array[String](["CRAB_BIG_0", "CRAB_BIG_1", "CRAB_BIG_2"])
+
+[node name="Boss" parent="Dialog" index="7" instance=ExtResource("4_2o6vb")]
+can_end = true
+message = Array[String](["CRAB_BOSS_0", "CRAB_BOSS_1", "CRAB_BOSS_2", "CRAB_BOSS_3"])

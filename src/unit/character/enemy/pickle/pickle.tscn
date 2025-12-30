@@ -1,0 +1,258 @@
+[gd_scene load_steps=25 format=3 uid="uid://pxyb2o3ir7xq"]
+
+[ext_resource type="PackedScene" uid="uid://uhmn6jvb8pf2" path="res://src/unit/character/enemy/enemy.tscn" id="1_ut782"]
+[ext_resource type="Script" uid="uid://b7cplbwgungj3" path="res://src/unit/character/enemy/pickle/pickle.gd" id="2_fxvp3"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_qyo5n"]
+[ext_resource type="Texture2D" uid="uid://64s1qys5a1pd" path="res://asset/texture/unit/enemy/pickle/idle.webp" id="3_qyo5n"]
+[ext_resource type="Texture2D" uid="uid://bo51fkpgk0l64" path="res://asset/texture/unit/enemy/pickle/sleep.webp" id="4_nvb3f"]
+[ext_resource type="Script" uid="uid://cjlyed3rdu8i8" path="res://src/unit/common/behavior_tree/sequence.gd" id="4_thuen"]
+[ext_resource type="Texture2D" uid="uid://bv1wr64rx7ng2" path="res://asset/texture/unit/enemy/pickle/hurt.webp" id="5_81ktf"]
+[ext_resource type="Material" uid="uid://cju0bqcp7cwta" path="res://src/asset/particle/pickle_break.tres" id="5_cckeu"]
+[ext_resource type="Script" uid="uid://dsd2h2jexq7ig" path="res://src/unit/character/enemy/behavior/is_alive.gd" id="6_pk0ae"]
+[ext_resource type="Script" uid="uid://be7bgphyblv17" path="res://src/unit/character/enemy/behavior/is_knockback.gd" id="7_se0uc"]
+[ext_resource type="Script" uid="uid://b5skciich7bs3" path="res://src/unit/common/behavior_tree/inverter.gd" id="8_pvoea"]
+[ext_resource type="Script" uid="uid://cp6fi8qibdmcj" path="res://src/unit/character/enemy/behavior/is_falling.gd" id="9_yb5ig"]
+[ext_resource type="Script" uid="uid://cfgiis6pfterb" path="res://src/unit/character/enemy/behavior/turn_by_player_location.gd" id="10_yb5ig"]
+[ext_resource type="Script" uid="uid://ckw3gxuywgm4i" path="res://src/unit/character/enemy/pickle/behavior/jump.gd" id="11_1ev1q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvb3f"]
+resource_local_to_scene = true
+shader = ExtResource("2_qyo5n")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_81ktf"]
+radius = 5.0
+height = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thuen"]
+size = Vector2(12, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81ktf"]
+size = Vector2(12, 16)
+
+[sub_resource type="Animation" id="Animation_nvb3f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_qyo5n")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fxvp3"]
+resource_name = "bounce"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_qyo5n")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(1, 1), Vector2(0.8, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_thuen"]
+resource_name = "hurt"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_81ktf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qyo5n"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_qyo5n")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_81ktf"]
+resource_name = "sleep"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_nvb3f")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nvb3f"]
+_data = {
+&"RESET": SubResource("Animation_nvb3f"),
+&"bounce": SubResource("Animation_fxvp3"),
+&"hurt": SubResource("Animation_thuen"),
+&"idle": SubResource("Animation_qyo5n"),
+&"sleep": SubResource("Animation_81ktf")
+}
+
+[node name="Pickle" instance=ExtResource("1_ut782")]
+script = ExtResource("2_fxvp3")
+enemy_name = &"pickle"
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_nvb3f")
+position = Vector2(0, -8)
+texture = ExtResource("3_qyo5n")
+
+[node name="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_81ktf")
+
+[node name="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+visible = true
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_thuen")
+
+[node name="PlayerChecker" type="RayCast2D" parent="." index="3"]
+position = Vector2(0, -16)
+target_position = Vector2(0, 144)
+collision_mask = 5
+
+[node name="BreakParticle" type="GPUParticles2D" parent="." index="4"]
+modulate = Color(0.78039217, 0.8117647, 0.8666667, 1)
+position = Vector2(0, -8)
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("5_cckeu")
+
+[node name="CollisionShape2D" parent="." index="5"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_81ktf")
+
+[node name="HurtParticleQueue" parent="." index="6"]
+overwrite_color = Color(0.11764706, 0.43529412, 0.3137255, 1)
+
+[node name="BehaviorTree" parent="." index="8"]
+disabled = true
+
+[node name="Sequence" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource("4_thuen")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="IsAlive" type="Node" parent="BehaviorTree/Sequence" index="0"]
+script = ExtResource("6_pk0ae")
+
+[node name="IsKnockback" type="Node" parent="BehaviorTree/Sequence" index="1"]
+script = ExtResource("7_se0uc")
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Sequence" index="2"]
+script = ExtResource("8_pvoea")
+
+[node name="IsFalling" type="Node" parent="BehaviorTree/Sequence/Inverter" index="0"]
+script = ExtResource("9_yb5ig")
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Sequence" index="3"]
+script = ExtResource("10_yb5ig")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Jump" type="Node" parent="BehaviorTree/Sequence" index="4"]
+script = ExtResource("11_1ev1q")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HealthBar" parent="." index="9"]
+offset_top = -18.0
+offset_bottom = -17.0
+
+[node name="AnimationPlayer" parent="." index="10"]
+libraries = {
+&"": SubResource("AnimationLibrary_nvb3f")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

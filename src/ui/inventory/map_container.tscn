@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://cselateplwulb"]
+
+[ext_resource type="PackedScene" uid="uid://bcd571s3aeexd" path="res://src/ui/inventory/mini_map.tscn" id="1_221y2"]
+[ext_resource type="Script" uid="uid://ku7blb1i4ygd" path="res://src/ui/inventory/map_container.gd" id="1_ak5po"]
+[ext_resource type="PackedScene" uid="uid://xc4y4l81r556" path="res://src/ui/menu/widget/virtual_key_button.tscn" id="3_1hdbq"]
+[ext_resource type="Texture2D" uid="uid://daugocyrbmyc0" path="res://asset/texture/ui/control/confirm.webp" id="3_jmiuo"]
+[ext_resource type="Texture2D" uid="uid://c74e8o6rlcq24" path="res://asset/texture/ui/control/left.webp" id="4_0x3yq"]
+[ext_resource type="Texture2D" uid="uid://btsnotx16rf2a" path="res://asset/texture/ui/control/right.webp" id="5_1hdbq"]
+[ext_resource type="Texture2D" uid="uid://bumo4vbdd6tql" path="res://asset/texture/ui/control/up.webp" id="6_acqhp"]
+[ext_resource type="Texture2D" uid="uid://cvcxf3et01iyg" path="res://asset/texture/ui/control/down.webp" id="7_vjk3l"]
+
+[node name="MapContainer" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ak5po")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(369, 216)
+render_target_update_mode = 4
+
+[node name="MiniMap" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_221y2")]
+
+[node name="ControlContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="ConfirmButton" parent="ControlContainer" instance=ExtResource("3_1hdbq")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "
+"
+icon = ExtResource("3_jmiuo")
+action = &"ui_accept"
+no_text = true
+
+[node name="LeftButton" parent="ControlContainer" instance=ExtResource("3_1hdbq")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "
+"
+icon = ExtResource("4_0x3yq")
+action = &"ui_left"
+no_text = true
+
+[node name="RightButton" parent="ControlContainer" instance=ExtResource("3_1hdbq")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "
+"
+icon = ExtResource("5_1hdbq")
+action = &"ui_right"
+no_text = true
+
+[node name="UpButton" parent="ControlContainer" instance=ExtResource("3_1hdbq")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "
+"
+icon = ExtResource("6_acqhp")
+action = &"ui_up"
+no_text = true
+
+[node name="DownButton" parent="ControlContainer" instance=ExtResource("3_1hdbq")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "
+"
+icon = ExtResource("7_vjk3l")
+action = &"ui_down"
+no_text = true

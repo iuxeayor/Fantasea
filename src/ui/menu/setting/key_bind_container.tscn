@@ -1,0 +1,304 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1t6iw5x5o4jw"]
+
+[ext_resource type="PackedScene" uid="uid://b0fep0a8toxbc" path="res://src/ui/menu/widget/menu_container.tscn" id="1_2mxja"]
+[ext_resource type="Script" uid="uid://6rv0bilukcxq" path="res://src/ui/menu/setting/key_bind_container.gd" id="2_tqnmx"]
+[ext_resource type="PackedScene" uid="uid://bkho8e2l80cbm" path="res://src/ui/menu/widget/key_bind_button.tscn" id="3_umcav"]
+[ext_resource type="Texture2D" uid="uid://dd6s2do5wu8y1" path="res://asset/texture/ui/icon/keyboard.webp" id="4_58ahl"]
+[ext_resource type="Texture2D" uid="uid://m8d2sm05kqk8" path="res://asset/texture/ui/icon/joypad.webp" id="5_es27m"]
+
+[node name="KeyBindContainer" instance=ExtResource("1_2mxja")]
+script = ExtResource("2_tqnmx")
+
+[node name="TitleLabel" parent="TitleContainer" index="1"]
+text = "SET_TITLE_KEY"
+
+[node name="TouchScreenEditButton" type="Button" parent="ContentContainer" index="0" groups=["menu_option"]]
+layout_mode = 2
+text = "SET_TOUCHSCREEN"
+
+[node name="ResetButton" type="Button" parent="ContentContainer" index="1" groups=["menu_option"]]
+layout_mode = 2
+text = "SET_KEY_RESET"
+
+[node name="GridContainer" type="GridContainer" parent="ContentContainer" index="2"]
+layout_mode = 2
+columns = 3
+
+[node name="MoveLeftLabel" type="Label" parent="ContentContainer/GridContainer" index="0"]
+layout_mode = 2
+text = "SET_KEY_MOVE_LEFT"
+
+[node name="MoveLeftButton" parent="ContentContainer/GridContainer" index="1" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"move_left"
+
+[node name="MoveLeftButton2" parent="ContentContainer/GridContainer" index="2" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"move_left"
+device = 2
+
+[node name="MoveRightLabel" type="Label" parent="ContentContainer/GridContainer" index="3"]
+layout_mode = 2
+text = "SET_KEY_MOVE_RIGHT"
+
+[node name="MoveRightButton" parent="ContentContainer/GridContainer" index="4" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"move_right"
+
+[node name="MoveRightButton2" parent="ContentContainer/GridContainer" index="5" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"move_right"
+device = 2
+
+[node name="JumpLabel" type="Label" parent="ContentContainer/GridContainer" index="6"]
+layout_mode = 2
+text = "SET_KEY_JUMP"
+
+[node name="JumpButton" parent="ContentContainer/GridContainer" index="7" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"jump"
+
+[node name="JumpButton2" parent="ContentContainer/GridContainer" index="8" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"jump"
+device = 2
+
+[node name="DropLabel" type="Label" parent="ContentContainer/GridContainer" index="9"]
+layout_mode = 2
+text = "SET_KEY_DROP"
+
+[node name="DropButton" parent="ContentContainer/GridContainer" index="10" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"drop"
+
+[node name="DropButton2" parent="ContentContainer/GridContainer" index="11" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"drop"
+device = 2
+
+[node name="InteractLabel" type="Label" parent="ContentContainer/GridContainer" index="12"]
+layout_mode = 2
+text = "SET_KEY_INTERACT"
+
+[node name="InteractButton" parent="ContentContainer/GridContainer" index="13" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"interact"
+
+[node name="InteractButton2" parent="ContentContainer/GridContainer" index="14" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"interact"
+device = 2
+
+[node name="AttackLabel" type="Label" parent="ContentContainer/GridContainer" index="15"]
+layout_mode = 2
+text = "SET_KEY_ATTACK"
+
+[node name="AttackButton" parent="ContentContainer/GridContainer" index="16" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"attack"
+
+[node name="AttackButton2" parent="ContentContainer/GridContainer" index="17" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"attack"
+device = 2
+
+[node name="ItemLabel" type="Label" parent="ContentContainer/GridContainer" index="18"]
+layout_mode = 2
+text = "SET_KEY_SHOOT"
+
+[node name="ItemButton" parent="ContentContainer/GridContainer" index="19" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"shoot"
+
+[node name="ItemButton2" parent="ContentContainer/GridContainer" index="20" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"shoot"
+device = 2
+
+[node name="SwitchItemLabel" type="Label" parent="ContentContainer/GridContainer" index="21"]
+layout_mode = 2
+text = "SET_KEY_THROW"
+
+[node name="SwitchItemButton" parent="ContentContainer/GridContainer" index="22" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"throw"
+
+[node name="SwitchItemButton2" parent="ContentContainer/GridContainer" index="23" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"throw"
+device = 2
+
+[node name="HealLabel" type="Label" parent="ContentContainer/GridContainer" index="24"]
+layout_mode = 2
+text = "SET_KEY_HEAL"
+
+[node name="HealButton" parent="ContentContainer/GridContainer" index="25" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"heal"
+
+[node name="HealButton2" parent="ContentContainer/GridContainer" index="26" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"heal"
+device = 2
+
+[node name="DashLabel" type="Label" parent="ContentContainer/GridContainer" index="27"]
+layout_mode = 2
+text = "SET_KEY_DASH"
+
+[node name="DashButton" parent="ContentContainer/GridContainer" index="28" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"dash"
+
+[node name="DashButton2" parent="ContentContainer/GridContainer" index="29" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"dash"
+device = 2
+
+[node name="InventoryLabel" type="Label" parent="ContentContainer/GridContainer" index="30"]
+layout_mode = 2
+text = "SET_KEY_INVENTORY"
+
+[node name="InventoryButton" parent="ContentContainer/GridContainer" index="31" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"inventory"
+
+[node name="InventoryButton2" parent="ContentContainer/GridContainer" index="32" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"inventory"
+device = 2
+
+[node name="MenuLabel" type="Label" parent="ContentContainer/GridContainer" index="33"]
+layout_mode = 2
+text = "SET_KEY_MENU"
+
+[node name="MenuButton" parent="ContentContainer/GridContainer" index="34" instance=ExtResource("3_umcav")]
+layout_mode = 2
+disabled = true
+icon = ExtResource("4_58ahl")
+can_change = false
+action = &"menu"
+
+[node name="MenuButton2" parent="ContentContainer/GridContainer" index="35" instance=ExtResource("3_umcav")]
+layout_mode = 2
+disabled = true
+icon = ExtResource("5_es27m")
+can_change = false
+action = &"menu"
+device = 2
+
+[node name="UILeftLabel" type="Label" parent="ContentContainer/GridContainer" index="36"]
+layout_mode = 2
+text = "←"
+
+[node name="UILeftButton" parent="ContentContainer/GridContainer" index="37" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"ui_left"
+
+[node name="UILeftButton2" parent="ContentContainer/GridContainer" index="38" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"ui_left"
+device = 2
+
+[node name="UIRightLabel" type="Label" parent="ContentContainer/GridContainer" index="39"]
+layout_mode = 2
+text = "→"
+
+[node name="UIRightButton" parent="ContentContainer/GridContainer" index="40" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"ui_right"
+
+[node name="UIRightButton2" parent="ContentContainer/GridContainer" index="41" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"ui_right"
+device = 2
+
+[node name="UIUpLabel" type="Label" parent="ContentContainer/GridContainer" index="42"]
+layout_mode = 2
+text = "↑"
+
+[node name="UIUpButton" parent="ContentContainer/GridContainer" index="43" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"ui_up"
+
+[node name="UIUpButton2" parent="ContentContainer/GridContainer" index="44" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"ui_up"
+device = 2
+
+[node name="UIDownLabel" type="Label" parent="ContentContainer/GridContainer" index="45"]
+layout_mode = 2
+text = "↓"
+
+[node name="UIDownButton" parent="ContentContainer/GridContainer" index="46" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"ui_down"
+
+[node name="UIDownButton2" parent="ContentContainer/GridContainer" index="47" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"ui_down"
+device = 2
+
+[node name="UIAcceptLabel" type="Label" parent="ContentContainer/GridContainer" index="48"]
+layout_mode = 2
+text = "SET_CONFIRM"
+
+[node name="UIAcceptButton" parent="ContentContainer/GridContainer" index="49" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"ui_accept"
+
+[node name="UIAcceptButton2" parent="ContentContainer/GridContainer" index="50" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"ui_accept"
+device = 2
+
+[node name="UICancelLabel" type="Label" parent="ContentContainer/GridContainer" index="51"]
+layout_mode = 2
+text = "SET_CANCEL"
+
+[node name="UICancelButton" parent="ContentContainer/GridContainer" index="52" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("4_58ahl")
+action = &"ui_cancel"
+
+[node name="UICancelButton2" parent="ContentContainer/GridContainer" index="53" instance=ExtResource("3_umcav")]
+layout_mode = 2
+icon = ExtResource("5_es27m")
+action = &"ui_cancel"
+device = 2
+
+[connection signal="focus_entered" from="ContentContainer/TouchScreenEditButton" to="." method="_on_touch_screen_edit_button_focus_entered"]
+[connection signal="pressed" from="ContentContainer/TouchScreenEditButton" to="." method="_on_touch_screen_edit_button_pressed"]
+[connection signal="focus_entered" from="ContentContainer/ResetButton" to="." method="_on_reset_button_focus_entered"]
+[connection signal="pressed" from="ContentContainer/ResetButton" to="." method="_on_reset_button_pressed"]

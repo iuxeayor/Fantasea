@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dajhp5tykqthj"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_6qkak"]
+[ext_resource type="Texture2D" uid="uid://c2rslmqoase7b" path="res://asset/texture/unit/item/silk_tofu.webp" id="2_v1rbx"]
+
+[node name="SilkTofu" instance=ExtResource("1_6qkak")]
+item_id = "silk_tofu"
+message = "ITEM_SILK_TOFU"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_v1rbx")

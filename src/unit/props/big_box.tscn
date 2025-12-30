@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://cu6eta4ewa1dm"]
+
+[ext_resource type="Script" uid="uid://5p3upowh3bre" path="res://src/unit/props/big_box.gd" id="1_6p6xj"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_2v8jp"]
+[ext_resource type="Texture2D" uid="uid://b11ua2d220x1" path="res://asset/texture/prop/forest/box_big_breakable.webp" id="3_3l67l"]
+[ext_resource type="Script" uid="uid://cp8adijnorm6o" path="res://src/unit/common/particle/particle_queue.gd" id="3_8k6dh"]
+[ext_resource type="PackedScene" uid="uid://ctjmfotnke34v" path="res://src/unit/common/hitbox/hitbox.tscn" id="4_3l67l"]
+[ext_resource type="Material" uid="uid://b0phkxl1mm0e8" path="res://src/asset/particle/big_box.tres" id="6_3l67l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ud5x6"]
+size = Vector2(32, 32)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3l67l"]
+shader = ExtResource("2_2v8jp")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvn1t"]
+size = Vector2(32, 32)
+
+[node name="BigBox" type="StaticBody2D"]
+script = ExtResource("1_6p6xj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_ud5x6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3l67l")
+position = Vector2(0, -16)
+texture = ExtResource("3_3l67l")
+
+[node name="Hitbox" parent="." instance=ExtResource("4_3l67l")]
+collision_mask = 32
+
+[node name="HitCollision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_tvn1t")
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ParticleQueue" type="Node" parent="."]
+script = ExtResource("3_8k6dh")
+overwrite_color = Color(0.364706, 0.172549, 0.156863, 1)
+metadata/_custom_type_script = "uid://cp8adijnorm6o"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue"]
+position = Vector2(0, -16)
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("6_3l67l")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue"]
+position = Vector2(0, -16)
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("6_3l67l")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="ParticleQueue"]
+position = Vector2(0, -16)
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("6_3l67l")
+
+[connection signal="collided" from="Hitbox" to="." method="_on_hitbox_collided"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

@@ -1,0 +1,23 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://lf2gigs04f0n"]
+
+[sub_resource type="Gradient" id="Gradient_8h6rq"]
+colors = PackedColorArray(0.780392, 0.811765, 0.866667, 0.6, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lcea6"]
+gradient = SubResource("Gradient_8h6rq")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 216, 0)
+angle_min = 1.07288e-05
+angle_max = 90.0
+direction = Vector3(-1, 0.2, 0)
+spread = 0.0
+initial_velocity_min = 130.0
+initial_velocity_max = 170.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 4.0
+color_initial_ramp = SubResource("GradientTexture1D_lcea6")

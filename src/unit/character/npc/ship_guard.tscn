@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm6yxlruty4hr"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_3fl4x"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_7du42"]
+[ext_resource type="Script" uid="uid://io7qgil2lnyt" path="res://src/unit/character/npc/ship_guard.gd" id="2_cvu8f"]
+[ext_resource type="Texture2D" uid="uid://c2f7tp650l1rc" path="res://asset/texture/unit/npc/ship_guard.webp" id="4_6ntma"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_cvu8f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cvu8f"]
+resource_local_to_scene = true
+shader = ExtResource("2_7du42")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6ntma"]
+b = Vector2(0, -8)
+
+[node name="ShipGuard" instance=ExtResource("1_3fl4x")]
+script = ExtResource("2_cvu8f")
+direction = 1
+turn = false
+
+[node name="Graphics" parent="." index="1"]
+scale = Vector2(1, 1)
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_cvu8f")
+position = Vector2(0, -8)
+texture = ExtResource("4_6ntma")
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("SegmentShape2D_6ntma")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Pass")
+
+[node name="Normal" parent="Dialog" index="3" instance=ExtResource("4_cvu8f")]
+can_end = true
+message = Array[String](["SHIP_NORMAL"])
+
+[node name="Pass" parent="Dialog" index="4" instance=ExtResource("4_cvu8f")]
+can_end = true
+message = Array[String](["SHIP_PASS"])
+
+[node name="Powerless" parent="Dialog" index="5" instance=ExtResource("4_cvu8f")]
+can_end = true
+message = Array[String](["SHIP_POWERLESS"])
+
+[connection signal="ended" from="Dialog/Pass" to="." method="_on_pass_ended"]

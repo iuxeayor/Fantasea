@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://diomp8pwdj0si"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_i13bp"]
+[ext_resource type="Texture2D" uid="uid://bxvjyneyxge65" path="res://asset/texture/unit/item/gold_steak.webp" id="2_dsfm2"]
+[ext_resource type="Script" uid="uid://c0a1kf70w1dof" path="res://src/unit/item/gold_steak.gd" id="2_nhbyj"]
+
+[node name="GoldSteak" instance=ExtResource("1_i13bp")]
+script = ExtResource("2_nhbyj")
+item_id = "gold_steak"
+message = "ITEM_GOLD_STEAK"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_dsfm2")

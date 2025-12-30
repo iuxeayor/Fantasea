@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cim7sefsrdyt"]
+
+[ext_resource type="Script" uid="uid://cbbvaj8m657u5" path="res://src/ui/touchscreen/joystick.gd" id="1_ipe6u"]
+[ext_resource type="Script" uid="uid://dwxn4yuphwvyq" path="res://src/ui/touchscreen/dot.gd" id="2_mxri4"]
+
+[node name="Joystick" type="Node2D"]
+modulate = Color(1, 1, 1, 0.5)
+script = ExtResource("1_ipe6u")
+
+[node name="Dot" type="Node2D" parent="."]
+script = ExtResource("2_mxri4")

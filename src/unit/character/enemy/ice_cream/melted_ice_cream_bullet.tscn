@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://det60o8u4cgh8"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_p4y2b"]
+[ext_resource type="Texture2D" uid="uid://c4o80jhtcqf0i" path="res://asset/texture/unit/enemy/ice_cream/melted_ice_cream_bullet.webp" id="2_4fyvy"]
+[ext_resource type="Script" uid="uid://fwyerphhu0a3" path="res://src/unit/character/enemy/ice_cream/melted_ice_cream_bullet.gd" id="2_tqess"]
+[ext_resource type="Shader" uid="uid://bh7sfp6qvhqtb" path="res://src/asset/shader/outline.gdshader" id="3_rc1tn"]
+[ext_resource type="Material" uid="uid://bxh4fkf88hmab" path="res://src/asset/particle/small_bullet_disappear.tres" id="4_5jyyj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_guqxw"]
+shader = ExtResource("3_rc1tn")
+shader_parameter/color = Color(0, 0, 0, 0.6)
+shader_parameter/width = 0.1
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fyvy"]
+size = Vector2(8, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqess"]
+size = Vector2(8, 3)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tqess"]
+b = Vector2(0, -1)
+
+[node name="MeltedIceCreamBullet" instance=ExtResource("1_p4y2b")]
+script = ExtResource("2_tqess")
+obj_name = &"melted_ice_cream_bullet"
+gravity = 900.0
+dead_on_collide = 0
+
+[node name="Sprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_guqxw")
+position = Vector2(0, -2)
+texture = ExtResource("2_4fyvy")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_4fyvy")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_tqess")
+
+[node name="PlayerChecker" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerChecker" index="0"]
+shape = SubResource("SegmentShape2D_tqess")
+
+[node name="LifeTimer" parent="." index="4"]
+wait_time = 1.5
+
+[node name="ParticlePoint" parent="." index="5"]
+position = Vector2(0, -2)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_5jyyj")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_5jyyj")
+
+[connection signal="body_entered" from="PlayerChecker" to="." method="_on_player_checker_body_entered"]

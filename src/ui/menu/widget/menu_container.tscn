@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0fep0a8toxbc"]
+
+[ext_resource type="Script" uid="uid://rvgxi53ndahr" path="res://src/ui/menu/widget/menu_container.gd" id="2_bxg4c"]
+
+[node name="MenuContainer" type="VBoxContainer" groups=["menu_container"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_bxg4c")
+
+[node name="TitleContainer" type="HBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0.666667)
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="TitleContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="TitleContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "标题"
+
+[node name="HSeparator" type="HSeparator" parent="TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="ContentContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]

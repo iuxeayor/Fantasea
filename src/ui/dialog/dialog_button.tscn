@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7v51rrr0jw7m"]
+
+[ext_resource type="Theme" uid="uid://bgy04crxgdyk3" path="res://src/asset/theme/dialog_theme.tres" id="1_b1827"]
+[ext_resource type="Script" uid="uid://db03oggpf0bkq" path="res://src/ui/dialog/dialog_button.gd" id="2_77wqx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n731l"]
+light_mode = 1
+
+[node name="DialogButton" type="Button"]
+light_mask = 0
+material = SubResource("CanvasItemMaterial_n731l")
+offset_right = 32.0
+offset_bottom = 9.0
+theme = ExtResource("1_b1827")
+disabled = true
+text = "test"
+alignment = 2
+autowrap_mode = 3
+script = ExtResource("2_77wqx")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

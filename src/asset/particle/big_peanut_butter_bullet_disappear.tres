@@ -1,0 +1,13 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=2 format=3 uid="uid://0axjju2cb7dr"]
+
+[ext_resource type="Texture2D" uid="uid://c42ew34tvwt57" path="res://src/asset/curve/fade_out.tres" id="1_heahg"]
+
+[resource]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 9, 0)
+scale_max = 2.0
+alpha_curve = ExtResource("1_heahg")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdrqo3uipm25d"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_w4gcm"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_r0fl0"]
+[ext_resource type="Texture2D" uid="uid://c6j3j2258ok85" path="res://asset/texture/unit/npc/donut.webp" id="3_r0fl0"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_bkefj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bkefj"]
+resource_local_to_scene = true
+shader = ExtResource("2_r0fl0")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0fl0"]
+size = Vector2(32, 8)
+
+[node name="Donut" instance=ExtResource("1_w4gcm")]
+collision_mask = 1
+direction = 1
+
+[node name="Graphics" parent="." index="1"]
+scale = Vector2(1, 1)
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_bkefj")
+position = Vector2(0, -8)
+texture = ExtResource("3_r0fl0")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_r0fl0")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Info")
+
+[node name="Info" parent="Dialog" index="3" instance=ExtResource("4_bkefj")]
+can_end = true
+message = Array[String](["DONUT_INFO_0", "DONUT_INFO_1", "DONUT_INFO_2"])

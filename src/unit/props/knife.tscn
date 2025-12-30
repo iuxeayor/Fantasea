@@ -1,0 +1,127 @@
+[gd_scene load_steps=10 format=3 uid="uid://siuxrenn3jjp"]
+
+[ext_resource type="Script" uid="uid://428dm0tykkkf" path="res://src/unit/props/knife.gd" id="1_6smh3"]
+[ext_resource type="Texture2D" uid="uid://xm7t72cgiegn" path="res://asset/texture/unit/mechanical/knife.webp" id="1_d3eaa"]
+[ext_resource type="Script" uid="uid://cj28nfhp85pfu" path="res://src/unit/common/hitbox/hitbox.gd" id="3_an2k3"]
+[ext_resource type="Texture2D" uid="uid://d2jolbpn2rac0" path="res://asset/texture/unit/mechanical/knife_core.webp" id="3_yt71p"]
+
+[sub_resource type="Animation" id="Animation_an2k3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KnifeSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("KnifeSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6smh3"]
+resource_name = "clockwise"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KnifeSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("KnifeSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yt71p"]
+resource_name = "counterclockwise"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KnifeSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("KnifeSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yt71p"]
+_data = {
+&"RESET": SubResource("Animation_an2k3"),
+&"clockwise": SubResource("Animation_6smh3"),
+&"counterclockwise": SubResource("Animation_yt71p")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yt71p"]
+resource_local_to_scene = true
+radius = 16.0
+
+[node name="Knife" type="Node2D" groups=["bullet", "knife"]]
+script = ExtResource("1_6smh3")
+
+[node name="KnifeSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_d3eaa")
+
+[node name="CoreSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_yt71p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yt71p")
+}
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+script = ExtResource("3_an2k3")
+damage = 1
+metadata/_custom_type_script = "uid://cj28nfhp85pfu"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_yt71p")

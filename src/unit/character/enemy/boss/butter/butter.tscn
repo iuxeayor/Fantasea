@@ -1,0 +1,2202 @@
+[gd_scene load_steps=75 format=3 uid="uid://b41r4wlht4fum"]
+
+[ext_resource type="PackedScene" uid="uid://cdxvi0h6hjrbb" path="res://src/unit/character/enemy/boss/boss.tscn" id="1_gutqh"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_n4o5w"]
+[ext_resource type="Script" uid="uid://cqvd43eklqfck" path="res://src/unit/character/enemy/boss/butter/butter.gd" id="2_sipwl"]
+[ext_resource type="Texture2D" uid="uid://caujaqwg53q54" path="res://asset/texture/unit/enemy/boss/butter/idle.webp" id="3_62yoe"]
+[ext_resource type="PackedScene" uid="uid://b2p8iec11c7pb" path="res://src/unit/common/particle/particle_queue.tscn" id="4_xj1da"]
+[ext_resource type="Texture2D" uid="uid://c785bypxvwtx0" path="res://asset/texture/unit/enemy/boss/butter/butter.webp" id="5_50p8b"]
+[ext_resource type="Texture2D" uid="uid://da3gikyua1gns" path="res://asset/texture/unit/enemy/boss/butter/eye.webp" id="5_h7tqn"]
+[ext_resource type="Material" uid="uid://5sn3yeqyenha" path="res://src/asset/particle/enemy_hit.tres" id="5_kdg1l"]
+[ext_resource type="Texture2D" uid="uid://dqm162nxuw1k" path="res://asset/texture/unit/enemy/boss/butter/jump.webp" id="7_lf7cb"]
+[ext_resource type="Material" uid="uid://ck7w442v2ggrw" path="res://src/asset/particle/butter_drop.tres" id="7_lgqpx"]
+[ext_resource type="Material" uid="uid://d1x2teaachjtp" path="res://src/asset/particle/butter_dash.tres" id="8_3q47q"]
+[ext_resource type="Texture2D" uid="uid://6bp5pwm4uc8l" path="res://asset/texture/unit/enemy/boss/butter/fall.webp" id="8_5aiwt"]
+[ext_resource type="PackedScene" uid="uid://bdyiolatg7q8" path="res://src/unit/common/trail/trail.tscn" id="8_llbur"]
+[ext_resource type="Texture2D" uid="uid://vqm8t6205g7t" path="res://asset/texture/unit/enemy/boss/butter/ready_attack.webp" id="9_l4eqb"]
+[ext_resource type="Texture2D" uid="uid://dx8o1ejm7ak3x" path="res://asset/texture/unit/enemy/boss/butter/attack_1.webp" id="10_pjudv"]
+[ext_resource type="Texture2D" uid="uid://dp34ac6toh2ip" path="res://asset/texture/unit/enemy/boss/butter/attack_2.webp" id="11_qww2h"]
+[ext_resource type="Texture2D" uid="uid://ce6la1rndeaac" path="res://asset/texture/unit/enemy/boss/butter/attack_3.webp" id="12_bffi6"]
+[ext_resource type="Texture2D" uid="uid://buuh6eyrjkvc1" path="res://asset/texture/unit/enemy/boss/butter/run.webp" id="14_jw87k"]
+[ext_resource type="Texture2D" uid="uid://pr3pdajac7h8" path="res://asset/texture/unit/enemy/boss/butter/on_wall.webp" id="15_jw87k"]
+[ext_resource type="Script" uid="uid://cjlyed3rdu8i8" path="res://src/unit/common/behavior_tree/sequence.gd" id="15_pbqll"]
+[ext_resource type="Script" uid="uid://bj2ffq7lduke" path="res://src/unit/character/enemy/boss/behavior/wait_animation.gd" id="16_pbqll"]
+[ext_resource type="Texture2D" uid="uid://bs0xc8e5wl8yo" path="res://asset/texture/unit/enemy/boss/butter/hover.webp" id="18_0o7dj"]
+[ext_resource type="Script" uid="uid://dlwqlykfsdh8o" path="res://src/unit/character/enemy/boss/butter/behavior/turn_to.gd" id="18_fx22u"]
+[ext_resource type="Texture2D" uid="uid://brrfinmyfguoy" path="res://asset/texture/unit/enemy/boss/butter/stand.webp" id="19_3xf4h"]
+[ext_resource type="Script" uid="uid://c7lhwjse1x3jc" path="res://src/unit/character/enemy/boss/butter/behavior/jump_to.gd" id="19_5olls"]
+[ext_resource type="Script" uid="uid://b5l31qlekjp8t" path="res://src/unit/character/enemy/boss/behavior/wait_fall.gd" id="20_5olls"]
+[ext_resource type="Script" uid="uid://bilnxcj53melj" path="res://src/unit/character/enemy/boss/behavior/idle.gd" id="21_rg6hj"]
+[ext_resource type="Texture2D" uid="uid://ckmp82skdbwon" path="res://asset/texture/unit/enemy/boss/butter/land.webp" id="22_w61p7"]
+[ext_resource type="Script" uid="uid://cy15w0ncjfj8r" path="res://src/unit/character/enemy/boss/butter/behavior/move.gd" id="23_fx22u"]
+[ext_resource type="Texture2D" uid="uid://bhq721q11bu5s" path="res://asset/texture/unit/enemy/boss/butter/hurt.webp" id="23_hpp5g"]
+[ext_resource type="Script" uid="uid://c0jqttfbq8i83" path="res://src/unit/common/behavior_tree/parallel.gd" id="24_eus1s"]
+[ext_resource type="Script" uid="uid://bkikt1rhlnjj6" path="res://src/unit/common/behavior_tree/waiter.gd" id="24_hptre"]
+[ext_resource type="Script" uid="uid://f36xthye3l7u" path="res://src/unit/character/enemy/boss/behavior/change_stage.gd" id="25_eus1s"]
+[ext_resource type="Script" uid="uid://hu5vony6x5i0" path="res://src/unit/character/enemy/boss/behavior/is_stage_change.gd" id="28_jeavd"]
+[ext_resource type="Script" uid="uid://d3f0q107h5rjp" path="res://src/unit/character/enemy/boss/butter/behavior/reset_state.gd" id="29_ftknb"]
+[ext_resource type="Script" uid="uid://dtflqd3gajphc" path="res://src/unit/character/enemy/boss/butter/behavior/high_jump.gd" id="29_lrh0n"]
+[ext_resource type="Script" uid="uid://cr58mhv3vt01y" path="res://src/unit/common/behavior_tree/times_limiter.gd" id="30_cxx3c"]
+[ext_resource type="Script" uid="uid://cqxgmqgbukp7k" path="res://src/unit/character/enemy/boss/butter/behavior/hover.gd" id="30_ff2a2"]
+[ext_resource type="Script" uid="uid://b5skciich7bs3" path="res://src/unit/common/behavior_tree/inverter.gd" id="30_k6jwo"]
+[ext_resource type="Script" uid="uid://bmji8qbt3wmqk" path="res://src/unit/character/enemy/boss/butter/behavior/run.gd" id="31_6u0xu"]
+[ext_resource type="Script" uid="uid://cs4yv3euald4q" path="res://src/unit/character/enemy/boss/butter/behavior/drop.gd" id="31_hxv6d"]
+[ext_resource type="Script" uid="uid://hjo2hvko5sdk" path="res://src/unit/common/behavior_tree/selector.gd" id="32_mk5wi"]
+[ext_resource type="Script" uid="uid://bxmig5a541jir" path="res://src/unit/character/enemy/boss/butter/behavior/flash_to.gd" id="38_jh6ov"]
+[ext_resource type="Script" uid="uid://dc61f86pavgpr" path="res://src/unit/character/enemy/boss/butter/behavior/shoot_drop_particle.gd" id="39_vce51"]
+[ext_resource type="Script" uid="uid://bfvehqx3ss7b2" path="res://src/unit/character/enemy/boss/butter/behavior/hold.gd" id="40_vce51"]
+[ext_resource type="Script" uid="uid://b07ff5o3xqg6y" path="res://src/unit/character/enemy/boss/butter/behavior/aim_player.gd" id="41_23txk"]
+[ext_resource type="Script" uid="uid://dmme8lgfwmto7" path="res://src/unit/character/enemy/boss/butter/behavior/close_attack.gd" id="42_3q47q"]
+[ext_resource type="Script" uid="uid://bexw8lexcu6ls" path="res://src/unit/character/enemy/boss/behavior/is_stage_range.gd" id="42_25j5f"]
+[ext_resource type="Script" uid="uid://8kxhy4k36t5p" path="res://src/unit/character/enemy/boss/butter/behavior/dash.gd" id="42_hphb0"]
+[ext_resource type="Script" uid="uid://bqt1g4m0piy08" path="res://src/unit/character/enemy/boss/butter/behavior/hide_trail.gd" id="44_4lx4s"]
+[ext_resource type="Script" uid="uid://b8l0itb1mcdl1" path="res://src/unit/common/behavior_tree/succeeder.gd" id="46_3q47q"]
+[ext_resource type="Script" uid="uid://db6iw2vso0yv3" path="res://src/unit/common/behavior_tree/failer.gd" id="52_0ja66"]
+
+[sub_resource type="Gradient" id="Gradient_nudin"]
+colors = PackedColorArray(0.74902, 0.435294, 0.290196, 0, 1, 0.823529, 0.145098, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nudin"]
+resource_local_to_scene = true
+shader = ExtResource("2_n4o5w")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nudin"]
+size = Vector2(14, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cfgu"]
+size = Vector2(16, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pl7y0"]
+size = Vector2(16, 20)
+
+[sub_resource type="Animation" id="Animation_lf7cb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_62yoe")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Hitbox/Attack1Collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Hitbox/Attack2Collision:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Hitbox/Attack3Collision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/Sprite2D:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/Hitbox/CollisionShape2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -9.5)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/Hitbox/CollisionShape2D:shape:size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14, 19)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Graphics/EyeSprite:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Graphics/EyeSprite:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -12)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Graphics/Sprite2D:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Graphics/ButterSprite:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Graphics/ButterSprite:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -11)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Graphics/ButterSprite:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Graphics/Hurtbox/CollisionShape2D:shape:size")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(16, 20)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Graphics/Hurtbox/CollisionShape2D:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_qww2h"]
+resource_name = "attack_1"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_pjudv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Hitbox/Attack1Collision:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animation_play_attack_1"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_bffi6"]
+resource_name = "attack_2"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_qww2h")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Hitbox/Attack2Collision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animation_play_attack_2"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_sipwl"]
+resource_name = "attack_3"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_bffi6")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Hitbox/Attack3Collision:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animation_play_attack_3"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_l4eqb"]
+resource_name = "fall"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_5aiwt")]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_hptre"]
+resource_name = "hover"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("18_0o7dj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_25j5f"]
+resource_name = "hurt"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_hpp5g")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_62yoe"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_62yoe")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5aiwt"]
+resource_name = "jump"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_lf7cb")]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_4lx4s"]
+resource_name = "land"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("22_w61p7")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_miuq7"]
+resource_name = "on_wall"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_jw87k")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pjudv"]
+resource_name = "ready_attack"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_l4eqb")]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0, 2, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.1, 0.2)
+}
+
+[sub_resource type="Animation" id="Animation_wgjp5"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_jw87k")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_lrh0n"]
+resource_name = "stand"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("19_3xf4h")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_0o7dj"]
+resource_name = "zoom_in"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/ButterSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -9), Vector2(-2.38419e-06, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/ButterSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(9.14286, 0.888889)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/ButterSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/EyeSprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -11), Vector2(0, -9)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/EyeSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/Hitbox/CollisionShape2D:shape:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(14, 18), Vector2(128, 16)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/Hitbox/CollisionShape2D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -9), Vector2(0, -8)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Graphics/Hurtbox/CollisionShape2D:shape:size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(14, 18), Vector2(128, 16)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Graphics/Hurtbox/CollisionShape2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -9), Vector2(0, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_3xf4h"]
+resource_name = "zoom_out"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/ButterSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2.38419e-06, -8), Vector2(0, -9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/ButterSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(9.14286, 0.888889), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/ButterSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/EyeSprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -9), Vector2(0, -11)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/EyeSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/Hitbox/CollisionShape2D:shape:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(128, 16), Vector2(14, 18)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/Hitbox/CollisionShape2D:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -8), Vector2(0, -9)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Graphics/Hurtbox/CollisionShape2D:shape:size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(128, 16), Vector2(14, 18)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Graphics/Hurtbox/CollisionShape2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -8), Vector2(0, -9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a3ehu"]
+_data = {
+&"RESET": SubResource("Animation_lf7cb"),
+&"attack_1": SubResource("Animation_qww2h"),
+&"attack_2": SubResource("Animation_bffi6"),
+&"attack_3": SubResource("Animation_sipwl"),
+&"fall": SubResource("Animation_l4eqb"),
+&"hover": SubResource("Animation_hptre"),
+&"hurt": SubResource("Animation_25j5f"),
+&"idle": SubResource("Animation_62yoe"),
+&"jump": SubResource("Animation_5aiwt"),
+&"land": SubResource("Animation_4lx4s"),
+&"on_wall": SubResource("Animation_miuq7"),
+&"ready_attack": SubResource("Animation_pjudv"),
+&"run": SubResource("Animation_wgjp5"),
+&"stand": SubResource("Animation_lrh0n"),
+&"zoom_in": SubResource("Animation_0o7dj"),
+&"zoom_out": SubResource("Animation_3xf4h")
+}
+
+[node name="Butter" instance=ExtResource("1_gutqh")]
+script = ExtResource("2_sipwl")
+
+[node name="Trail" parent="." index="0" instance=ExtResource("8_llbur")]
+visible = false
+width = 14.0
+gradient = SubResource("Gradient_nudin")
+length = 5.0
+origin_offset = Vector2(0, -12)
+
+[node name="ParticlePoint" type="Marker2D" parent="." index="1"]
+position = Vector2(0, -10)
+
+[node name="Status" parent="." index="2"]
+max_health = 400
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_nudin")
+position = Vector2(0, -8)
+texture = ExtResource("3_62yoe")
+
+[node name="ButterSprite" type="Sprite2D" parent="Graphics" index="1"]
+visible = false
+position = Vector2(0, -11)
+texture = ExtResource("5_50p8b")
+
+[node name="EyeSprite" type="Sprite2D" parent="Graphics" index="2"]
+visible = false
+position = Vector2(0, -12)
+texture = ExtResource("5_h7tqn")
+
+[node name="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_nudin")
+
+[node name="Attack1Collision" type="CollisionPolygon2D" parent="Graphics/Hitbox" index="1"]
+visible = false
+polygon = PackedVector2Array(2, -47, 8, -47, 16, -44, 24, -40, 32, -31, 36, -24, 38, -16, 39, -8, 32, -4, 2, -4)
+disabled = true
+
+[node name="Attack2Collision" type="CollisionPolygon2D" parent="Graphics/Hitbox" index="2"]
+visible = false
+polygon = PackedVector2Array(0, -15, 23, -14, 37, -10, 39, -8, 37, -6, 23, -2, 0, -1)
+disabled = true
+
+[node name="Attack3Collision" type="CollisionPolygon2D" parent="Graphics/Hitbox" index="3"]
+visible = false
+polygon = PackedVector2Array(-39, -4, -39, -8, -38, -16, -36, -24, -32, -32, -24, -40, -16, -44, -8, -46, 0, -47, 8, -46, 16, -44, 24, -40, 32, -32, 36, -24, 38, -16, 39, -8, 35, -4)
+disabled = true
+
+[node name="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_5cfgu")
+
+[node name="WallChecker" type="RayCast2D" parent="Graphics" index="5"]
+position = Vector2(0, -8)
+target_position = Vector2(9, 0)
+
+[node name="DashParticle" type="GPUParticles2D" parent="Graphics" index="6"]
+modulate = Color(1, 0.921569, 0.341176, 1)
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.08
+process_material = ExtResource("8_3q47q")
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_pl7y0")
+
+[node name="HurtParticle" parent="." index="6"]
+overwrite_color = Color(1, 0.921569, 0.341176, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="HurtParticle" index="0"]
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+process_material = ExtResource("5_kdg1l")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="HurtParticle" index="1"]
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+process_material = ExtResource("5_kdg1l")
+
+[node name="DropParticle" parent="." index="7" instance=ExtResource("4_xj1da")]
+overwrite_color = Color(1, 0.921569, 0.341176, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="DropParticle" index="0"]
+emitting = false
+amount = 80
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+process_material = ExtResource("7_lgqpx")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="DropParticle" index="1"]
+emitting = false
+amount = 80
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+process_material = ExtResource("7_lgqpx")
+
+[node name="AnimationPlayer" parent="." index="8"]
+libraries = {
+&"": SubResource("AnimationLibrary_a3ehu")
+}
+
+[node name="Parallel" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource("24_eus1s")
+metadata/_custom_type_script = "uid://c0jqttfbq8i83"
+
+[node name="ChangeStage" type="Node" parent="BehaviorTree/Parallel" index="0" node_paths=PackedStringArray("action_btree")]
+script = ExtResource("25_eus1s")
+action_btree = NodePath("../Action")
+stage_percentage_thresholds = Array[int]([10, 50])
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Action" type="Node" parent="BehaviorTree/Parallel" index="1"]
+script = ExtResource("32_mk5wi")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="ChangeStage" type="Node" parent="BehaviorTree/Parallel/Action" index="0"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="IsStageChanged" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage" index="0"]
+script = ExtResource("28_jeavd")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ResetState" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage" index="1"]
+script = ExtResource("29_ftknb")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage" index="2"]
+script = ExtResource("30_k6jwo")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="TimesLimiter" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter" index="0"]
+script = ExtResource("30_cxx3c")
+limit = 4
+ignore_child = true
+metadata/_custom_type_script = "uid://cr58mhv3vt01y"
+
+[node name="Sequecnce" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter" index="0"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="0"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HighJump" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="1"]
+script = ExtResource("29_lrh0n")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Hover" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="2"]
+script = ExtResource("30_ff2a2")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitZoomIn" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="3"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_in"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="4"]
+script = ExtResource("24_hptre")
+time = 1.5
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Drop" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="5"]
+script = ExtResource("31_hxv6d")
+speed = 720.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="6"]
+script = ExtResource("20_5olls")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ShootDropParticle" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="7"]
+script = ExtResource("39_vce51")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitZoomOut" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="8"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_out"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer2" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="9"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitStand" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="10"]
+script = ExtResource("16_pbqll")
+animate_name = &"stand"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage/Inverter/TimesLimiter/Sequecnce" index="11"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Action/ChangeStage" index="3"]
+script = ExtResource("24_hptre")
+time = 0.5
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Action" type="Node" parent="BehaviorTree/Parallel/Action" index="1"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="StageSelector" type="Node" parent="BehaviorTree/Parallel/Action/Action" index="0"]
+script = ExtResource("32_mk5wi")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector" index="0"]
+script = ExtResource("30_k6jwo")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage0To1" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/Inverter" index="0"]
+script = ExtResource("42_25j5f")
+max_stage = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="NormalStage" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector" index="1"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="CloseAttack" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="0"]
+script = ExtResource("42_3q47q")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="JumpAttack" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="1"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack" index="0"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitReadyAttack" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack" index="1"]
+script = ExtResource("16_pbqll")
+animate_name = &"ready_attack"
+wait_offset = -0.2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayerClose" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack" index="2"]
+script = ExtResource("18_fx22u")
+target = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="JumpToPlayerClose" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack" index="3"]
+script = ExtResource("19_5olls")
+target = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack" index="4"]
+script = ExtResource("20_5olls")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack" index="5"]
+script = ExtResource("21_rg6hj")
+play_animation = false
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitAttack1" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack" index="6"]
+script = ExtResource("16_pbqll")
+animate_name = &"attack_1"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack" index="7"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="StageSelector" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack" index="8"]
+script = ExtResource("32_mk5wi")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack/StageSelector" index="0"]
+script = ExtResource("30_k6jwo")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage1" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack/StageSelector/Inverter" index="0"]
+script = ExtResource("42_25j5f")
+min_stage = 1
+max_stage = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack/StageSelector" index="1"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack/StageSelector/Sequence" index="0"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack/StageSelector/Sequence" index="1"]
+script = ExtResource("24_hptre")
+time = 0.1
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Attack2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack" index="9"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="WaitAttack2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack/Attack2" index="0"]
+script = ExtResource("16_pbqll")
+animate_name = &"attack_2"
+wait_offset = -0.6
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Move" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack/Attack2" index="1"]
+script = ExtResource("23_fx22u")
+speed = 140.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack/Attack2" index="2"]
+script = ExtResource("24_hptre")
+time = 0.6
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack/Attack2" index="3"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack/Attack2" index="4"]
+script = ExtResource("24_hptre")
+time = 0.4
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="CloseAttack2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="2"]
+script = ExtResource("42_3q47q")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="FarMove" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="3"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayerInvert" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/FarMove" index="0"]
+script = ExtResource("18_fx22u")
+target = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Run" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/FarMove" index="1"]
+script = ExtResource("31_6u0xu")
+min_speed = 60.0
+max_speed = 100.0
+min_time = 1.0
+max_time = 2.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/FarMove" index="2"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/FarMove" index="3"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/FarMove" index="4"]
+script = ExtResource("24_hptre")
+time = 0.2
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="CloseAttack3" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="4"]
+script = ExtResource("42_3q47q")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ScaleAttack" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="5"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack" index="0"]
+script = ExtResource("30_k6jwo")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="ScaleAttack" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter" index="0"]
+script = ExtResource("30_cxx3c")
+limit = 2
+ignore_child = true
+metadata/_custom_type_script = "uid://cr58mhv3vt01y"
+
+[node name="Sequecnce" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack" index="0"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="0"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ScaleJump" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="1"]
+script = ExtResource("29_lrh0n")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Hover" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="2"]
+script = ExtResource("30_ff2a2")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitZoomIn" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="3"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_in"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="4"]
+script = ExtResource("24_hptre")
+time = 0.3
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Drop" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="5"]
+script = ExtResource("31_hxv6d")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="6"]
+script = ExtResource("20_5olls")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ShootDropParticle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="7"]
+script = ExtResource("39_vce51")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="8"]
+script = ExtResource("24_hptre")
+time = 0.6
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="WaitZoomOut" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="9"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_out"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="10"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitStand" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="11"]
+script = ExtResource("16_pbqll")
+animate_name = &"stand"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/Inverter/ScaleAttack/Sequecnce" index="12"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="StageSelector" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack" index="1"]
+script = ExtResource("32_mk5wi")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector" index="0"]
+script = ExtResource("30_k6jwo")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage1" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/Inverter" index="0"]
+script = ExtResource("42_25j5f")
+min_stage = 1
+max_stage = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TimesLimiter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector" index="1"]
+script = ExtResource("30_cxx3c")
+limit = 2
+ignore_child = true
+metadata/_custom_type_script = "uid://cr58mhv3vt01y"
+
+[node name="Sequecnce" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter" index="0"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="0"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HighJump" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="1"]
+script = ExtResource("29_lrh0n")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Hover" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="2"]
+script = ExtResource("30_ff2a2")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitZoomIn" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="3"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_in"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Drop" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="4"]
+script = ExtResource("31_hxv6d")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="5"]
+script = ExtResource("20_5olls")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ShootDropParticle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="6"]
+script = ExtResource("39_vce51")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="7"]
+script = ExtResource("24_hptre")
+time = 0.8
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="WaitZoomOut" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="8"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_out"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="9"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitStand" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="10"]
+script = ExtResource("16_pbqll")
+animate_name = &"stand"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector/TimesLimiter/Sequecnce" index="11"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Succeeder" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack/StageSelector" index="2"]
+script = ExtResource("46_3q47q")
+metadata/_custom_type_script = "uid://b8l0itb1mcdl1"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/ScaleAttack" index="2"]
+script = ExtResource("24_hptre")
+time = 0.1
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="CloseAttack4" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="6"]
+script = ExtResource("42_3q47q")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="JumpAttack2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="7"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2" index="0"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitReadyAttack" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2" index="1"]
+script = ExtResource("16_pbqll")
+animate_name = &"ready_attack"
+wait_offset = -0.2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayerClose" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2" index="2"]
+script = ExtResource("18_fx22u")
+target = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="JumpToPlayerClose" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2" index="3"]
+script = ExtResource("19_5olls")
+target = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2" index="4"]
+script = ExtResource("20_5olls")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2" index="5"]
+script = ExtResource("21_rg6hj")
+play_animation = false
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitAttack1" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2" index="6"]
+script = ExtResource("16_pbqll")
+animate_name = &"attack_1"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2" index="7"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="StageSelector" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2" index="8"]
+script = ExtResource("32_mk5wi")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2/StageSelector" index="0"]
+script = ExtResource("30_k6jwo")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage1" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2/StageSelector/Inverter" index="0"]
+script = ExtResource("42_25j5f")
+min_stage = 1
+max_stage = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2/StageSelector" index="1"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2/StageSelector/Sequence" index="0"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2/StageSelector/Sequence" index="1"]
+script = ExtResource("24_hptre")
+time = 0.1
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Attack2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2" index="9"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="WaitAttack2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2/Attack2" index="0"]
+script = ExtResource("16_pbqll")
+animate_name = &"attack_2"
+wait_offset = -0.6
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Move" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2/Attack2" index="1"]
+script = ExtResource("23_fx22u")
+speed = 140.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2/Attack2" index="2"]
+script = ExtResource("24_hptre")
+time = 0.6
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2/Attack2" index="3"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/JumpAttack2/Attack2" index="4"]
+script = ExtResource("24_hptre")
+time = 0.4
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="CloseAttack5" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="8"]
+script = ExtResource("42_3q47q")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="FarMove2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="9"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayerInvert" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/FarMove2" index="0"]
+script = ExtResource("18_fx22u")
+target = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Run" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/FarMove2" index="1"]
+script = ExtResource("31_6u0xu")
+min_speed = 80.0
+max_speed = 120.0
+min_time = 10.0
+max_time = 100.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/FarMove2" index="2"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/FarMove2" index="3"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="CloseAttack6" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="10"]
+script = ExtResource("42_3q47q")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="DashAttack" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="11"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToMid" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack" index="0"]
+script = ExtResource("18_fx22u")
+target = 5
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Jump" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack" index="1"]
+script = ExtResource("29_lrh0n")
+target = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Hold" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack" index="2"]
+script = ExtResource("40_vce51")
+time = 0.6
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="AimPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack" index="3"]
+script = ExtResource("41_23txk")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Dash" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack" index="4"]
+script = ExtResource("42_hphb0")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitLand" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack" index="5"]
+script = ExtResource("16_pbqll")
+animate_name = &"land"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HideTrail" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack" index="6"]
+script = ExtResource("44_4lx4s")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack" index="7"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="StageSelector" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack" index="8"]
+script = ExtResource("32_mk5wi")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector" index="0"]
+script = ExtResource("30_k6jwo")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage1" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector/Inverter" index="0"]
+script = ExtResource("42_25j5f")
+min_stage = 1
+max_stage = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="DashAttack" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector" index="1"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="FlashToRamdomEdge" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector/DashAttack" index="0"]
+script = ExtResource("38_jh6ov")
+target = 7
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToMid" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector/DashAttack" index="1"]
+script = ExtResource("18_fx22u")
+target = 5
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Hold" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector/DashAttack" index="2"]
+script = ExtResource("40_vce51")
+time = 0.2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="AimPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector/DashAttack" index="3"]
+script = ExtResource("41_23txk")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Dash" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector/DashAttack" index="4"]
+script = ExtResource("42_hphb0")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitLand" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector/DashAttack" index="5"]
+script = ExtResource("16_pbqll")
+animate_name = &"land"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HideTrail" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector/DashAttack" index="6"]
+script = ExtResource("44_4lx4s")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/DashAttack/StageSelector/DashAttack" index="7"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="CloseAttack7" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="12"]
+script = ExtResource("42_3q47q")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RandomMove" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="13"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnRandom" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/RandomMove" index="0"]
+script = ExtResource("18_fx22u")
+target = 4
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/RandomMove" index="1"]
+script = ExtResource("24_hptre")
+time = 0.2
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Run" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/RandomMove" index="2"]
+script = ExtResource("31_6u0xu")
+min_speed = 60.0
+max_speed = 100.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/RandomMove" index="3"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/RandomMove" index="4"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage/RandomMove" index="5"]
+script = ExtResource("24_hptre")
+time = 0.2
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Failer" type="Node" parent="BehaviorTree/Parallel/Action/Action/StageSelector/NormalStage" index="14"]
+script = ExtResource("52_0ja66")
+metadata/_custom_type_script = "uid://db6iw2vso0yv3"
+
+[node name="EndStage" type="Node" parent="BehaviorTree/Parallel/Action/Action" index="1"]
+script = ExtResource("15_pbqll")
+is_random = true
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="ScaleAttack" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage" index="0"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="0"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ScaleJump" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="1"]
+script = ExtResource("29_lrh0n")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Hover" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="2"]
+script = ExtResource("30_ff2a2")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitZoomIn" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="3"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_in"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Drop" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="4"]
+script = ExtResource("31_hxv6d")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="5"]
+script = ExtResource("20_5olls")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ShootDropParticle" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="6"]
+script = ExtResource("39_vce51")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="7"]
+script = ExtResource("24_hptre")
+time = 0.3
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="WaitZoomOut" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="8"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_out"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer2" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="9"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitStand" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="10"]
+script = ExtResource("16_pbqll")
+animate_name = &"stand"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack" index="11"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ScaleAttack2" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage" index="1"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="0"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ScaleJump" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="1"]
+script = ExtResource("29_lrh0n")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Hover" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="2"]
+script = ExtResource("30_ff2a2")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitZoomIn" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="3"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_in"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Drop" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="4"]
+script = ExtResource("31_hxv6d")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="5"]
+script = ExtResource("20_5olls")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ShootDropParticle" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="6"]
+script = ExtResource("39_vce51")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="7"]
+script = ExtResource("24_hptre")
+time = 0.3
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="WaitZoomOut" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="8"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_out"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer2" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="9"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitStand" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="10"]
+script = ExtResource("16_pbqll")
+animate_name = &"stand"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack2" index="11"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ScaleAttack3" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage" index="2"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="0"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ScaleJump" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="1"]
+script = ExtResource("29_lrh0n")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Hover" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="2"]
+script = ExtResource("30_ff2a2")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitZoomIn" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="3"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_in"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Drop" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="4"]
+script = ExtResource("31_hxv6d")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="5"]
+script = ExtResource("20_5olls")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ShootDropParticle" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="6"]
+script = ExtResource("39_vce51")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="7"]
+script = ExtResource("24_hptre")
+time = 0.3
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="WaitZoomOut" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="8"]
+script = ExtResource("16_pbqll")
+animate_name = &"zoom_out"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer2" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="9"]
+script = ExtResource("18_fx22u")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitStand" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="10"]
+script = ExtResource("16_pbqll")
+animate_name = &"stand"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/ScaleAttack3" index="11"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="DashAttack" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage" index="3"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="FlashToRamdomEdge" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack" index="0"]
+script = ExtResource("38_jh6ov")
+target = 7
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToMid" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack" index="1"]
+script = ExtResource("18_fx22u")
+target = 5
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Hold" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack" index="2"]
+script = ExtResource("40_vce51")
+time = 0.2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="AimPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack" index="3"]
+script = ExtResource("41_23txk")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Dash" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack" index="4"]
+script = ExtResource("42_hphb0")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitLand" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack" index="5"]
+script = ExtResource("16_pbqll")
+animate_name = &"land"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HideTrail" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack" index="6"]
+script = ExtResource("44_4lx4s")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack" index="7"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="DashAttack2" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage" index="4"]
+script = ExtResource("15_pbqll")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="FlashToRamdomEdge" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack2" index="0"]
+script = ExtResource("38_jh6ov")
+target = 7
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToMid" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack2" index="1"]
+script = ExtResource("18_fx22u")
+target = 5
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Hold" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack2" index="2"]
+script = ExtResource("40_vce51")
+time = 0.2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="AimPlayer" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack2" index="3"]
+script = ExtResource("41_23txk")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Dash" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack2" index="4"]
+script = ExtResource("42_hphb0")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitLand" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack2" index="5"]
+script = ExtResource("16_pbqll")
+animate_name = &"land"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HideTrail" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack2" index="6"]
+script = ExtResource("44_4lx4s")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Action/Action/EndStage/DashAttack2" index="7"]
+script = ExtResource("21_rg6hj")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"

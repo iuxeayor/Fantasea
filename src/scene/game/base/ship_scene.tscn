@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://db088prasrhfn"]
+
+[ext_resource type="PackedScene" uid="uid://d3f8si3p73axf" path="res://src/scene/scene.tscn" id="1_w14c7"]
+[ext_resource type="Script" uid="uid://clpf0086jo66d" path="res://src/scene/game/base/ship_scene.gd" id="2_c42ut"]
+[ext_resource type="Texture2D" uid="uid://uj5u70k3nqe7" path="res://asset/texture/background/island_sky.webp" id="2_q05a0"]
+[ext_resource type="Texture2D" uid="uid://sfordkw6vwf4" path="res://asset/texture/background/island_cloud_near.webp" id="3_c42ut"]
+[ext_resource type="AudioStream" uid="uid://bfxmavkwqfosu" path="res://asset/music/ship.ogg" id="3_m0sb2"]
+[ext_resource type="Texture2D" uid="uid://76pnaaul1wae" path="res://asset/texture/background/island_water_top.webp" id="4_m0sb2"]
+[ext_resource type="Texture2D" uid="uid://5yb8j8ipqgjg" path="res://asset/texture/background/island_water_mid.webp" id="5_a7fk6"]
+[ext_resource type="Texture2D" uid="uid://bju1k5nfekdqx" path="res://asset/texture/background/island_water_bottom.webp" id="6_buljm"]
+
+[node name="ShipScene" instance=ExtResource("1_w14c7")]
+script = ExtResource("2_c42ut")
+scene_environment = 6
+bgm = ExtResource("3_m0sb2")
+scene_name = "SCENE_SHIP"
+
+[node name="Sky" type="Parallax2D" parent="Background/Environment" index="1"]
+scroll_scale = Vector2(1, 0)
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/Sky" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("2_q05a0")
+
+[node name="Cloud" type="Parallax2D" parent="Background/Environment" index="2"]
+scroll_scale = Vector2(0.9, 0.05)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(3, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/Cloud" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("3_c42ut")
+
+[node name="WaterTop" type="Parallax2D" parent="Background/Environment" index="3"]
+scroll_scale = Vector2(0.7, 0.05)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(2, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/WaterTop" index="0"]
+position = Vector2(192, 108)
+texture = ExtResource("4_m0sb2")
+
+[node name="WaterMid" type="Parallax2D" parent="Background/Environment" index="4"]
+scroll_scale = Vector2(0.8, 0.1)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(3, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/WaterMid" index="0"]
+modulate = Color(1, 1, 1, 0.733333)
+position = Vector2(192, 108)
+texture = ExtResource("5_a7fk6")
+
+[node name="WaterBottom" type="Parallax2D" parent="Background/Environment" index="5"]
+scroll_scale = Vector2(0.9, 0.15)
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(4, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Environment/WaterBottom" index="0"]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(192, 108)
+texture = ExtResource("6_buljm")
+
+[node name="EnvironmentLight" type="DirectionalLight2D" parent="Lights" index="1"]
+color = Color(0.815686, 0.870588, 1, 1)
+energy = 0.15
+blend_mode = 2
+range_layer_min = -10
+range_layer_max = 10

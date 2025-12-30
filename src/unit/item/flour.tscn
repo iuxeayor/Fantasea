@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4owxabglagct"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_hl0xj"]
+[ext_resource type="Script" uid="uid://dut50w26a3dx7" path="res://src/unit/item/flour.gd" id="2_jia25"]
+[ext_resource type="Texture2D" uid="uid://dgars583yxx8i" path="res://asset/texture/unit/item/flour.webp" id="3_jommv"]
+
+[node name="Flour" instance=ExtResource("1_hl0xj")]
+script = ExtResource("2_jia25")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_jommv")

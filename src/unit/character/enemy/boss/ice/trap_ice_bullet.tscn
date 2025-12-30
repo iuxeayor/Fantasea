@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs55c1i465bad"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_640qd"]
+[ext_resource type="Script" uid="uid://dd04cwtl3h75h" path="res://src/unit/character/enemy/boss/ice/trap_ice_bullet.gd" id="2_b8gd6"]
+[ext_resource type="Texture2D" uid="uid://y2f3l46y24mw" path="res://asset/texture/unit/enemy/boss/ice/trap_ice_bullet.webp" id="2_dn71e"]
+[ext_resource type="Material" uid="uid://bxh4fkf88hmab" path="res://src/asset/particle/small_bullet_disappear.tres" id="4_enhhq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dn71e"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b8gd6"]
+size = Vector2(6, 7)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_b8gd6"]
+b = Vector2(0, -1)
+
+[node name="TrapIceBullet" instance=ExtResource("1_640qd")]
+script = ExtResource("2_b8gd6")
+obj_name = &"trap_ice_bullet"
+gravity = 900.0
+dead_on_collide = 0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_dn71e")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+shape = SubResource("RectangleShape2D_dn71e")
+
+[node name="Hitbox" parent="." index="2"]
+visible = false
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_b8gd6")
+
+[node name="LifeTimer" parent="." index="3"]
+wait_time = 4.0
+
+[node name="ParticleQueue" parent="." index="5"]
+overwrite_color = Color(0.580392, 0.992157, 1, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_enhhq")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_enhhq")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+visible = false
+
+[node name="PlayerChecker" type="Area2D" parent="." index="7"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerChecker" index="0"]
+shape = SubResource("SegmentShape2D_b8gd6")
+
+[connection signal="body_entered" from="PlayerChecker" to="." method="_on_player_checker_body_entered"]

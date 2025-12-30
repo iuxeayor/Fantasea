@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://c20ty7fcd3mi5"]
+
+[ext_resource type="PackedScene" uid="uid://b0fep0a8toxbc" path="res://src/ui/menu/widget/menu_container.tscn" id="1_mh61w"]
+[ext_resource type="Script" uid="uid://dd5uytf2ldv24" path="res://src/ui/menu/setting/audio_container.gd" id="2_epi3y"]
+
+[node name="AudioContainer" instance=ExtResource("1_mh61w")]
+script = ExtResource("2_epi3y")
+
+[node name="TitleLabel" parent="TitleContainer" index="1"]
+text = "SET_TITLE_AUDIO"
+
+[node name="GridContainer" type="GridContainer" parent="ContentContainer" index="0"]
+layout_mode = 2
+columns = 3
+
+[node name="MasterLabel" type="Label" parent="ContentContainer/GridContainer" index="0"]
+layout_mode = 2
+text = "SET_AUDIO_MASTER"
+
+[node name="MasterSlider" type="HSlider" parent="ContentContainer/GridContainer" index="1" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+scrollable = false
+tick_count = 11
+ticks_position = 3
+
+[node name="MasterNumber" type="Label" parent="ContentContainer/GridContainer" index="2"]
+layout_mode = 2
+text = "50%"
+horizontal_alignment = 2
+
+[node name="SFXLabel" type="Label" parent="ContentContainer/GridContainer" index="3"]
+layout_mode = 2
+text = "SET_AUDIO_SFX"
+
+[node name="SFXSlider" type="HSlider" parent="ContentContainer/GridContainer" index="4" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+scrollable = false
+tick_count = 11
+ticks_position = 3
+
+[node name="SFXNumber" type="Label" parent="ContentContainer/GridContainer" index="5"]
+layout_mode = 2
+text = "50%"
+horizontal_alignment = 2
+
+[node name="BGMLabel" type="Label" parent="ContentContainer/GridContainer" index="6"]
+layout_mode = 2
+text = "SET_AUDIO_BGM"
+
+[node name="BGMSlider" type="HSlider" parent="ContentContainer/GridContainer" index="7" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+scrollable = false
+tick_count = 11
+ticks_position = 3
+
+[node name="BGMNumber" type="Label" parent="ContentContainer/GridContainer" index="8"]
+layout_mode = 2
+text = "50%"
+horizontal_alignment = 2
+
+[connection signal="focus_entered" from="ContentContainer/GridContainer/MasterSlider" to="." method="_on_master_slider_focus_entered"]
+[connection signal="value_changed" from="ContentContainer/GridContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="focus_entered" from="ContentContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_focus_entered"]
+[connection signal="value_changed" from="ContentContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="focus_entered" from="ContentContainer/GridContainer/BGMSlider" to="." method="_on_bgm_slider_focus_entered"]
+[connection signal="value_changed" from="ContentContainer/GridContainer/BGMSlider" to="." method="_on_bgm_slider_value_changed"]

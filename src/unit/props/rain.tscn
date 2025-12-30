@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dub58i354rw7w"]
+
+[ext_resource type="Material" uid="uid://c1lmyh1oqj7n2" path="res://src/asset/particle/rain.tres" id="1_bjvaq"]
+[ext_resource type="Script" uid="uid://d35oo8uwmo6ji" path="res://src/unit/props/rain.gd" id="1_tmmxq"]
+
+[sub_resource type="Gradient" id="Gradient_aovwb"]
+offsets = PackedFloat32Array(0, 0.3, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.4, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tmmxq"]
+gradient = SubResource("Gradient_aovwb")
+width = 1
+height = 16
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[node name="Rain" type="GPUParticles2D"]
+z_index = -1
+amount = 60
+texture = SubResource("GradientTexture2D_tmmxq")
+lifetime = 3.0
+preprocess = 3.0
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+process_material = ExtResource("1_bjvaq")
+script = ExtResource("1_tmmxq")

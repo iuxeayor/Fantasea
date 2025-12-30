@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://8i3k1k6qpbeh"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_grj17"]
+[ext_resource type="Script" uid="uid://cv2kky7cwgph3" path="res://src/unit/character/npc/final_bread.gd" id="2_4qw8u"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_56kky"]
+[ext_resource type="Texture2D" uid="uid://cylwq2b3r40x6" path="res://asset/texture/unit/npc/whole_wheat_bread/final.webp" id="3_56kky"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_s7dtc"]
+[ext_resource type="Texture2D" uid="uid://fd3o5vwi4vu6" path="res://asset/texture/unit/npc/whole_wheat_bread/final_hurt.webp" id="5_fdagw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s7dtc"]
+resource_local_to_scene = true
+shader = ExtResource("2_56kky")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_fdagw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_56kky")]
+}
+
+[sub_resource type="Animation" id="Animation_1yjjv"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_fdagw")]
+}
+
+[sub_resource type="Animation" id="Animation_4qw8u"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_56kky")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fdagw"]
+_data = {
+&"RESET": SubResource("Animation_fdagw"),
+&"hurt": SubResource("Animation_1yjjv"),
+&"idle": SubResource("Animation_4qw8u")
+}
+
+[node name="FinalBread" instance=ExtResource("1_grj17")]
+script = ExtResource("2_4qw8u")
+direction = 1
+turn = false
+animation_name = &"idle"
+
+[node name="Graphics" parent="." index="1"]
+scale = Vector2(1, 1)
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_s7dtc")
+position = Vector2(0, -20)
+texture = ExtResource("3_56kky")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_fdagw")
+}
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+position = Vector2(0, -24)
+root_dialog = NodePath("DialogContent")
+
+[node name="DialogContent" parent="Dialog" index="3" instance=ExtResource("4_s7dtc")]
+can_end = true
+can_release_control = false
+message = Array[String](["FINAL_0", "FINAL_1", "FINAL_2", "FINAL_3", "FINAL_4", "FINAL_5", "FINAL_6"])
+
+[connection signal="ended" from="Dialog/DialogContent" to="." method="_on_dialog_content_ended"]

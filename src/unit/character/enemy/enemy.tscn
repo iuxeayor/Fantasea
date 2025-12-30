@@ -1,0 +1,136 @@
+[gd_scene load_steps=13 format=3 uid="uid://uhmn6jvb8pf2"]
+
+[ext_resource type="PackedScene" uid="uid://dkmb74ri74fig" path="res://src/unit/character/character.tscn" id="1_u8f8t"]
+[ext_resource type="Script" uid="uid://dx5ggn04puj3p" path="res://src/unit/character/enemy/enemy.gd" id="2_cuk1x"]
+[ext_resource type="Script" uid="uid://8tr7ou3f0gb4" path="res://src/unit/character/enemy/status.gd" id="3_2vhkc"]
+[ext_resource type="Script" uid="uid://fjr4gfdfohcg" path="res://src/unit/common/behavior_tree/root_node.gd" id="3_il22u"]
+[ext_resource type="PackedScene" uid="uid://ctjmfotnke34v" path="res://src/unit/common/hitbox/hitbox.tscn" id="4_6rrxv"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="4_f1q8j"]
+[ext_resource type="Script" uid="uid://cp8adijnorm6o" path="res://src/unit/common/particle/particle_queue.gd" id="6_2g6wu"]
+[ext_resource type="Material" uid="uid://5sn3yeqyenha" path="res://src/asset/particle/enemy_hit.tres" id="7_f1q8j"]
+[ext_resource type="Script" uid="uid://micecvbg086q" path="res://src/unit/character/enemy/health_bar.gd" id="8_8iyng"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3y7p8"]
+resource_local_to_scene = true
+shader = ExtResource("4_f1q8j")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_gpqwt"]
+color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+grow_begin = 0.0
+grow_end = 0.0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2g6wu"]
+color = Color(0.917647, 0.196078, 0.235294, 1)
+grow_begin = 0.0
+grow_end = 0.0
+
+[node name="Enemy" groups=["enemy"] instance=ExtResource("1_u8f8t")]
+collision_layer = 8
+collision_mask = 259
+script = ExtResource("2_cuk1x")
+enemy_name = &""
+random_direction = true
+direction = -1
+knockback_speed = 60.0
+hurt_turn = true
+hurt_sfx = "EnemyHit"
+gravity = 900.0
+
+[node name="Status" parent="." index="0"]
+script = ExtResource("3_2vhkc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="1"]
+position = Vector2(4.76837e-07, -8)
+scale = Vector2(2.4, 2.4)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_3y7p8")
+
+[node name="Hitbox" parent="Graphics" index="1" instance=ExtResource("4_6rrxv")]
+collision_layer = 16
+monitoring = false
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+visible = false
+debug_color = Color(0.98954, 0, 0.28924, 0.42)
+
+[node name="Hurtbox" parent="Graphics" index="2" instance=ExtResource("4_6rrxv")]
+collision_layer = 1024
+collision_mask = 16928
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+visible = false
+debug_color = Color(0.664968, 0.512036, 0, 0.42)
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = false
+
+[node name="HurtParticleQueue" type="Node" parent="." index="4"]
+script = ExtResource("6_2g6wu")
+metadata/_custom_type_script = "uid://cp8adijnorm6o"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="HurtParticleQueue" index="0"]
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("7_f1q8j")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="HurtParticleQueue" index="1"]
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("7_f1q8j")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="HurtParticleQueue" index="2"]
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("7_f1q8j")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="HurtParticleQueue" index="3"]
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("7_f1q8j")
+
+[node name="Timers" type="Node" parent="." index="5"]
+
+[node name="HurtTimer" type="Timer" parent="Timers" index="0"]
+wait_time = 0.2
+one_shot = true
+
+[node name="BehaviorTree" type="Node" parent="." index="6"]
+script = ExtResource("3_il22u")
+
+[node name="HealthBar" type="ProgressBar" parent="." index="7"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.0
+offset_right = 8.0
+offset_bottom = 1.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxLine_gpqwt")
+theme_override_styles/fill = SubResource("StyleBoxLine_2g6wu")
+value = 50.0
+show_percentage = false
+script = ExtResource("8_8iyng")
+
+[node name="DisplayTimer" type="Timer" parent="HealthBar" index="0"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="status_changed" from="Status" to="." method="_on_status_status_changed"]
+[connection signal="status_changed" from="Status" to="HealthBar" method="_on_status_status_changed"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="collided" from="Graphics/Hurtbox" to="." method="_on_hurtbox_collided"]
+[connection signal="timeout" from="Timers/HurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="HealthBar/DisplayTimer" to="HealthBar" method="_on_display_timer_timeout"]

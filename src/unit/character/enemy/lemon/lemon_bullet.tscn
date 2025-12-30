@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtn1nstbbckl6"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_5qxnv"]
+[ext_resource type="Texture2D" uid="uid://suys8fnfn51l" path="res://asset/texture/unit/enemy/lemon/lemon_bullet.webp" id="2_nmm22"]
+[ext_resource type="Material" uid="uid://f77h6jgodmtw" path="res://src/asset/particle/mid_bullet_disappear.tres" id="3_orqdc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_orqdc"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nmm22"]
+radius = 6.0
+
+[node name="LemonBullet" instance=ExtResource("1_5qxnv")]
+obj_name = &"lemon_bullet"
+rotation_speed = 1.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_nmm22")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_orqdc")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+shape = SubResource("CircleShape2D_nmm22")
+
+[node name="ParticleQueue" parent="." index="5"]
+overwrite_color = Color(1, 0.921569, 0.341176, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_orqdc")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_orqdc")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+visible = false

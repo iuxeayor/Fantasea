@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmjhj4a7wehqq"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_xtdab"]
+[ext_resource type="Texture2D" uid="uid://dfck8i74ai07p" path="res://asset/texture/unit/item/jelly_pouch.webp" id="2_l7oib"]
+
+[node name="JellyPouch" instance=ExtResource("1_xtdab")]
+item_id = "jelly_pouch"
+message = "ITEM_JELLY_POUCH"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_l7oib")

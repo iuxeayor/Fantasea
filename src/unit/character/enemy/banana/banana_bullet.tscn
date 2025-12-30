@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgl6rxeayh3h6"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_oq41a"]
+[ext_resource type="Texture2D" uid="uid://bksxtivevt7m5" path="res://asset/texture/unit/enemy/banana/banana_bullet.webp" id="2_d405h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mghnt"]
+radius = 5.0
+
+[node name="BananaBullet" instance=ExtResource("1_oq41a")]
+obj_name = &"banana_bullet"
+gravity = 900.0
+rotation_speed = 1.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_d405h")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_mghnt")

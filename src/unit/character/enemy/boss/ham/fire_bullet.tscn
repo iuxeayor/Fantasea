@@ -1,0 +1,278 @@
+[gd_scene load_steps=15 format=3 uid="uid://ten5m405e6ht"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_h5emu"]
+[ext_resource type="Script" uid="uid://cpr5p4o20yebr" path="res://src/unit/character/enemy/boss/ham/fire_bullet.gd" id="2_0kmqd"]
+[ext_resource type="Texture2D" uid="uid://bpot4bn7qxjnq" path="res://asset/texture/unit/enemy/boss/ham/fire_bullet.webp" id="3_0kmqd"]
+[ext_resource type="Material" uid="uid://bn6y0wr1lfdad" path="res://src/asset/particle/fire_bullet_smoke.tres" id="3_67rwv"]
+[ext_resource type="Material" uid="uid://c5d7mr6hhs0tc" path="res://src/asset/particle/fire_bullet_start.tres" id="4_3mgkl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_021lw"]
+size = Vector2(6, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kmqd"]
+size = Vector2(4, 9)
+
+[sub_resource type="Animation" id="Animation_3mgkl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0kmqd"]
+resource_name = "flame"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14285715, 0.2857143, 0.42857143),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3mgkl"]
+_data = {
+&"RESET": SubResource("Animation_3mgkl"),
+&"flame": SubResource("Animation_0kmqd")
+}
+
+[sub_resource type="Animation" id="Animation_6ervo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jp4xt"]
+resource_name = "end"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -6), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_67rwv"]
+resource_name = "start"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -4.7683716e-07), Vector2(0, -6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ervo"]
+_data = {
+&"RESET": SubResource("Animation_6ervo"),
+&"end": SubResource("Animation_jp4xt"),
+&"start": SubResource("Animation_67rwv")
+}
+
+[node name="FireBullet" instance=ExtResource("1_h5emu")]
+script = ExtResource("2_0kmqd")
+obj_name = &"fire_bullet"
+gravity = 900.0
+dead_on_collide = 0
+dead_on_hit = false
+
+[node name="SmokeParticle" type="GPUParticles2D" parent="." index="0"]
+modulate = Color(0.23921569, 0.23921569, 0.23921569, 1)
+position = Vector2(0, -4)
+emitting = false
+amount = 20
+lifetime = 1.2
+process_material = ExtResource("3_67rwv")
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -6)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("3_0kmqd")
+hframes = 4
+
+[node name="StartParticle" type="GPUParticles2D" parent="." index="2"]
+modulate = Color(0.92941177, 0.4627451, 0.078431375, 1)
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_3mgkl")
+
+[node name="CollisionShape2D" parent="." index="3"]
+visible = false
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_021lw")
+
+[node name="Hitbox" parent="." index="4"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_0kmqd")
+
+[node name="LifeTimer" parent="." index="5"]
+wait_time = 4.0
+
+[node name="FlameTimer" type="Timer" parent="." index="6"]
+wait_time = 3.7
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+libraries = {
+&"": SubResource("AnimationLibrary_3mgkl")
+}
+
+[node name="SpawnAnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+libraries = {
+&"": SubResource("AnimationLibrary_6ervo")
+}
+
+[connection signal="timeout" from="FlameTimer" to="." method="_on_flame_timer_timeout"]

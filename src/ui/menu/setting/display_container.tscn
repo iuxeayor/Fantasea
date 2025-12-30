@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://dae8f7f15ljpv"]
+
+[ext_resource type="PackedScene" uid="uid://b0fep0a8toxbc" path="res://src/ui/menu/widget/menu_container.tscn" id="1_74bog"]
+[ext_resource type="Script" uid="uid://cods4vrtb1j7c" path="res://src/ui/menu/setting/display_container.gd" id="2_qqjwc"]
+
+[node name="DisplayContainer" instance=ExtResource("1_74bog")]
+script = ExtResource("2_qqjwc")
+
+[node name="TitleLabel" parent="TitleContainer" index="1"]
+text = "SET_TITLE_DISPLAY"
+
+[node name="FullscreenCheck" type="CheckButton" parent="ContentContainer" index="0" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SET_DISPLAY_FULLSCREEN"
+
+[node name="ShowFPSCheck" type="CheckButton" parent="ContentContainer" index="1" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SET_DISPLAY_SHOW_FPS"
+
+[node name="GridContainer" type="GridContainer" parent="ContentContainer" index="2"]
+layout_mode = 2
+columns = 2
+
+[node name="RefreshRateLabel" type="Label" parent="ContentContainer/GridContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SET_DISPLAY_REFRESH_RATE"
+
+[node name="RefreshRateOption" type="OptionButton" parent="ContentContainer/GridContainer" index="1" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 4
+popup/item_0/text = "60"
+popup/item_0/id = 0
+popup/item_1/text = "120"
+popup/item_1/id = 1
+popup/item_2/text = "SET_DISPLAY_FPS_VSYNC"
+popup/item_2/id = 2
+popup/item_3/text = "SET_DISPLAY_FPS_INF"
+popup/item_3/id = 3
+
+[node name="FilterLabel" type="Label" parent="ContentContainer/GridContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SET_DISPLAY_FILTER"
+
+[node name="FilterOption" type="OptionButton" parent="ContentContainer/GridContainer" index="3" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 3
+popup/item_0/text = "SET_DISPLAY_FILTER_NONE"
+popup/item_0/id = 0
+popup/item_1/text = "CRT"
+popup/item_1/id = 0
+popup/item_2/text = "SET_DISPLAY_FILTER_GRAYSCALE"
+popup/item_2/id = 2
+
+[connection signal="focus_entered" from="ContentContainer/FullscreenCheck" to="." method="_on_fullscreen_check_focus_entered"]
+[connection signal="toggled" from="ContentContainer/FullscreenCheck" to="." method="_on_fullscreen_check_toggled"]
+[connection signal="focus_entered" from="ContentContainer/ShowFPSCheck" to="." method="_on_show_fps_check_focus_entered"]
+[connection signal="toggled" from="ContentContainer/ShowFPSCheck" to="." method="_on_show_fps_check_toggled"]
+[connection signal="focus_entered" from="ContentContainer/GridContainer/RefreshRateOption" to="." method="_on_refresh_rate_option_focus_entered"]
+[connection signal="item_selected" from="ContentContainer/GridContainer/RefreshRateOption" to="." method="_on_refresh_rate_option_item_selected"]
+[connection signal="focus_entered" from="ContentContainer/GridContainer/FilterOption" to="." method="_on_filter_option_focus_entered"]
+[connection signal="item_selected" from="ContentContainer/GridContainer/FilterOption" to="." method="_on_filter_option_item_selected"]

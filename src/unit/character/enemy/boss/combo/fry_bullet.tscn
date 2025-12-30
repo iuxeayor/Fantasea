@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0wxx8k4b6xy2"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_rox4m"]
+[ext_resource type="Texture2D" uid="uid://cmuucjq4e4vhx" path="res://asset/texture/unit/enemy/boss/combo/fries/fry_bullet.webp" id="2_wjspk"]
+[ext_resource type="Material" uid="uid://f77h6jgodmtw" path="res://src/asset/particle/mid_bullet_disappear.tres" id="3_ee70o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbd58"]
+size = Vector2(10, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ee70o"]
+size = Vector2(10, 2)
+
+[node name="FryBullet" instance=ExtResource("1_rox4m")]
+obj_name = &"fry_bullet"
+gravity = 900.0
+rotate_with_velocity = true
+hit_sfx = "SoftBulletHit"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_wjspk")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_mbd58")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+shape = SubResource("RectangleShape2D_ee70o")
+
+[node name="ParticlePoint" parent="." index="4"]
+position = Vector2(3, 0)
+
+[node name="ParticleQueue" parent="." index="5"]
+overwrite_color = Color(1, 0.78431374, 0.14509805, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_ee70o")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_ee70o")

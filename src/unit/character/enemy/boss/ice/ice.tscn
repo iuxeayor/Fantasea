@@ -1,0 +1,1744 @@
+[gd_scene load_steps=56 format=3 uid="uid://c5yaccebvyy7"]
+
+[ext_resource type="PackedScene" uid="uid://cdxvi0h6hjrbb" path="res://src/unit/character/enemy/boss/boss.tscn" id="1_7rrya"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_g75p2"]
+[ext_resource type="Script" uid="uid://c4gy3xoa26b66" path="res://src/unit/character/enemy/boss/ice/ice.gd" id="2_gp3ys"]
+[ext_resource type="Material" uid="uid://bl0dfsjbvlu8o" path="res://src/asset/particle/ice_charge.tres" id="3_ypr28"]
+[ext_resource type="Texture2D" uid="uid://c2ssj8snq6ygn" path="res://asset/texture/unit/enemy/boss/ice/idle.webp" id="4_gp3ys"]
+[ext_resource type="Material" uid="uid://5sn3yeqyenha" path="res://src/asset/particle/enemy_hit.tres" id="7_hp88y"]
+[ext_resource type="Texture2D" uid="uid://bovlvlkwlvfmk" path="res://asset/texture/unit/enemy/boss/ice/walk.webp" id="8_gl6mm"]
+[ext_resource type="Texture2D" uid="uid://b6mj8xy26axhl" path="res://asset/texture/unit/enemy/boss/ice/jump.webp" id="9_tqjlk"]
+[ext_resource type="Texture2D" uid="uid://bt3n00t5kb1tp" path="res://asset/texture/unit/enemy/boss/ice/attack_front.webp" id="10_t23vh"]
+[ext_resource type="Texture2D" uid="uid://75i6hlfp1rrw" path="res://asset/texture/unit/enemy/boss/ice/attack_top.webp" id="11_65ena"]
+[ext_resource type="Texture2D" uid="uid://ycos0kowb2ao" path="res://asset/texture/unit/enemy/boss/ice/walk_top.webp" id="12_nuria"]
+[ext_resource type="Texture2D" uid="uid://c454tt52dss6k" path="res://asset/texture/unit/enemy/boss/ice/hurt.webp" id="13_lxlsb"]
+[ext_resource type="Texture2D" uid="uid://dw1tj6o4kw0uj" path="res://asset/texture/unit/enemy/boss/ice/aim_top.webp" id="14_lxlsb"]
+[ext_resource type="Script" uid="uid://cjlyed3rdu8i8" path="res://src/unit/common/behavior_tree/sequence.gd" id="14_o143m"]
+[ext_resource type="Script" uid="uid://cmo6dsx27c8sw" path="res://src/unit/character/enemy/boss/ice/behavior/turn_to.gd" id="15_gaypp"]
+[ext_resource type="Script" uid="uid://wq6upiaews7a" path="res://src/unit/character/enemy/boss/ice/behavior/restore_gravity.gd" id="15_ilu1b"]
+[ext_resource type="Script" uid="uid://c0jqttfbq8i83" path="res://src/unit/common/behavior_tree/parallel.gd" id="15_u4nos"]
+[ext_resource type="Script" uid="uid://hjo2hvko5sdk" path="res://src/unit/common/behavior_tree/selector.gd" id="16_qs7vm"]
+[ext_resource type="Script" uid="uid://n6r0h2b34y7q" path="res://src/unit/character/enemy/boss/ice/behavior/walk.gd" id="16_wujxu"]
+[ext_resource type="Script" uid="uid://f36xthye3l7u" path="res://src/unit/character/enemy/boss/behavior/change_stage.gd" id="17_it755"]
+[ext_resource type="Script" uid="uid://drtstsjms3ajq" path="res://src/unit/character/enemy/boss/ice/behavior/is_hit_wall.gd" id="17_sths6"]
+[ext_resource type="Script" uid="uid://b85cb54er75g8" path="res://src/unit/character/enemy/boss/ice/behavior/attack.gd" id="20_4br33"]
+[ext_resource type="Script" uid="uid://hu5vony6x5i0" path="res://src/unit/character/enemy/boss/behavior/is_stage_change.gd" id="20_6dgqr"]
+[ext_resource type="Script" uid="uid://dnf5nlfsbttm0" path="res://src/unit/character/enemy/boss/ice/behavior/reset_state.gd" id="22_llrhm"]
+[ext_resource type="Script" uid="uid://bilnxcj53melj" path="res://src/unit/character/enemy/boss/behavior/idle.gd" id="22_trpnd"]
+[ext_resource type="Script" uid="uid://bkikt1rhlnjj6" path="res://src/unit/common/behavior_tree/waiter.gd" id="23_trpnd"]
+[ext_resource type="Script" uid="uid://bp4cwper467wb" path="res://src/unit/character/enemy/boss/ice/behavior/fly.gd" id="24_maplk"]
+[ext_resource type="Script" uid="uid://c3tuqxtvth861" path="res://src/unit/character/enemy/boss/ice/behavior/wait_to_height.gd" id="26_n4fn1"]
+[ext_resource type="Script" uid="uid://b5l31qlekjp8t" path="res://src/unit/character/enemy/boss/behavior/wait_fall.gd" id="27_6k3r7"]
+[ext_resource type="Script" uid="uid://bj2ffq7lduke" path="res://src/unit/character/enemy/boss/behavior/wait_animation.gd" id="27_qks8x"]
+[ext_resource type="Script" uid="uid://ba1uvl4r0eo0y" path="res://src/unit/character/enemy/boss/ice/behavior/turn_by_hit_wall.gd" id="29_f61h5"]
+[ext_resource type="Script" uid="uid://b8i76gt6e8p5t" path="res://src/unit/character/enemy/boss/ice/behavior/damage_check.gd" id="29_mx0ef"]
+[ext_resource type="Script" uid="uid://cc7sbaeqjegve" path="res://src/unit/character/enemy/boss/ice/behavior/charge.gd" id="30_ei8r7"]
+[ext_resource type="Script" uid="uid://bxitafjm5riwp" path="res://src/unit/common/behavior_tree/monitor.gd" id="31_fgdoy"]
+[ext_resource type="Script" uid="uid://b5skciich7bs3" path="res://src/unit/common/behavior_tree/inverter.gd" id="31_g4o2w"]
+[ext_resource type="Script" uid="uid://bexw8lexcu6ls" path="res://src/unit/character/enemy/boss/behavior/is_stage_range.gd" id="31_kc7nf"]
+[ext_resource type="Script" uid="uid://cuam1y5g8iepq" path="res://src/unit/character/enemy/boss/ice/behavior/jump.gd" id="31_vhysa"]
+[ext_resource type="Script" uid="uid://bae1bjwf8c4at" path="res://src/unit/character/enemy/boss/ice/behavior/big_attack.gd" id="33_fgdoy"]
+[ext_resource type="Script" uid="uid://cr58mhv3vt01y" path="res://src/unit/common/behavior_tree/times_limiter.gd" id="38_2cmbh"]
+[ext_resource type="Script" uid="uid://c12n43jy8jaw5" path="res://src/unit/character/enemy/boss/ice/behavior/height_attack.gd" id="40_ei8r7"]
+[ext_resource type="Script" uid="uid://conujqskntxxv" path="res://src/unit/character/enemy/boss/ice/behavior/attack_drop.gd" id="43_m3sus"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ypr28"]
+resource_local_to_scene = true
+shader = ExtResource("2_g75p2")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rrya"]
+size = Vector2(14, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypr28"]
+size = Vector2(16, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oajjs"]
+size = Vector2(16, 20)
+
+[sub_resource type="Animation" id="Animation_gl6mm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_gp3ys")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lxlsb"]
+resource_name = "aim_top"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_lxlsb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_65ena"]
+resource_name = "attack_front"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_t23vh")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_nuria"]
+resource_name = "attack_top"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_65ena")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_87mtw"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_lxlsb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8mf3d"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_gp3ys")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tqjlk"]
+resource_name = "jump"
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_tqjlk")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bp1fq"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_gl6mm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_o143m"]
+resource_name = "walk_top"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_nuria")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0exix"]
+_data = {
+&"RESET": SubResource("Animation_gl6mm"),
+&"aim_top": SubResource("Animation_lxlsb"),
+&"attack_front": SubResource("Animation_65ena"),
+&"attack_top": SubResource("Animation_nuria"),
+&"hurt": SubResource("Animation_87mtw"),
+&"idle": SubResource("Animation_8mf3d"),
+&"jump": SubResource("Animation_tqjlk"),
+&"walk": SubResource("Animation_bp1fq"),
+&"walk_top": SubResource("Animation_o143m")
+}
+
+[node name="Ice" instance=ExtResource("1_7rrya")]
+script = ExtResource("2_gp3ys")
+
+[node name="Status" parent="." index="0"]
+max_health = 320
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_ypr28")
+position = Vector2(0, -8)
+texture = ExtResource("4_gp3ys")
+
+[node name="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+visible = false
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_7rrya")
+
+[node name="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+visible = false
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_ypr28")
+
+[node name="ParticlePoint" type="Marker2D" parent="Graphics" index="3"]
+position = Vector2(0, -10)
+
+[node name="ShootPoint" type="Marker2D" parent="Graphics" index="4"]
+position = Vector2(8, -8)
+
+[node name="ShootTopPoint" type="Marker2D" parent="Graphics" index="5"]
+position = Vector2(4, -16)
+
+[node name="WallChecker" type="RayCast2D" parent="Graphics" index="6"]
+position = Vector2(0, -8)
+target_position = Vector2(16, 0)
+
+[node name="ChargeParticle" type="GPUParticles2D" parent="Graphics" index="7"]
+position = Vector2(0, -8)
+emitting = false
+amount = 30
+lifetime = 0.6
+explosiveness = 0.1
+process_material = ExtResource("3_ypr28")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_oajjs")
+
+[node name="HurtParticle" parent="." index="4"]
+overwrite_color = Color(0.580392, 0.992157, 1, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="HurtParticle" index="0"]
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+process_material = ExtResource("7_hp88y")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="HurtParticle" index="1"]
+emitting = false
+amount = 20
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+process_material = ExtResource("7_hp88y")
+
+[node name="AnimationPlayer" parent="." index="5"]
+libraries = {
+&"": SubResource("AnimationLibrary_0exix")
+}
+
+[node name="Parallel" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource("15_u4nos")
+log_mode = 2
+metadata/_custom_type_script = "uid://c0jqttfbq8i83"
+
+[node name="ChangeStage" type="Node" parent="BehaviorTree/Parallel" index="0" node_paths=PackedStringArray("action_btree")]
+script = ExtResource("17_it755")
+action_btree = NodePath("../Selector")
+stage_percentage_thresholds = Array[int]([30, 70])
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Selector" type="Node" parent="BehaviorTree/Parallel" index="1"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="ChangeStage" type="Node" parent="BehaviorTree/Parallel/Selector" index="0"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="IsStageChange" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage" index="0"]
+script = ExtResource("20_6dgqr")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="ResetState" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage" index="1"]
+script = ExtResource("22_llrhm")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayerInvert" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage" index="2"]
+script = ExtResource("15_gaypp")
+target = 3
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Monitor" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage" index="3"]
+script = ExtResource("31_fgdoy")
+metadata/_custom_type_script = "uid://bxitafjm5riwp"
+
+[node name="IsHitWall" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Monitor" index="0"]
+script = ExtResource("17_sths6")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Walk" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Monitor" index="1"]
+script = ExtResource("16_wujxu")
+speed = 120.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage" index="4"]
+script = ExtResource("22_trpnd")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Turn" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage" index="5"]
+script = ExtResource("15_gaypp")
+target = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Selector" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage" index="6"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage1" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 1
+max_stage = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Inverter2" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector" index="1"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="TimesLimiter" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2" index="0"]
+script = ExtResource("38_2cmbh")
+limit = 4
+ignore_child = true
+metadata/_custom_type_script = "uid://cr58mhv3vt01y"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2/TimesLimiter" index="0"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2/TimesLimiter/Sequence" index="0"]
+script = ExtResource("15_gaypp")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Charge" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2/TimesLimiter/Sequence" index="1"]
+script = ExtResource("30_ei8r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2/TimesLimiter/Sequence" index="2"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Jump" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2/TimesLimiter/Sequence" index="3"]
+script = ExtResource("31_vhysa")
+jump_velocity = -240.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="BigAttack" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2/TimesLimiter/Sequence" index="4"]
+script = ExtResource("33_fgdoy")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitShoot" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2/TimesLimiter/Sequence" index="5"]
+script = ExtResource("27_qks8x")
+animate_name = &"attack_front"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJump" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2/TimesLimiter/Sequence" index="6"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2/TimesLimiter/Sequence" index="7"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector/Inverter2/TimesLimiter/Sequence" index="8"]
+script = ExtResource("23_trpnd")
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Selector2" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage" index="7"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage2" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 2
+max_stage = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Inverter2" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2" index="1"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="TimesLimiter" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter2" index="0"]
+script = ExtResource("38_2cmbh")
+limit = 4
+ignore_child = true
+metadata/_custom_type_script = "uid://cr58mhv3vt01y"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter2/TimesLimiter" index="0"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter2/TimesLimiter/Sequence" index="0"]
+script = ExtResource("15_gaypp")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Charge" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter2/TimesLimiter/Sequence" index="1"]
+script = ExtResource("30_ei8r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter2/TimesLimiter/Sequence" index="2"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Jump" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter2/TimesLimiter/Sequence" index="3"]
+script = ExtResource("31_vhysa")
+jump_velocity = -240.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="BigAttack" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter2/TimesLimiter/Sequence" index="4"]
+script = ExtResource("33_fgdoy")
+attack_speed = 180.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitShoot" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter2/TimesLimiter/Sequence" index="5"]
+script = ExtResource("27_qks8x")
+animate_name = &"attack_front"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJump" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter2/TimesLimiter/Sequence" index="6"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage/Selector2/Inverter2/TimesLimiter/Sequence" index="7"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter2" type="Node" parent="BehaviorTree/Parallel/Selector/ChangeStage" index="8"]
+script = ExtResource("23_trpnd")
+time = 2.0
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Action" type="Node" parent="BehaviorTree/Parallel/Selector" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/Action" index="0"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action" index="1"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WalkAndAttack" type="Node" parent="BehaviorTree/Parallel/Selector/Action" index="2"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack" index="0"]
+script = ExtResource("15_gaypp")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack" index="1"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="TimesLimiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter" index="0"]
+script = ExtResource("38_2cmbh")
+limit = 2
+ignore_child = true
+metadata/_custom_type_script = "uid://cr58mhv3vt01y"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter" index="0"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Monitor" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence" index="0"]
+script = ExtResource("31_fgdoy")
+
+[node name="IsHitWall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor" index="0"]
+script = ExtResource("17_sths6")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Walk" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence" index="0"]
+script = ExtResource("16_wujxu")
+speed = 80.0
+time = 0.1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence" index="1"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="StageSelector" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence" index="2"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence/StageSelector" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage1" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence/StageSelector/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 1
+max_stage = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence/StageSelector" index="1"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="StageSelector2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence" index="3"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence/StageSelector2" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence/StageSelector2/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 2
+max_stage = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence/StageSelector2" index="1"]
+script = ExtResource("20_4br33")
+attack_speed = 100.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Walk2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence/Monitor/Sequence" index="4"]
+script = ExtResource("16_wujxu")
+speed = 80.0
+time = 0.7
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Turn" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence" index="1"]
+script = ExtResource("15_gaypp")
+target = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack/Inverter/TimesLimiter/Sequence" index="2"]
+script = ExtResource("22_trpnd")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttack" index="2"]
+script = ExtResource("23_trpnd")
+time = 0.1
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="JumpAndAttack" type="Node" parent="BehaviorTree/Parallel/Selector/Action" index="3"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Fly" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="0"]
+script = ExtResource("24_maplk")
+jump_velocity = -60.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToLow" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="1"]
+script = ExtResource("26_n4fn1")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="2"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="3"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToMid" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="4"]
+script = ExtResource("26_n4fn1")
+height = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="5"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="6"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToHigh" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="7"]
+script = ExtResource("26_n4fn1")
+height = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="8"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="9"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="10"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="11"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="12"]
+script = ExtResource("22_trpnd")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/JumpAndAttack" index="13"]
+script = ExtResource("23_trpnd")
+time = 0.1
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Selector" type="Node" parent="BehaviorTree/Parallel/Selector/Action" index="4"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 2
+max_stage = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="JumpAndAttack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Fly" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="0"]
+script = ExtResource("24_maplk")
+jump_velocity = -60.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToLow" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="1"]
+script = ExtResource("26_n4fn1")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="2"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="3"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToMid" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="4"]
+script = ExtResource("26_n4fn1")
+height = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="5"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="6"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToHigh" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="7"]
+script = ExtResource("26_n4fn1")
+height = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="8"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="9"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="10"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="11"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="12"]
+script = ExtResource("22_trpnd")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector/JumpAndAttack" index="13"]
+script = ExtResource("23_trpnd")
+time = 0.1
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action" index="5"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Monitor" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack" index="0"]
+script = ExtResource("31_fgdoy")
+
+[node name="DamageCheck" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor" index="0"]
+script = ExtResource("29_mx0ef")
+damage = 20
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence" index="0"]
+script = ExtResource("23_trpnd")
+time = 0.5
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="RandomMove" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="TurnRandom" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomMove" index="0"]
+script = ExtResource("15_gaypp")
+target = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WalkParallel" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomMove" index="1"]
+script = ExtResource("15_u4nos")
+metadata/_custom_type_script = "uid://c0jqttfbq8i83"
+
+[node name="TurnByHitWall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomMove/WalkParallel" index="0"]
+script = ExtResource("29_f61h5")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Walk" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomMove/WalkParallel" index="1"]
+script = ExtResource("16_wujxu")
+speed = 60.0
+time = 0.4
+random_offset = 0.1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomMove" index="2"]
+script = ExtResource("22_trpnd")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomMove" index="3"]
+script = ExtResource("15_gaypp")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomMove" index="4"]
+script = ExtResource("23_trpnd")
+time = 0.5
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence" index="2"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="TimesLimiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter" index="0"]
+script = ExtResource("38_2cmbh")
+limit = 3
+ignore_child = true
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter" index="0"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence" index="0"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Jump" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence" index="1"]
+script = ExtResource("31_vhysa")
+jump_velocity = -240.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RandomSelector" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence" index="2"]
+script = ExtResource("16_qs7vm")
+is_random = true
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="HeightAttackTop" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/RandomSelector" index="0"]
+script = ExtResource("40_ei8r7")
+mid = true
+low = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HeightAttackMid" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/RandomSelector" index="1"]
+script = ExtResource("40_ei8r7")
+top = true
+low = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HeightAttackBot" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/RandomSelector" index="2"]
+script = ExtResource("40_ei8r7")
+top = true
+mid = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Selector2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence" index="3"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/Selector2" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/Selector2/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 2
+max_stage = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RandomSelector" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/Selector2" index="1"]
+script = ExtResource("16_qs7vm")
+is_random = true
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="HeightAttackTop" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/Selector2/RandomSelector" index="0"]
+script = ExtResource("40_ei8r7")
+top = true
+attack_speed = 100.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HeightAttackMid" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/Selector2/RandomSelector" index="1"]
+script = ExtResource("40_ei8r7")
+mid = true
+attack_speed = 100.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HeightAttackBot" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/Selector2/RandomSelector" index="2"]
+script = ExtResource("40_ei8r7")
+low = true
+attack_speed = 100.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitShoot" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence" index="4"]
+script = ExtResource("27_qks8x")
+animate_name = &"attack_front"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJump" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence" index="5"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence" index="6"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Selector3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence" index="7"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/Selector3" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/Selector3/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 2
+max_stage = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence/Selector3" index="1"]
+script = ExtResource("23_trpnd")
+time = 0.5
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/Inverter/TimesLimiter/Sequence" index="8"]
+script = ExtResource("23_trpnd")
+time = 0.9
+random_offset = 0.1
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="RandomSelector" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence" index="3"]
+script = ExtResource("16_qs7vm")
+is_random = true
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="JumpAndAttack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector" index="0"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Fly" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="0"]
+script = ExtResource("24_maplk")
+jump_velocity = -60.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToLow" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="1"]
+script = ExtResource("26_n4fn1")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="2"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="3"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToMid" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="4"]
+script = ExtResource("26_n4fn1")
+height = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="5"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="6"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToHigh" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="7"]
+script = ExtResource("26_n4fn1")
+height = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="8"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="9"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="StageSelector" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="10"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage1" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 1
+max_stage = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence" index="0"]
+script = ExtResource("23_trpnd")
+time = 0.2
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="FallAndAttack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Fly" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="0"]
+script = ExtResource("24_maplk")
+jump_velocity = 60.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToHigh" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="1"]
+script = ExtResource("26_n4fn1")
+height = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="2"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="3"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToMid" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="4"]
+script = ExtResource("26_n4fn1")
+height = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="5"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="6"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToLow" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="7"]
+script = ExtResource("26_n4fn1")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="8"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="9"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="10"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack/StageSelector/Sequence/FallAndAttack" index="11"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="11"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/JumpAndAttack" index="12"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="FallAndAttack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="0"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Jump" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="1"]
+script = ExtResource("31_vhysa")
+jump_velocity = -320.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Fly" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="2"]
+script = ExtResource("24_maplk")
+jump_velocity = 60.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToHigh" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="3"]
+script = ExtResource("26_n4fn1")
+height = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="4"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="5"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToMid" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="6"]
+script = ExtResource("26_n4fn1")
+height = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="7"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="8"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToLow" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="9"]
+script = ExtResource("26_n4fn1")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="10"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="11"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="12"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="13"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="StageSelector" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack" index="14"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage1" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 1
+max_stage = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence" index="0"]
+script = ExtResource("23_trpnd")
+time = 0.5
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="JumpAndAttack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Fly" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="0"]
+script = ExtResource("24_maplk")
+jump_velocity = -60.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToLow" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="1"]
+script = ExtResource("26_n4fn1")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="2"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="3"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToMid" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="4"]
+script = ExtResource("26_n4fn1")
+height = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="5"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="6"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToHigh" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="7"]
+script = ExtResource("26_n4fn1")
+height = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="8"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="9"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="10"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack/Monitor/Sequence/RandomSelector/FallAndAttack/StageSelector/Sequence/JumpAndAttack" index="11"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack" index="1"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack" index="2"]
+script = ExtResource("22_trpnd")
+play_animation = false
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitHurt" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack" index="3"]
+script = ExtResource("27_qks8x")
+animate_name = &"hurt"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Attack" index="4"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WalkAndAttackTop" type="Node" parent="BehaviorTree/Parallel/Selector/Action" index="6"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop" index="0"]
+script = ExtResource("22_trpnd")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitAimTop" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop" index="1"]
+script = ExtResource("27_qks8x")
+animate_name = &"aim_top"
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Monitor" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop" index="2"]
+script = ExtResource("31_fgdoy")
+
+[node name="IsHitWall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor" index="0"]
+script = ExtResource("17_sths6")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="Walk" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence" index="0"]
+script = ExtResource("16_wujxu")
+walk_top = true
+time = 0.2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence" index="1"]
+script = ExtResource("20_4br33")
+attack_top = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Walk2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence" index="2"]
+script = ExtResource("16_wujxu")
+walk_top = true
+time = 0.3
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Selector" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence" index="3"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence/Selector" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage1" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence/Selector/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 1
+max_stage = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence/Selector" index="1"]
+script = ExtResource("20_4br33")
+attack_top = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Selector2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence" index="4"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence/Selector2" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence/Selector2/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 2
+max_stage = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="AttackDrop" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence/Selector2" index="1"]
+script = ExtResource("43_m3sus")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Walk3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop/Monitor/Sequence" index="5"]
+script = ExtResource("16_wujxu")
+walk_top = true
+speed = 80.0
+time = 0.1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop" index="3"]
+script = ExtResource("22_trpnd")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="TurnToPlayer2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop" index="4"]
+script = ExtResource("15_gaypp")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/WalkAndAttackTop" index="5"]
+script = ExtResource("23_trpnd")
+time = 0.1
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="FallAndAttack" type="Node" parent="BehaviorTree/Parallel/Selector/Action" index="7"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="0"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Jump" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="1"]
+script = ExtResource("31_vhysa")
+jump_velocity = -320.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Fly" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="2"]
+script = ExtResource("24_maplk")
+jump_velocity = 60.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToHigh" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="3"]
+script = ExtResource("26_n4fn1")
+height = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="4"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="5"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToMid" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="6"]
+script = ExtResource("26_n4fn1")
+height = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="7"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="8"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToLow" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="9"]
+script = ExtResource("26_n4fn1")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="10"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="11"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="12"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="13"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="14"]
+script = ExtResource("22_trpnd")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/FallAndAttack" index="15"]
+script = ExtResource("23_trpnd")
+time = 0.1
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Selector2" type="Node" parent="BehaviorTree/Parallel/Selector/Action" index="8"]
+script = ExtResource("16_qs7vm")
+metadata/_custom_type_script = "uid://hjo2hvko5sdk"
+
+[node name="Inverter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2" index="0"]
+script = ExtResource("31_g4o2w")
+metadata/_custom_type_script = "uid://b5skciich7bs3"
+
+[node name="IsStage2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/Inverter" index="0"]
+script = ExtResource("31_kc7nf")
+min_stage = 2
+max_stage = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="FallAndAttack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2" index="1"]
+script = ExtResource("14_o143m")
+metadata/_custom_type_script = "uid://cjlyed3rdu8i8"
+
+[node name="RestoreGravity" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="0"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Jump" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="1"]
+script = ExtResource("31_vhysa")
+jump_velocity = -320.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Fly" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="2"]
+script = ExtResource("24_maplk")
+jump_velocity = 60.0
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToHigh" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="3"]
+script = ExtResource("26_n4fn1")
+height = 2
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="4"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="5"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToMid" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="6"]
+script = ExtResource("26_n4fn1")
+height = 1
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="7"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="8"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitToLow" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="9"]
+script = ExtResource("26_n4fn1")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Attack3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="10"]
+script = ExtResource("20_4br33")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="PlayJumpAnimation3" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="11"]
+script = ExtResource("27_qks8x")
+animate_name = &"jump"
+play_only = true
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="RestoreGravity2" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="12"]
+script = ExtResource("15_ilu1b")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="WaitFall" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="13"]
+script = ExtResource("27_6k3r7")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Idle" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="14"]
+script = ExtResource("22_trpnd")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action/Selector2/FallAndAttack" index="15"]
+script = ExtResource("23_trpnd")
+time = 0.1
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"
+
+[node name="Waiter" type="Node" parent="BehaviorTree/Parallel/Selector/Action" index="9"]
+script = ExtResource("23_trpnd")
+metadata/_custom_type_script = "uid://bkikt1rhlnjj6"

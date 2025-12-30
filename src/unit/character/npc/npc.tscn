@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0xv0xomuk2c6"]
+
+[ext_resource type="PackedScene" uid="uid://dkmb74ri74fig" path="res://src/unit/character/character.tscn" id="1_kgkpf"]
+[ext_resource type="Script" uid="uid://blt5w6e0ds0jn" path="res://src/unit/character/npc/npc.gd" id="2_kj47s"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="3_hngro"]
+[ext_resource type="PackedScene" uid="uid://dekecjlka8xp5" path="res://src/ui/dialog/dialog.tscn" id="5_v53lb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2heyn"]
+resource_local_to_scene = true
+shader = ExtResource("3_hngro")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[node name="Npc" groups=["interact_object", "npc"] instance=ExtResource("1_kgkpf")]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("2_kj47s")
+direction = -1
+turn = true
+animation_name = &""
+
+[node name="Graphics" parent="." index="1"]
+scale = Vector2(-1, 1)
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_2heyn")
+
+[node name="Dialog" parent="." index="4" instance=ExtResource("5_v53lb")]
+position = Vector2(0, -18)

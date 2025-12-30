@@ -1,0 +1,313 @@
+[gd_scene load_steps=59 format=3 uid="uid://cx131cjjcyx7c"]
+
+[ext_resource type="Script" uid="uid://cx6ddnnre61db" path="res://src/global/sound_manager.gd" id="1_vbohp"]
+[ext_resource type="AudioStream" uid="uid://clgury6ijqk8v" path="res://asset/sound/player_jump.ogg" id="5_1a5y7"]
+[ext_resource type="AudioStream" uid="uid://d1jh06ak2ry84" path="res://asset/sound/explosion_short.ogg" id="6_bivxf"]
+[ext_resource type="AudioStream" uid="uid://dbyjfxgfheltc" path="res://asset/sound/player_hit.ogg" id="6_lcm7r"]
+[ext_resource type="AudioStream" uid="uid://doy5o663wf1cr" path="res://asset/sound/player_heal.ogg" id="6_pwddt"]
+[ext_resource type="AudioStream" uid="uid://dhfyt7cemenjv" path="res://asset/sound/enemy_hit.ogg" id="7_28ny7"]
+[ext_resource type="AudioStream" uid="uid://bhy56a6rch24k" path="res://asset/sound/seed_hit.ogg" id="7_662wh"]
+[ext_resource type="AudioStream" uid="uid://tt5dje6lhtqk" path="res://asset/sound/player_dash.ogg" id="7_isdkq"]
+[ext_resource type="AudioStream" uid="uid://8rw75ovmqas4" path="res://asset/sound/player_bounce.ogg" id="8_8k78q"]
+[ext_resource type="AudioStream" uid="uid://bohfaprb0g17u" path="res://asset/sound/wall_hit.ogg" id="9_8vgbs"]
+[ext_resource type="AudioStream" uid="uid://c7dx3gijvsl7q" path="res://asset/sound/player_step.ogg" id="9_mnhrq"]
+[ext_resource type="AudioStream" uid="uid://c3xrc0l5wb4md" path="res://asset/sound/breakable_break.ogg" id="10_5xkav"]
+[ext_resource type="AudioStream" uid="uid://ffpaurt0r13n" path="res://asset/sound/jelly_land.ogg" id="10_hvux0"]
+[ext_resource type="AudioStream" uid="uid://drihove7lvaxs" path="res://asset/sound/coin_collect.ogg" id="10_vbnr8"]
+[ext_resource type="AudioStream" uid="uid://cp61t34veol0n" path="res://asset/sound/player_attack.ogg" id="11_5y240"]
+[ext_resource type="AudioStream" uid="uid://uwjnws2l7x2y" path="res://asset/sound/breakable_hit.ogg" id="11_28ny7"]
+[ext_resource type="AudioStream" uid="uid://c8s2ejn47jiff" path="res://asset/sound/milk_collect.ogg" id="12_fbnnw"]
+[ext_resource type="AudioStream" uid="uid://cfm2iouso6l7b" path="res://asset/sound/ice_platform_breaking.ogg" id="14_jxdki"]
+[ext_resource type="AudioStream" uid="uid://dvl3c702ia8yi" path="res://asset/sound/ice_platform_change.ogg" id="15_isdkq"]
+[ext_resource type="AudioStream" uid="uid://do53sx6s2mbm6" path="res://asset/sound/watermelon_jump.ogg" id="18_m6eiw"]
+[ext_resource type="AudioStream" uid="uid://b74kyx64ln33k" path="res://asset/sound/watermelon_land.ogg" id="19_dkb1o"]
+[ext_resource type="AudioStream" uid="uid://s0qrfboofmud" path="res://asset/sound/watermelon_roll_loop.ogg" id="19_lcm7r"]
+[ext_resource type="AudioStream" uid="uid://bkhpqq4sovr06" path="res://asset/sound/power_close.ogg" id="20_5f228"]
+[ext_resource type="AudioStream" uid="uid://frf15sp784su" path="res://asset/sound/butter_land.ogg" id="20_5ol2f"]
+[ext_resource type="AudioStream" uid="uid://bju2yx305dihw" path="res://asset/sound/charge_loop.ogg" id="20_6nkv2"]
+[ext_resource type="AudioStream" uid="uid://qopw51mdkif1" path="res://asset/sound/butter_attack_1.ogg" id="21_lcm7r"]
+[ext_resource type="AudioStream" uid="uid://ctx5po2q2ajwh" path="res://asset/sound/watermelon_hit_wall.ogg" id="21_volnt"]
+[ext_resource type="AudioStream" uid="uid://06bxofhwy1fk" path="res://asset/sound/ice_shoot_bullet.ogg" id="21_yqct3"]
+[ext_resource type="AudioStream" uid="uid://cdee1p37fejh2" path="res://asset/sound/butter_attack_2.ogg" id="22_en737"]
+[ext_resource type="AudioStream" uid="uid://x68ikb5scd81" path="res://asset/sound/butter_attack_3.ogg" id="23_5f228"]
+[ext_resource type="AudioStream" uid="uid://8kxq0bxsd766" path="res://asset/sound/icemaker_loop.ogg" id="24_en737"]
+[ext_resource type="AudioStream" uid="uid://bepfljmq3jx8d" path="res://asset/sound/butter_aim.ogg" id="25_opn3j"]
+[ext_resource type="AudioStream" uid="uid://xyk6omx07wyj" path="res://asset/sound/dialog_focus.ogg" id="29_mdami"]
+[ext_resource type="AudioStream" uid="uid://s2chsnicpoip" path="res://asset/sound/menu_focus.ogg" id="29_v0lv3"]
+[ext_resource type="AudioStream" uid="uid://cayr7blwgyijj" path="res://asset/sound/menu_press.ogg" id="30_gmnsg"]
+[ext_resource type="AudioStream" uid="uid://cuai46imop2i1" path="res://asset/sound/dialog_open.ogg" id="30_iwhr6"]
+[ext_resource type="AudioStream" uid="uid://m7x6khj1ml8p" path="res://asset/sound/dialog_close.ogg" id="31_v0lv3"]
+[ext_resource type="AudioStream" uid="uid://xd2ecb1vnw7x" path="res://asset/sound/switch_ball_switch.ogg" id="35_bn1av"]
+[ext_resource type="AudioStream" uid="uid://bd7l7jp1nfplq" path="res://asset/sound/switch_ball_tick.ogg" id="35_yd6sm"]
+[ext_resource type="AudioStream" uid="uid://d11qeneooxdyg" path="res://asset/sound/peanut_butter_attack.ogg" id="37_1yhm4"]
+[ext_resource type="AudioStream" uid="uid://bd48mbyi31rj7" path="res://asset/sound/rain_outside_loop.ogg" id="37_xyf1f"]
+[ext_resource type="AudioStream" uid="uid://njsyovtx48hp" path="res://asset/sound/rain_inside_loop.ogg" id="38_8r5ko"]
+[ext_resource type="AudioStream" uid="uid://8h56pn8lr4li" path="res://asset/sound/peanut_butter_spoon_fly_loop.ogg" id="38_q6u8w"]
+[ext_resource type="AudioStream" uid="uid://ch7a1ai5mvnjr" path="res://asset/sound/soft_bullet_hit.ogg" id="40_volnt"]
+[ext_resource type="AudioStream" uid="uid://cnw1b2fiy8xu5" path="res://asset/sound/california_roll_shoot.ogg" id="43_0hyuk"]
+[ext_resource type="AudioStream" uid="uid://bg1qof3ah7exn" path="res://asset/sound/cable_run.ogg" id="44_7xe56"]
+[ext_resource type="AudioStream" uid="uid://c4feasl7n2mwo" path="res://asset/sound/pickle_break.ogg" id="45_iecjp"]
+[ext_resource type="AudioStream" uid="uid://cvgu0fomm7j7j" path="res://asset/sound/big_mushroom_land.ogg" id="46_o8dwk"]
+[ext_resource type="AudioStream" uid="uid://bcuu7lts43xga" path="res://asset/sound/big_mushroom_bounce.ogg" id="47_2ynr6"]
+[ext_resource type="AudioStream" uid="uid://gisd4adjxg1o" path="res://asset/sound/ham_attack.ogg" id="48_vpqpy"]
+[ext_resource type="AudioStream" uid="uid://4jte60sp7ky2" path="res://asset/sound/fire.ogg" id="50_fgqjf"]
+[ext_resource type="AudioStream" uid="uid://q6md0ch2b7fx" path="res://asset/sound/roll_land.ogg" id="51_o2nia"]
+[ext_resource type="AudioStream" uid="uid://bmva7hmwym0bo" path="res://asset/sound/burger_jump.ogg" id="52_g31sx"]
+[ext_resource type="AudioStream" uid="uid://t2mo8ks23s7g" path="res://asset/sound/roll_teleport.ogg" id="52_qvc8f"]
+[ext_resource type="AudioStream" uid="uid://bdewcpp18ajj3" path="res://asset/sound/cola_loop.ogg" id="53_g31sx"]
+[ext_resource type="AudioStream" uid="uid://cshmw72ec0pxq" path="res://asset/sound/burger_land.ogg" id="53_n57mn"]
+[ext_resource type="AudioStream" uid="uid://c8a7h8ckse5st" path="res://asset/sound/knife_loop.ogg" id="54_qnwm3"]
+[ext_resource type="AudioStream" uid="uid://ca0pt072gdyqs" path="res://asset/sound/hammer_hit.ogg" id="56_opm4o"]
+
+[node name="SoundManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_vbohp")
+
+[node name="SoundEffect" type="Node" parent="."]
+
+[node name="PlayerAttack" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("11_5y240")
+
+[node name="PlayerStep" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("9_mnhrq")
+volume_db = -15.0
+
+[node name="PlayerHit" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("6_lcm7r")
+
+[node name="PlayerJump" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("5_1a5y7")
+
+[node name="PlayerHeal" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("6_pwddt")
+
+[node name="PlayerDash" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("7_isdkq")
+
+[node name="PlayerBounce" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("8_8k78q")
+volume_db = -10.0
+pitch_scale = 0.5
+
+[node name="PlayerDie" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("6_lcm7r")
+volume_db = 10.0
+pitch_scale = 0.5
+
+[node name="PlayerDoubleJump" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("8_8k78q")
+volume_db = -20.0
+pitch_scale = 2.0
+
+[node name="PlayerDashShield" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("15_isdkq")
+pitch_scale = 1.5
+
+[node name="PlayerExplosion" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("6_bivxf")
+volume_db = -10.0
+pitch_scale = 1.5
+
+[node name="SeedHit" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("7_662wh")
+
+[node name="JellyLand" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("10_hvux0")
+
+[node name="CoinCollect" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("10_vbnr8")
+
+[node name="MilkCollect" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("12_fbnnw")
+volume_db = -10.0
+
+[node name="ExplosionShort" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("6_bivxf")
+
+[node name="ExplosionShortMute" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("6_bivxf")
+volume_db = -20.0
+pitch_scale = 0.5
+
+[node name="ExplosionTiny" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("6_bivxf")
+volume_db = -10.0
+pitch_scale = 2.0
+
+[node name="EnemyHit" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("7_28ny7")
+
+[node name="WallHit" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("9_8vgbs")
+
+[node name="BreakableHit" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("11_28ny7")
+
+[node name="BreakableBreak" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("10_5xkav")
+
+[node name="IcePlatformBreaking" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("14_jxdki")
+
+[node name="IcePlatformChange" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("15_isdkq")
+
+[node name="WatermelonJump" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("18_m6eiw")
+
+[node name="WatermelonLand" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("19_dkb1o")
+
+[node name="WatermelonHitWall" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("21_volnt")
+volume_db = -15.0
+
+[node name="WatermelonRollLoop" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("19_lcm7r")
+parameters/looping = true
+
+[node name="ChargeLoop" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("20_6nkv2")
+pitch_scale = 1.3
+parameters/looping = true
+
+[node name="IceShootBullet" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("21_yqct3")
+
+[node name="IceShootBigBullet" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("21_yqct3")
+pitch_scale = 0.8
+
+[node name="PowerClose" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("20_5f228")
+
+[node name="IcemakerLoop" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("24_en737")
+volume_db = -10.0
+parameters/looping = true
+
+[node name="ButterAim" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("25_opn3j")
+
+[node name="ButterLand" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("20_5ol2f")
+volume_db = -5.0
+
+[node name="ButterLandShort" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("20_5ol2f")
+volume_db = -5.0
+pitch_scale = 2.0
+
+[node name="ButterAttack1" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("21_lcm7r")
+
+[node name="ButterAttack2" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("22_en737")
+
+[node name="ButterAttack3" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("23_5f228")
+
+[node name="MenuFocus" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("29_v0lv3")
+
+[node name="MenuPress" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("30_gmnsg")
+
+[node name="DialogFocus" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("29_mdami")
+
+[node name="DialogOpen" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("30_iwhr6")
+
+[node name="DialogClose" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("31_v0lv3")
+
+[node name="SwitchBallSwitch" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("35_bn1av")
+
+[node name="SwitchBallTick" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("35_yd6sm")
+
+[node name="PeanutButterAttack" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("37_1yhm4")
+volume_db = -5.0
+
+[node name="PeanutButterSpoonFlyLoop" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("38_q6u8w")
+pitch_scale = 1.5
+parameters/looping = true
+
+[node name="SoftBulletHit" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("40_volnt")
+
+[node name="CaliforniaRollShoot" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("43_0hyuk")
+
+[node name="CableRun" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("44_7xe56")
+volume_db = -5.0
+pitch_scale = 0.8
+
+[node name="PickleBreak" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("45_iecjp")
+
+[node name="BigMushroomLand" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("46_o8dwk")
+pitch_scale = 0.5
+
+[node name="BigMushroomBounce" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("47_2ynr6")
+volume_db = -10.0
+
+[node name="HamAttack" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("48_vpqpy")
+
+[node name="Fire" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("50_fgqjf")
+volume_db = -10.0
+
+[node name="RollLand" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("51_o2nia")
+pitch_scale = 0.7
+
+[node name="RollTeleport" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("52_qvc8f")
+volume_db = -15.0
+
+[node name="BurgerJump" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("52_g31sx")
+
+[node name="BurgerLand" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("53_n57mn")
+
+[node name="ColaLoop" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("53_g31sx")
+volume_db = -20.0
+parameters/looping = true
+
+[node name="KnifeLoop" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("54_qnwm3")
+volume_db = -20.0
+parameters/looping = true
+
+[node name="BaijiuJump" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("5_1a5y7")
+pitch_scale = 0.8
+
+[node name="HammerHit" type="AudioStreamPlayer" parent="SoundEffect"]
+stream = ExtResource("56_opm4o")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+bus = &"BGM"
+
+[node name="RainSoundEffect" type="Node" parent="."]
+
+[node name="RainOutsideLoop" type="AudioStreamPlayer" parent="RainSoundEffect"]
+stream = ExtResource("37_xyf1f")
+bus = &"SFX"
+parameters/looping = true
+
+[node name="RainInsideLoop" type="AudioStreamPlayer" parent="RainSoundEffect"]
+stream = ExtResource("38_8r5ko")
+bus = &"SFX"
+parameters/looping = true

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5lt74l16bdil"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_62e2n"]
+[ext_resource type="Script" uid="uid://b6jkqbig8igkl" path="res://src/unit/character/npc/milk_solder.gd" id="2_nfdif"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="3_1pey8"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="5_he2a4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3p8fe"]
+resource_local_to_scene = true
+shader = ExtResource("3_1pey8")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[node name="MilkSolder" instance=ExtResource("1_62e2n")]
+script = ExtResource("2_nfdif")
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_3p8fe")
+position = Vector2(0, -8)
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Shop")
+
+[node name="Shop" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("5_he2a4")]
+can_end = true
+message = Array[String](["DIALOG_SHOP"])
+target = {
+"BUY_MILK_1": NodePath("Milk1"),
+"BUY_MILK_10": NodePath("Milk10")
+}
+
+[node name="Milk1" parent="Dialog/Shop" index="0" node_paths=PackedStringArray("target") instance=ExtResource("5_he2a4")]
+message = Array[String](["BUY_FINISH"])
+target = {
+"DIALOG_RETURN": NodePath("..")
+}
+
+[node name="Milk10" parent="Dialog/Shop" index="1" node_paths=PackedStringArray("target") instance=ExtResource("5_he2a4")]
+message = Array[String](["BUY_FINISH"])
+target = {
+"DIALOG_RETURN": NodePath("..")
+}
+
+[connection signal="changed" from="Dialog" to="." method="_on_dialog_changed"]
+[connection signal="started" from="Dialog/Shop/Milk1" to="." method="_on_milk_1_started"]
+[connection signal="started" from="Dialog/Shop/Milk10" to="." method="_on_milk_10_started"]

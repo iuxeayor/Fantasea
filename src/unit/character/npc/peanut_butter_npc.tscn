@@ -1,0 +1,287 @@
+[gd_scene load_steps=15 format=3 uid="uid://g2mo24u82mxq"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_mkyq5"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_6cml7"]
+[ext_resource type="Script" uid="uid://cqupnufaq66pu" path="res://src/unit/character/npc/peanut_butter_npc.gd" id="2_arqn8"]
+[ext_resource type="Texture2D" uid="uid://bg5nmqwwtqm01" path="res://asset/texture/unit/npc/peanut_butter_relax.webp" id="4_fiamg"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="5_4ke8g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_etvfb"]
+resource_local_to_scene = true
+shader = ExtResource("2_6cml7")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6h7ai"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_pkwkf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Platform/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -26)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_fiamg")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+
+[sub_resource type="Animation" id="Animation_4hlnu"]
+resource_name = "awake"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Platform/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -26)]
+}
+
+[sub_resource type="Animation" id="Animation_mx2tl"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_fiamg")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Platform/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -29)]
+}
+
+[sub_resource type="Animation" id="Animation_r3og4"]
+resource_name = "ready"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_gobne"]
+resource_name = "relax"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Platform/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7, -29)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h63ow"]
+_data = {
+&"RESET": SubResource("Animation_pkwkf"),
+&"awake": SubResource("Animation_4hlnu"),
+&"idle": SubResource("Animation_mx2tl"),
+&"ready": SubResource("Animation_r3og4"),
+&"relax": SubResource("Animation_gobne")
+}
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_gobne"]
+b = Vector2(14, 0)
+
+[node name="PeanutButterNpc" instance=ExtResource("1_mkyq5")]
+script = ExtResource("2_arqn8")
+turn = false
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_etvfb")
+position = Vector2(0, -16)
+texture = ExtResource("4_fiamg")
+hframes = 14
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_6h7ai")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_h63ow")
+}
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+position = Vector2(0, -28)
+root_dialog = NodePath("Sleep")
+
+[node name="Sleep" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("5_4ke8g")]
+message = Array[String](["..."])
+target = {
+"PEANUT_BUTTER_INFO": NodePath("Info")
+}
+
+[node name="Info" parent="Dialog/Sleep" index="0" node_paths=PackedStringArray("target") instance=ExtResource("5_4ke8g")]
+can_end = true
+message = Array[String](["...", "PEANUT_BUTTER_INFO_0", "PEANUT_BUTTER_INFO_1"])
+target = {
+"0_PEANUT_BUTTER_JUMP": NodePath("Jump"),
+"1_PEANUT_BUTTER_FIGHT": NodePath("Fight")
+}
+
+[node name="Jump" parent="Dialog/Sleep/Info" index="0" node_paths=PackedStringArray("target") instance=ExtResource("5_4ke8g")]
+can_end = true
+message = Array[String](["PEANUT_BUTTER_JUMP_0", "PEANUT_BUTTER_JUMP_1", "PEANUT_BUTTER_JUMP_2", "PEANUT_BUTTER_JUMP_3", "PEANUT_BUTTER_JUMP_4", "PEANUT_BUTTER_JUMP_5"])
+target = {
+"1_PEANUT_BUTTER_FIGHT": NodePath("../Fight")
+}
+
+[node name="Fight" parent="Dialog/Sleep/Info" index="1" instance=ExtResource("5_4ke8g")]
+can_release_control = false
+message = Array[String](["pass"])
+
+[node name="Defeated" parent="Dialog" index="4" instance=ExtResource("5_4ke8g")]
+can_end = true
+can_release_control = false
+message = Array[String](["PEANUT_BUTTER_DEFEAT_0", "PEANUT_BUTTER_DEFEAT_1", "PEANUT_BUTTER_DEFEAT_2", "PEANUT_BUTTER_DEFEAT_3", "PEANUT_BUTTER_DEFEAT_4"])
+
+[node name="AskLeave" parent="Dialog" index="5" instance=ExtResource("5_4ke8g")]
+can_end = true
+message = Array[String](["PEANUT_BUTTER_ASK_LEAVE"])
+
+[node name="Normal" parent="Dialog" index="6" node_paths=PackedStringArray("target") instance=ExtResource("5_4ke8g")]
+can_end = true
+message = Array[String](["PEANUT_BUTTER_NORMAL_0", "PEANUT_BUTTER_NORMAL_1", "PEANUT_BUTTER_NORMAL_2"])
+target = {
+"DIALOG_ABOUT": NodePath("About")
+}
+
+[node name="About" parent="Dialog/Normal" index="0" instance=ExtResource("5_4ke8g")]
+can_end = true
+message = Array[String](["PEANUT_BUTTER_ABOUT_0", "PEANUT_BUTTER_ABOUT_1", "PEANUT_BUTTER_ABOUT_2", "PEANUT_BUTTER_ABOUT_3"])
+
+[node name="Platform" type="StaticBody2D" parent="." index="5"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" index="0"]
+position = Vector2(-7, -26)
+shape = SubResource("SegmentShape2D_gobne")
+one_way_collision = true
+
+[connection signal="started" from="Dialog/Sleep/Info" to="." method="_on_info_started"]
+[connection signal="started" from="Dialog/Sleep/Info/Fight" to="." method="_on_fight_started"]
+[connection signal="ended" from="Dialog/Defeated" to="." method="_on_defeated_ended"]

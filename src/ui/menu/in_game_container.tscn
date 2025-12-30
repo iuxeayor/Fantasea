@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://32a8ou0dgsob"]
+
+[ext_resource type="PackedScene" uid="uid://b0fep0a8toxbc" path="res://src/ui/menu/widget/menu_container.tscn" id="1_m7py8"]
+[ext_resource type="Script" uid="uid://54hj1fhfhqdo" path="res://src/ui/menu/in_game_container.gd" id="2_wlj8t"]
+
+[node name="InGameContainer" node_paths=PackedStringArray("first_focus") instance=ExtResource("1_m7py8")]
+script = ExtResource("2_wlj8t")
+first_focus = NodePath("ContentContainer/SettingButton")
+menu_id = 1
+
+[node name="TitleLabel" parent="TitleContainer" index="1"]
+text = "IN_TITLE_OPTION"
+
+[node name="SettingButton" type="Button" parent="ContentContainer" index="0" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MENU_SETTING_TITLE"
+
+[node name="LoadButton" type="Button" parent="ContentContainer" index="1" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MENU_LOAD_TITLE"
+
+[node name="BackTitleButton" type="Button" parent="ContentContainer" index="2" groups=["menu_option"]]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MENU_TITLE_TITLE"
+
+[connection signal="focus_entered" from="ContentContainer/SettingButton" to="." method="_on_setting_button_focus_entered"]
+[connection signal="pressed" from="ContentContainer/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="focus_entered" from="ContentContainer/LoadButton" to="." method="_on_load_button_focus_entered"]
+[connection signal="pressed" from="ContentContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="focus_entered" from="ContentContainer/BackTitleButton" to="." method="_on_back_title_button_focus_entered"]
+[connection signal="pressed" from="ContentContainer/BackTitleButton" to="." method="_on_back_title_button_pressed"]

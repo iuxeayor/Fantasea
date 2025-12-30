@@ -1,0 +1,187 @@
+[gd_scene load_steps=28 format=3 uid="uid://bxee6lrmo6ljx"]
+
+[ext_resource type="Script" uid="uid://c0kkatwmowayo" path="res://src/ui/inventory/item_container.gd" id="1_nc8td"]
+[ext_resource type="PackedScene" uid="uid://xkpms7i6gxua" path="res://src/ui/inventory/item_button.tscn" id="2_igcug"]
+[ext_resource type="Texture2D" uid="uid://dgars583yxx8i" path="res://asset/texture/unit/item/flour.webp" id="3_k2a3u"]
+[ext_resource type="Texture2D" uid="uid://c6o2t5sawisob" path="res://asset/texture/unit/item/milk.webp" id="4_k6low"]
+[ext_resource type="Texture2D" uid="uid://de6ckc1km30wk" path="res://asset/texture/unit/item/coin.webp" id="5_vwyn5"]
+[ext_resource type="PackedScene" uid="uid://b4a6wwh3r4ad" path="res://src/ui/inventory/stick_button.tscn" id="6_goice"]
+[ext_resource type="Texture2D" uid="uid://bj51pp0jq3vah" path="res://asset/texture/unit/item/wood_stick.webp" id="7_vwyn5"]
+[ext_resource type="Texture2D" uid="uid://7gvp8e0hyhy" path="res://asset/texture/unit/item/watermelon_seed.webp" id="8_vwyn5"]
+[ext_resource type="Texture2D" uid="uid://c0r6j5a7lpwu5" path="res://asset/texture/unit/item/jelly.webp" id="9_vwyn5"]
+[ext_resource type="Texture2D" uid="uid://bdobqtcqdxko1" path="res://asset/texture/unit/item/want_more_milk.webp" id="10_s6o3t"]
+[ext_resource type="Texture2D" uid="uid://hfr8qp2kpxcw" path="res://asset/texture/unit/item/club_soda.webp" id="11_40751"]
+[ext_resource type="Texture2D" uid="uid://4em4e086a1em" path="res://asset/texture/unit/item/bang_card.webp" id="11_nocth"]
+[ext_resource type="Texture2D" uid="uid://dfck8i74ai07p" path="res://asset/texture/unit/item/jelly_pouch.webp" id="12_0us0f"]
+[ext_resource type="Texture2D" uid="uid://chaj6cencm6lf" path="res://asset/texture/unit/item/honey.webp" id="12_27vjt"]
+[ext_resource type="Texture2D" uid="uid://bxvjyneyxge65" path="res://asset/texture/unit/item/gold_steak.webp" id="12_r8nvs"]
+[ext_resource type="Texture2D" uid="uid://5rofcyqlk8uq" path="res://asset/texture/unit/item/magnet.webp" id="14_k0n03"]
+[ext_resource type="Texture2D" uid="uid://dqft4p4qp1m5s" path="res://asset/texture/unit/item/nutmeg.webp" id="15_p0kom"]
+[ext_resource type="Texture2D" uid="uid://4rs43lyoqv3q" path="res://asset/texture/unit/item/chicken_sandwich.webp" id="15_wqxt8"]
+[ext_resource type="Texture2D" uid="uid://c4exo7pehjvcu" path="res://asset/texture/unit/item/lemon_slice.webp" id="16_wbd18"]
+[ext_resource type="Texture2D" uid="uid://dwnf2ov8nx3f1" path="res://asset/texture/unit/item/straw_glasses.webp" id="17_ha28g"]
+[ext_resource type="Texture2D" uid="uid://bbr1fkkmgvfp5" path="res://asset/texture/unit/item/fresh_milk.webp" id="18_sjym6"]
+[ext_resource type="Texture2D" uid="uid://2uomg8v8x22f" path="res://asset/texture/unit/item/mushroom_powder.webp" id="18_t4agu"]
+[ext_resource type="Texture2D" uid="uid://0cv6fiwg155h" path="res://asset/texture/unit/item/stinky_tofu.webp" id="20_8auqq"]
+[ext_resource type="Texture2D" uid="uid://cchse48dhxjch" path="res://asset/texture/unit/item/sweet_jiuniang.webp" id="20_n8dhl"]
+[ext_resource type="Texture2D" uid="uid://d3gfg0fnnf5y6" path="res://asset/texture/unit/item/frozen_apple.webp" id="21_rsmp5"]
+[ext_resource type="Texture2D" uid="uid://cwy5hws6xegaw" path="res://asset/texture/unit/item/hot_sauce.webp" id="22_g3d0w"]
+[ext_resource type="Texture2D" uid="uid://c2rslmqoase7b" path="res://asset/texture/unit/item/silk_tofu.webp" id="25_dsk07"]
+
+[node name="ItemContainer" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nc8td")
+
+[node name="ItemContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Health" parent="ItemContainer/HBoxContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("3_k2a3u")
+info = "ITEM_FLOUR"
+
+[node name="Potion" parent="ItemContainer/HBoxContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("4_k6low")
+info = "ITEM_MILK"
+
+[node name="Money" parent="ItemContainer/HBoxContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("5_vwyn5")
+info = "ITEM_COIN"
+
+[node name="Stick" parent="ItemContainer/HBoxContainer" instance=ExtResource("6_goice")]
+layout_mode = 2
+icon = ExtResource("7_vwyn5")
+info = "ITEM_WOOD_STICK"
+
+[node name="WatermelonSeed" parent="ItemContainer/HBoxContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("8_vwyn5")
+info = "ITEM_WATERMELON_SEED"
+
+[node name="Jelly" parent="ItemContainer/HBoxContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("9_vwyn5")
+info = "ITEM_JELLY"
+
+[node name="HSeparator" type="HSeparator" parent="ItemContainer"]
+layout_mode = 2
+
+[node name="SubItemContainer" type="GridContainer" parent="ItemContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+columns = 6
+
+[node name="ClubSoda" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("11_40751")
+info = "ITEM_CLUB_SODA"
+
+[node name="Honey" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("12_27vjt")
+info = "ITEM_HONEY"
+
+[node name="GoldSteak" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("12_r8nvs")
+info = "ITEM_GOLD_STEAK"
+
+[node name="JellyPouch" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("12_0us0f")
+info = "ITEM_JELLY_POUCH"
+
+[node name="BangCard" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("11_nocth")
+info = "ITEM_BANG_CARD"
+
+[node name="ChickenSandwich" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("15_wqxt8")
+info = "ITEM_CHICKEN_SANDWICH"
+
+[node name="WantMoreMilk" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("10_s6o3t")
+info = "ITEM_WANT_MORE_MILK"
+
+[node name="Magnet" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("14_k0n03")
+info = "ITEM_MAGNET"
+
+[node name="Nutmeg" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("15_p0kom")
+info = "ITEM_NUTMEG"
+
+[node name="MushroomPowder" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("18_t4agu")
+info = "ITEM_MUSHROOM_POWDER"
+
+[node name="SweetJiuniang" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("20_n8dhl")
+info = "ITEM_SWEET_JIUNIANG"
+
+[node name="StinkyTofu" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("20_8auqq")
+info = "ITEM_STINKY_TOFU"
+
+[node name="StrawGlasses" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("17_ha28g")
+info = "ITEM_STRAW_GLASSES"
+
+[node name="FreshMilk" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("18_sjym6")
+info = "ITEM_FRESH_MILK"
+
+[node name="FrozenApple" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("21_rsmp5")
+info = "ITEM_FROZEN_APPLE"
+
+[node name="HotSauce" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("22_g3d0w")
+info = "ITEM_HOT_SAUCE"
+
+[node name="LemonSlice" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("16_wbd18")
+info = "ITEM_LEMON_SLICE"
+
+[node name="SilkTofu" parent="ItemContainer/SubItemContainer" instance=ExtResource("2_igcug")]
+layout_mode = 2
+icon = ExtResource("25_dsk07")
+info = "ITEM_SILK_TOFU"
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="Message" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "ItemInfo"
+scroll_following = true

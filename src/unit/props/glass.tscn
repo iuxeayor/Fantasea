@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://d11shxxg05we8"]
+
+[ext_resource type="Texture2D" uid="uid://hkuokb6en52w" path="res://asset/texture/unit/mechanical/glass.webp" id="1_58yk8"]
+[ext_resource type="Script" uid="uid://brnablpsb8i5g" path="res://src/unit/props/glass.gd" id="1_ailpi"]
+[ext_resource type="Material" uid="uid://c2usvfvut2obo" path="res://src/asset/particle/glass.tres" id="3_uy5et"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58yk8"]
+size = Vector2(352, 8)
+
+[node name="Glass" type="Node2D"]
+script = ExtResource("1_ailpi")
+
+[node name="Glass" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("1_58yk8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_58yk8")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.78039217, 0.8117647, 0.8666667, 0.6666667)
+position = Vector2(0, -4)
+emitting = false
+amount = 400
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("3_uy5et")

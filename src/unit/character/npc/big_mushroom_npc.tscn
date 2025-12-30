@@ -1,0 +1,162 @@
+[gd_scene load_steps=14 format=3 uid="uid://b47pu6erso8ra"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_jg4as"]
+[ext_resource type="Script" uid="uid://d2i4dextesisu" path="res://src/unit/character/npc/big_mushroom_npc.gd" id="2_hivn6"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_s3mjb"]
+[ext_resource type="Texture2D" uid="uid://m5kvismuojde" path="res://asset/texture/unit/npc/big_mushroom_npc.webp" id="3_s3mjb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hivn6"]
+resource_local_to_scene = true
+shader = ExtResource("2_s3mjb")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_hivn6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kjbj5"]
+resource_name = "bounce"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(1, 1), Vector2(0.9, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i35ap"]
+resource_name = "defeat"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_s3mjb"]
+resource_name = "IDLE"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_62i6b"]
+resource_name = "sleep"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_2guxv"]
+resource_name = "stand\\"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hivn6"]
+_data = {
+&"RESET": SubResource("Animation_hivn6"),
+&"bounce": SubResource("Animation_kjbj5"),
+&"defeat": SubResource("Animation_i35ap"),
+&"idle": SubResource("Animation_s3mjb"),
+&"sleep": SubResource("Animation_62i6b"),
+&"stand": SubResource("Animation_2guxv")
+}
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hivn6"]
+b = Vector2(38, 0)
+
+[node name="BigMushroomNpc" instance=ExtResource("1_jg4as")]
+script = ExtResource("2_hivn6")
+animation_name = &"sleep"
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_hivn6")
+position = Vector2(0, -24)
+texture = ExtResource("3_s3mjb")
+hframes = 4
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_hivn6")
+}
+
+[node name="Dialog" parent="." index="4"]
+position = Vector2(0, -56)
+
+[node name="PlayerJumpChecker" type="Area2D" parent="." index="5"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerJumpChecker" index="0"]
+position = Vector2(-19, -36)
+shape = SubResource("SegmentShape2D_hivn6")
+
+[connection signal="body_entered" from="PlayerJumpChecker" to="." method="_on_player_jump_checker_body_entered"]

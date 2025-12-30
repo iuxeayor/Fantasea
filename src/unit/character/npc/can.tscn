@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://byb2o1gsk5jxv"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_aarpw"]
+[ext_resource type="Script" uid="uid://bx4tvvbub81dj" path="res://src/unit/character/npc/can.gd" id="2_3dt6q"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_5ko05"]
+[ext_resource type="Texture2D" uid="uid://dn2h4vybrhvpr" path="res://asset/texture/unit/npc/can.webp" id="3_5ko05"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_l33kp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l33kp"]
+resource_local_to_scene = true
+shader = ExtResource("2_5ko05")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ko05"]
+size = Vector2(32, 8)
+
+[node name="Can" instance=ExtResource("1_aarpw")]
+script = ExtResource("2_3dt6q")
+turn = false
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_l33kp")
+position = Vector2(0, -8)
+texture = ExtResource("3_5ko05")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_5ko05")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("Meet")
+
+[node name="Meet" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("4_l33kp")]
+can_release_control = false
+message = Array[String](["CAN_MEET_0", "CAN_MEET_1", "CAN_MEET_2"])
+target = {
+"CAN_EXPLAIN": NodePath("Explain")
+}
+
+[node name="Explain" parent="Dialog/Meet" index="0" node_paths=PackedStringArray("target") instance=ExtResource("4_l33kp")]
+can_release_control = false
+message = Array[String](["CAN_EXPLAIN_0", "CAN_EXPLAIN_1", "CAN_EXPLAIN_2", "CAN_EXPLAIN_3", "CAN_EXPLAIN_4", "CAN_EXPLAIN_5", "CAN_EXPLAIN_6"])
+target = {
+"CAN_BATTLE": NodePath("Battle")
+}
+
+[node name="Battle" parent="Dialog/Meet/Explain" index="0" node_paths=PackedStringArray("target") instance=ExtResource("4_l33kp")]
+can_release_control = false
+message = Array[String](["CAN_BATTLE_0", "CAN_BATTLE_1", "CAN_BATTLE_2"])
+target = {
+"CAN_WORK": NodePath("Work")
+}
+
+[node name="Work" parent="Dialog/Meet/Explain/Battle" index="0" instance=ExtResource("4_l33kp")]
+can_end = true
+message = Array[String](["CAN_WORK_0", "CAN_WORK_1", "CAN_WORK_2", "CAN_WORK_3", "CAN_WORK_4", "CAN_WORK_5", "CAN_WORK_6", "CAN_WORK_7", "CAN_WORK_8", "CAN_WORK_9", "CAN_WORK_10", "CAN_WORK_11"])
+
+[node name="Normal" parent="Dialog" index="4" node_paths=PackedStringArray("target") instance=ExtResource("4_l33kp")]
+can_end = true
+message = Array[String](["CAN_NORMAL_0"])
+target = {
+"CAN_MONEY": NodePath("Money")
+}
+
+[node name="Money" parent="Dialog/Normal" index="0" instance=ExtResource("4_l33kp")]
+can_end = true
+message = Array[String](["CAN_MONEY_0"])
+
+[connection signal="started" from="Dialog/Meet" to="." method="_on_meet_started"]
+[connection signal="ended" from="Dialog/Meet/Explain/Battle/Work" to="." method="_on_work_ended"]
+[connection signal="ended" from="Dialog/Normal/Money" to="." method="_on_money_ended"]

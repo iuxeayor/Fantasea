@@ -1,0 +1,126 @@
+[gd_scene load_steps=14 format=3 uid="uid://x2i5v8aa6rqj"]
+
+[ext_resource type="PackedScene" uid="uid://uhmn6jvb8pf2" path="res://src/unit/character/enemy/enemy.tscn" id="1_g1ono"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_52r6f"]
+[ext_resource type="Script" uid="uid://cet8lrcyrpd37" path="res://src/unit/character/enemy/raisin/raisin.gd" id="2_kfb4d"]
+[ext_resource type="Texture2D" uid="uid://cghcbckj14wx8" path="res://asset/texture/unit/enemy/raisin/idle.webp" id="3_52r6f"]
+[ext_resource type="Script" uid="uid://p0yn5ixp2w53" path="res://src/unit/common/behavior_tree/action.gd" id="5_yxlkf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kfb4d"]
+resource_local_to_scene = true
+shader = ExtResource("2_52r6f")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kfb4d"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfb4d"]
+size = Vector2(16, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52r6f"]
+size = Vector2(16, 24)
+
+[sub_resource type="Animation" id="Animation_kfb4d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yxlkf"]
+resource_name = "hurt"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2, 0.25, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.08726646, -0.08726646, 0.0, 0.034906585, -0.034906585, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_52r6f"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kfb4d"]
+_data = {
+&"RESET": SubResource("Animation_kfb4d"),
+&"hurt": SubResource("Animation_yxlkf"),
+&"idle": SubResource("Animation_52r6f")
+}
+
+[node name="Raisin" instance=ExtResource("1_g1ono")]
+script = ExtResource("2_kfb4d")
+enemy_name = &"raisin"
+knockback_speed = 0.0
+hurt_turn = false
+gravity = 0.0
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_kfb4d")
+position = Vector2(0, -24)
+texture = ExtResource("3_52r6f")
+
+[node name="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_kfb4d")
+
+[node name="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_kfb4d")
+
+[node name="SpawnPoint" type="Marker2D" parent="." index="3"]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_52r6f")
+
+[node name="HurtParticleQueue" parent="." index="5"]
+overwrite_color = Color(0.23137255, 0.078431375, 0.2627451, 1)
+
+[node name="SpawnTimer" type="Timer" parent="Timers" index="1"]
+wait_time = 2.0
+
+[node name="Action" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource("5_yxlkf")
+metadata/_custom_type_script = "uid://p0yn5ixp2w53"
+
+[node name="HealthBar" parent="." index="8"]
+offset_top = -27.0
+offset_bottom = -26.0
+
+[node name="AnimationPlayer" parent="." index="9"]
+libraries = {
+&"": SubResource("AnimationLibrary_kfb4d")
+}
+
+[connection signal="timeout" from="Timers/SpawnTimer" to="." method="_on_spawn_timer_timeout"]

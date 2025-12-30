@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdxvi0h6hjrbb"]
+
+[ext_resource type="PackedScene" uid="uid://dkmb74ri74fig" path="res://src/unit/character/character.tscn" id="1_0svv3"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_vq208"]
+[ext_resource type="Script" uid="uid://br1td2kywv6fq" path="res://src/unit/character/enemy/boss/boss.gd" id="2_w416x"]
+[ext_resource type="PackedScene" uid="uid://ctjmfotnke34v" path="res://src/unit/common/hitbox/hitbox.tscn" id="4_w416x"]
+[ext_resource type="Script" uid="uid://fjr4gfdfohcg" path="res://src/unit/common/behavior_tree/root_node.gd" id="5_mh34t"]
+[ext_resource type="PackedScene" uid="uid://b2p8iec11c7pb" path="res://src/unit/common/particle/particle_queue.tscn" id="6_pjirf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w416x"]
+resource_local_to_scene = true
+shader = ExtResource("2_vq208")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[node name="Boss" groups=["boss"] instance=ExtResource("1_0svv3")]
+collision_layer = 8
+collision_mask = 259
+script = ExtResource("2_w416x")
+direction = -1
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_w416x")
+
+[node name="Hitbox" parent="Graphics" index="1" instance=ExtResource("4_w416x")]
+collision_layer = 16
+disabled = true
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitbox" index="0"]
+debug_color = Color(0.973555, 0, 0.433151, 0.42)
+
+[node name="Hurtbox" parent="Graphics" index="2" instance=ExtResource("4_w416x")]
+collision_layer = 1024
+collision_mask = 32
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurtbox" index="0"]
+debug_color = Color(0.663132, 0.513016, 1.15514e-06, 0.42)
+
+[node name="HurtTimer" type="Timer" parent="." index="3"]
+wait_time = 0.2
+one_shot = true
+
+[node name="HurtParticle" parent="." index="4" instance=ExtResource("6_pjirf")]
+
+[node name="BehaviorTree" type="Node" parent="." index="6"]
+script = ExtResource("5_mh34t")
+disabled = true
+
+[connection signal="status_changed" from="Status" to="." method="_on_status_status_changed"]
+[connection signal="collided" from="Graphics/Hurtbox" to="." method="_on_hurtbox_collided"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmj7jsp4h113b"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_kplpa"]
+[ext_resource type="Texture2D" uid="uid://dqft4p4qp1m5s" path="res://asset/texture/unit/item/nutmeg.webp" id="2_fe62q"]
+
+[node name="Nutmeg" instance=ExtResource("1_kplpa")]
+item_id = "nutmeg"
+message = "ITEM_NUTMEG"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_fe62q")

@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://dooioe35y12jf"]
+
+[ext_resource type="PackedScene" uid="uid://buxr1rvcq82df" path="res://src/unit/character/enemy/rigid_bullet.tscn" id="1_tnjos"]
+[ext_resource type="Script" uid="uid://bxofh8dhnv4vs" path="res://src/unit/character/enemy/popcorn/popcorn_bullet.gd" id="2_8p70t"]
+[ext_resource type="Texture2D" uid="uid://kss16mxdhsbc" path="res://asset/texture/unit/enemy/popcorn/popcorn_bullet.webp" id="3_m8jih"]
+[ext_resource type="Material" uid="uid://bxh4fkf88hmab" path="res://src/asset/particle/small_bullet_disappear.tres" id="4_m8jih"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h51cp"]
+friction = 0.5
+bounce = 0.6
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6x0o"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ei3gn"]
+radius = 1.0
+
+[node name="PopcornBullet" instance=ExtResource("1_tnjos")]
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_h51cp")
+continuous_cd = 1
+script = ExtResource("2_8p70t")
+obj_name = &"popcorn_bullet"
+rolling_friction = true
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_m8jih")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_l6x0o")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_ei3gn")
+
+[node name="ChangeCollisionTimer" type="Timer" parent="." index="4"]
+wait_time = 0.6
+one_shot = true
+
+[node name="ParticleQueue" parent="." index="5"]
+overwrite_color = Color(1, 0.784314, 0.145098, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_m8jih")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_m8jih")
+
+[node name="LifeTimer" parent="." index="6"]
+wait_time = 1.2
+
+[connection signal="timeout" from="ChangeCollisionTimer" to="." method="_on_change_collision_timer_timeout"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx1r5q08tfy0k"]
+
+[ext_resource type="Script" uid="uid://d232nf8juwtsw" path="res://src/global/game.gd" id="1_3oxlr"]
+[ext_resource type="Script" uid="uid://dbwibgob8eogh" path="res://src/global/scene_loader.gd" id="2_tcann"]
+
+[node name="Game" type="Node"]
+process_mode = 3
+script = ExtResource("1_3oxlr")
+
+[node name="SceneLoader" type="Node" parent="."]
+script = ExtResource("2_tcann")
+
+[node name="Timer" type="Timer" parent="SceneLoader"]
+autostart = true
+
+[node name="Lapse" type="Timer" parent="."]
+autostart = true
+ignore_time_scale = true
+
+[connection signal="timeout" from="SceneLoader/Timer" to="SceneLoader" method="_on_timer_timeout"]
+[connection signal="timeout" from="Lapse" to="." method="_on_lapse_timeout"]

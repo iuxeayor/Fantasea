@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://n8vuicigtl6l"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_qunk2"]
+[ext_resource type="Texture2D" uid="uid://dq285ndkqxgkj" path="res://asset/texture/unit/enemy/salad/egg_bullet.webp" id="2_k5g5o"]
+[ext_resource type="Script" uid="uid://do5ec736x71ag" path="res://src/unit/character/enemy/salad/egg_bullet.gd" id="2_mx1yn"]
+[ext_resource type="Material" uid="uid://bxh4fkf88hmab" path="res://src/asset/particle/small_bullet_disappear.tres" id="4_4jnvq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5g5o"]
+size = Vector2(4, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx1yn"]
+size = Vector2(4, 6)
+
+[node name="EggBullet" instance=ExtResource("1_qunk2")]
+script = ExtResource("2_mx1yn")
+obj_name = &"egg_bullet"
+gravity = 450.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_k5g5o")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+shape = SubResource("RectangleShape2D_k5g5o")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+shape = SubResource("RectangleShape2D_mx1yn")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_4jnvq")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_4jnvq")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+position = Vector2(0, 64)
+scale = Vector2(12.8, 12.8)
+
+[node name="PlayerChecker" type="RayCast2D" parent="." index="7"]
+target_position = Vector2(0, 216)
+collision_mask = 5

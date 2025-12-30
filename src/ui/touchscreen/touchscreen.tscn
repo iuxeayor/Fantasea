@@ -1,0 +1,227 @@
+[gd_scene load_steps=22 format=3 uid="uid://c36dulx6ekr6x"]
+
+[ext_resource type="Script" uid="uid://1avr7fp3en6x" path="res://src/ui/touchscreen/touchscreen.gd" id="1_dx0bt"]
+[ext_resource type="PackedScene" uid="uid://cim7sefsrdyt" path="res://src/ui/touchscreen/joystick.tscn" id="2_ksis6"]
+[ext_resource type="PackedScene" uid="uid://b3ndys5ogimbt" path="res://src/ui/touchscreen/touch_button.tscn" id="2_p4vxn"]
+[ext_resource type="Texture2D" uid="uid://dprcyur28algn" path="res://asset/texture/ui/touchscreen/jump.webp" id="5_g26pl"]
+[ext_resource type="Texture2D" uid="uid://ld0ldun20kbn" path="res://asset/texture/ui/touchscreen/attack.webp" id="6_00md8"]
+[ext_resource type="Texture2D" uid="uid://b7k1g4s2p6ue8" path="res://asset/texture/ui/touchscreen/heal.webp" id="6_p6ffu"]
+[ext_resource type="Texture2D" uid="uid://bdny0681r45wj" path="res://asset/texture/ui/touchscreen/shoot.webp" id="8_dktmb"]
+[ext_resource type="Texture2D" uid="uid://d4b8h2vy8r33l" path="res://asset/texture/ui/touchscreen/throw.webp" id="9_gm31y"]
+[ext_resource type="Texture2D" uid="uid://cxwcmamb1gjpt" path="res://asset/texture/ui/touchscreen/dash.webp" id="10_5po6k"]
+[ext_resource type="Texture2D" uid="uid://y3y6fbs8r666" path="res://asset/texture/ui/touchscreen/menu.webp" id="10_ed8h2"]
+[ext_resource type="Texture2D" uid="uid://cqneg23evmwko" path="res://asset/texture/ui/touchscreen/inventory.webp" id="11_5bxsw"]
+[ext_resource type="Texture2D" uid="uid://nwfq0ns5i0fg" path="res://asset/texture/ui/touchscreen/interact.webp" id="12_ksis6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ksis6"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5po6k"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g26pl"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_00md8"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k7i1i"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dktmb"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gm31y"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ed8h2"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v7p0d"]
+radius = 8.0
+
+[node name="Touchscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_dx0bt")
+
+[node name="Cover" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftCover" type="ColorRect" parent="Cover"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -216.0
+offset_right = -192.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TopCover" type="ColorRect" parent="Cover"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -324.0
+offset_right = 384.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RightCover" type="ColorRect" parent="Cover"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = -216.0
+offset_right = 576.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomCover" type="ColorRect" parent="Cover"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = 108.0
+offset_right = 384.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Move" type="Control" parent="Button"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Joystick" parent="Button/Move" instance=ExtResource("2_ksis6")]
+position = Vector2(48, -48)
+
+[node name="Action" type="Control" parent="Button"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Attack" parent="Button/Action" instance=ExtResource("2_p4vxn")]
+position = Vector2(-56, -56)
+shape = SubResource("CircleShape2D_ksis6")
+action = "attack"
+action_name = &"attack"
+radius = 16.0
+image = ExtResource("6_00md8")
+
+[node name="Dash" parent="Button/Action" instance=ExtResource("2_p4vxn")]
+position = Vector2(-64, -24)
+shape = SubResource("CircleShape2D_5po6k")
+action = "dash"
+action_name = &"dash"
+image = ExtResource("10_5po6k")
+
+[node name="Heal" parent="Button/Action" instance=ExtResource("2_p4vxn")]
+position = Vector2(-104, -16)
+shape = SubResource("CircleShape2D_g26pl")
+action = "heal"
+action_name = &"heal"
+image = ExtResource("6_p6ffu")
+
+[node name="Jump" parent="Button/Action" instance=ExtResource("2_p4vxn")]
+position = Vector2(-32, -32)
+shape = SubResource("CircleShape2D_00md8")
+action = "jump"
+action_name = &"jump"
+radius = 16.0
+image = ExtResource("5_g26pl")
+
+[node name="Shoot" parent="Button/Action" instance=ExtResource("2_p4vxn")]
+position = Vector2(-24, -64)
+shape = SubResource("CircleShape2D_k7i1i")
+action = "shoot"
+action_name = &"shoot"
+image = ExtResource("8_dktmb")
+
+[node name="Throw" parent="Button/Action" instance=ExtResource("2_p4vxn")]
+position = Vector2(-88, -40)
+shape = SubResource("CircleShape2D_dktmb")
+action = "throw"
+action_name = &"throw"
+image = ExtResource("9_gm31y")
+
+[node name="Menu" type="Control" parent="Button"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="Menu" parent="Button/Menu" instance=ExtResource("2_p4vxn")]
+position = Vector2(-16, 16)
+shape = SubResource("CircleShape2D_gm31y")
+action = "menu"
+action_name = &"menu"
+radius = 8.0
+image = ExtResource("10_ed8h2")
+
+[node name="Inventory" parent="Button/Menu" instance=ExtResource("2_p4vxn")]
+position = Vector2(-16, 40)
+shape = SubResource("CircleShape2D_ed8h2")
+action = "inventory"
+action_name = &"inventory"
+radius = 8.0
+image = ExtResource("11_5bxsw")
+
+[node name="Interact" parent="Button/Menu" instance=ExtResource("2_p4vxn")]
+position = Vector2(-16, 64)
+shape = SubResource("CircleShape2D_v7p0d")
+action = "interact"
+action_name = &"interact"
+radius = 8.0
+image = ExtResource("12_ksis6")

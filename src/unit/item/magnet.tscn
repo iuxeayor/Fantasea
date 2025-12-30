@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://csmt6neuavasi"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_14eoo"]
+[ext_resource type="Texture2D" uid="uid://5rofcyqlk8uq" path="res://asset/texture/unit/item/magnet.webp" id="3_2lp7i"]
+
+[node name="Magnet" instance=ExtResource("1_14eoo")]
+item_id = "magnet"
+message = "ITEM_MAGNET"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_2lp7i")

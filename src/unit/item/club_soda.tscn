@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddmskpo77hlrt"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_k217p"]
+[ext_resource type="Texture2D" uid="uid://hfr8qp2kpxcw" path="res://asset/texture/unit/item/club_soda.webp" id="2_3l2fx"]
+[ext_resource type="Script" uid="uid://c53rc14h0vm07" path="res://src/unit/item/club_soda.gd" id="2_7gyju"]
+
+[node name="ClubSoda" instance=ExtResource("1_k217p")]
+script = ExtResource("2_7gyju")
+item_id = "club_soda"
+message = "ITEM_CLUB_SODA"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_3l2fx")

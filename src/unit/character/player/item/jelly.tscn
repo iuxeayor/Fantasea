@@ -1,0 +1,283 @@
+[gd_scene load_steps=13 format=3 uid="uid://css8y8sjc361o"]
+
+[ext_resource type="Script" uid="uid://bkxs2huvyg22i" path="res://src/unit/character/player/item/jelly.gd" id="1_j5ynm"]
+[ext_resource type="Texture2D" uid="uid://18ls4cbhrg7w" path="res://asset/texture/unit/player/item/jelly.webp" id="2_6nufi"]
+[ext_resource type="Script" uid="uid://cp8adijnorm6o" path="res://src/unit/common/particle/particle_queue.gd" id="3_y3w11"]
+[ext_resource type="Material" uid="uid://cc6v5u5i4sfgn" path="res://src/asset/particle/jelly_land.tres" id="4_guju6"]
+[ext_resource type="Material" uid="uid://b2j46fedtssln" path="res://src/asset/particle/jelly_hit.tres" id="5_guju6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1ojo"]
+size = Vector2(14, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1r0i8"]
+size = Vector2(16, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74cid"]
+size = Vector2(10, 6)
+
+[sub_resource type="Animation" id="Animation_y4uki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Platform:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -5)]
+}
+
+[sub_resource type="Animation" id="Animation_suwnf"]
+resource_name = "spring"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, -2.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.14286, 0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Platform:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -5), Vector2(0, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_1r0i8"]
+resource_name = "new_animation"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5.36442e-07, -2.5), Vector2(-5.96046e-07, -6), Vector2(-1.78814e-07, -4), Vector2(-1.78814e-07, -5.25), Vector2(-5.66244e-07, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.14286, 0.5), Vector2(0.857143, 1.2), Vector2(1, 0.8), Vector2(1, 1.05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Platform:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6qw5n"]
+_data = {
+&"RESET": SubResource("Animation_y4uki"),
+&"press": SubResource("Animation_suwnf"),
+&"release": SubResource("Animation_1r0i8")
+}
+
+[node name="Jelly" type="CharacterBody2D" groups=["projectile"]]
+collision_layer = 8192
+collision_mask = 3
+platform_floor_layers = 4294967036
+script = ExtResource("1_j5ynm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.666667)
+position = Vector2(0, -5)
+texture = ExtResource("2_6nufi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_e1ojo")
+
+[node name="Platform" type="AnimatableBody2D" parent="."]
+position = Vector2(0, -5)
+collision_layer = 32768
+collision_mask = 0
+
+[node name="PlatformCollision" type="CollisionShape2D" parent="Platform"]
+shape = SubResource("RectangleShape2D_1r0i8")
+disabled = true
+one_way_collision = true
+debug_color = Color(0.994072, 0, 0.2279, 0.42)
+
+[node name="LeftPlayerChecker" type="RayCast2D" parent="Platform"]
+position = Vector2(-8, -1)
+target_position = Vector2(0, -1)
+collision_mask = 4
+
+[node name="MidPlayerChecker" type="RayCast2D" parent="Platform"]
+position = Vector2(0, -1)
+target_position = Vector2(0, -1)
+collision_mask = 4
+
+[node name="RightPlayerChecker" type="RayCast2D" parent="Platform"]
+position = Vector2(8, -1)
+target_position = Vector2(0, -1)
+collision_mask = 4
+
+[node name="SpikeChecker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeChecker"]
+visible = false
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_74cid")
+debug_color = Color(4.06103e-08, 0.0746984, 0.0944996, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6qw5n")
+}
+
+[node name="LandParticleQueue" type="Node" parent="."]
+script = ExtResource("3_y3w11")
+overwrite_color = Color(0, 0.803922, 0.976471, 1)
+metadata/_custom_type_script = "uid://cp8adijnorm6o"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="LandParticleQueue"]
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.05
+process_material = ExtResource("4_guju6")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="LandParticleQueue"]
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.05
+process_material = ExtResource("4_guju6")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="LandParticleQueue"]
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.05
+process_material = ExtResource("4_guju6")
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="LandParticleQueue"]
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.05
+process_material = ExtResource("4_guju6")
+
+[node name="SpikeParticleQueue" type="Node" parent="."]
+script = ExtResource("3_y3w11")
+overwrite_color = Color(0, 0.803922, 0.976471, 1)
+metadata/_custom_type_script = "uid://cp8adijnorm6o"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="SpikeParticleQueue"]
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("5_guju6")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="SpikeParticleQueue"]
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("5_guju6")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="SpikeParticleQueue"]
+emitting = false
+amount = 10
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("5_guju6")
+
+[node name="FinishTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="SpikeChecker" to="." method="_on_spike_checker_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="FinishTimer" to="." method="_on_finish_timer_timeout"]

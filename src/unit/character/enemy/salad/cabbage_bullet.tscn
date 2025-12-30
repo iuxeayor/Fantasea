@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx0h538ssmmv6"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_02c17"]
+[ext_resource type="Texture2D" uid="uid://3i5p22ea6imq" path="res://asset/texture/unit/enemy/salad/cabbage_bullet.webp" id="2_fptsf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c0eru"]
+radius = 3.0
+
+[node name="CabbageBullet" instance=ExtResource("1_02c17")]
+obj_name = &"cabbage_bullet"
+gravity = 800.0
+rotation_speed = 1.0
+dead_on_collide = 0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_fptsf")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_c0eru")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+visible = false
+position = Vector2(0, 64)
+scale = Vector2(12.8, 12.8)

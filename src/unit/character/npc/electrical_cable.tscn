@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=3 uid="uid://cy6jr5t5cimha"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_i470i"]
+[ext_resource type="Script" uid="uid://bdu77b536r2qx" path="res://src/unit/character/npc/electrical_cable.gd" id="2_gjmen"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_k5v81"]
+[ext_resource type="Texture2D" uid="uid://drcnj0qxp4srn" path="res://asset/texture/unit/npc/electrical_cable.webp" id="3_k5v81"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_odgph"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_odgph"]
+resource_local_to_scene = true
+shader = ExtResource("2_k5v81")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjmen"]
+size = Vector2(16, 8)
+
+[sub_resource type="Animation" id="Animation_odgph"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_k5v81"]
+resource_name = "broke"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gjmen"]
+resource_name = "connect"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_odgph"]
+_data = {
+&"RESET": SubResource("Animation_odgph"),
+&"broke": SubResource("Animation_k5v81"),
+&"connect": SubResource("Animation_gjmen")
+}
+
+[node name="ElectricalCable" instance=ExtResource("1_i470i")]
+script = ExtResource("2_gjmen")
+direction = 1
+turn = false
+animation_name = &"broke"
+
+[node name="Graphics" parent="." index="1"]
+scale = Vector2(1, 1)
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_odgph")
+position = Vector2(0, -32)
+texture = ExtResource("3_k5v81")
+hframes = 2
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_gjmen")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_odgph")
+}
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+root_dialog = NodePath("DialogContent")
+
+[node name="DialogContent" parent="Dialog" index="3" node_paths=PackedStringArray("target") instance=ExtResource("4_odgph")]
+can_end = true
+message = Array[String](["ELECTRIC_0"])
+target = {
+"ELECTRIC_CONNECT": NodePath("Connect")
+}
+
+[node name="Connect" parent="Dialog/DialogContent" index="0" instance=ExtResource("4_odgph")]
+can_release_control = false
+
+[connection signal="started" from="Dialog/DialogContent/Connect" to="." method="_on_connect_started"]

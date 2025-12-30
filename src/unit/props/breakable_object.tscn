@@ -1,0 +1,112 @@
+[gd_scene load_steps=18 format=3 uid="uid://chvi7bc58s56r"]
+
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="1_4wej3"]
+[ext_resource type="Texture2D" uid="uid://hxghl5we0i8h" path="res://asset/texture/tile/breakable/dirt.webp" id="1_dngce"]
+[ext_resource type="Script" uid="uid://ipjvn1gieqbe" path="res://src/unit/props/breakable_object.gd" id="1_k12ps"]
+[ext_resource type="Texture2D" uid="uid://ct0h4u1baj5jg" path="res://asset/texture/tile/breakable/stone.webp" id="1_voj2o"]
+[ext_resource type="Texture2D" uid="uid://cv5tykgf26tqq" path="res://asset/texture/tile/breakable/snow.webp" id="3_bbd7n"]
+[ext_resource type="Texture2D" uid="uid://co267kybe02qv" path="res://asset/texture/tile/breakable/sand_brick.webp" id="5_egn7m"]
+[ext_resource type="Texture2D" uid="uid://sg4tlkxjbpfb" path="res://asset/texture/tile/breakable/sand.webp" id="6_4wej3"]
+[ext_resource type="PackedScene" uid="uid://ctjmfotnke34v" path="res://src/unit/common/hitbox/hitbox.tscn" id="8_j2gve"]
+[ext_resource type="Script" uid="uid://cp8adijnorm6o" path="res://src/unit/common/particle/particle_queue.gd" id="8_u53pu"]
+[ext_resource type="Material" uid="uid://dufqhbjm8tu6l" path="res://src/asset/particle/breakable_object_hit.tres" id="10_j2gve"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u53pu"]
+resource_local_to_scene = true
+shader = ExtResource("1_4wej3")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bbd7n"]
+texture = ExtResource("1_voj2o")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n0w6q"]
+texture = ExtResource("1_dngce")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sltjb"]
+texture = ExtResource("3_bbd7n")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wej3"]
+texture = ExtResource("5_egn7m")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u53pu"]
+texture = ExtResource("6_4wej3")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSet" id="TileSet_8h2bu"]
+tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 131329
+physics_layer_0/collision_mask = 0
+sources/1 = SubResource("TileSetAtlasSource_n0w6q")
+sources/0 = SubResource("TileSetAtlasSource_bbd7n")
+sources/2 = SubResource("TileSetAtlasSource_sltjb")
+sources/3 = SubResource("TileSetAtlasSource_4wej3")
+sources/4 = SubResource("TileSetAtlasSource_u53pu")
+
+[node name="BreakableObject" type="TileMapLayer" groups=["breakable_object"]]
+material = SubResource("ShaderMaterial_u53pu")
+tile_set = SubResource("TileSet_8h2bu")
+navigation_enabled = false
+script = ExtResource("1_k12ps")
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Hitbox" parent="." instance=ExtResource("8_j2gve")]
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+debug_color = Color(0.633782, 0.34303, 1, 0.42)
+
+[node name="SolidFix" type="StaticBody2D" parent="."]
+collision_layer = 257
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SolidFix"]
+
+[node name="ParticleQueue" type="Node" parent="."]
+script = ExtResource("8_u53pu")
+metadata/_custom_type_script = "uid://cp8adijnorm6o"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("10_j2gve")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("10_j2gve")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="ParticleQueue"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("10_j2gve")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+color = Color(0, 0, 0, 1)
+
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="collided" from="Hitbox" to="." method="_on_hitbox_collided"]

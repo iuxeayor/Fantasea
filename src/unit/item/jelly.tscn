@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxul2iw1o6bsd"]
+
+[ext_resource type="PackedScene" uid="uid://driwcyyp8a678" path="res://src/unit/item/item.tscn" id="1_nsul5"]
+[ext_resource type="Script" uid="uid://bvqax6fccg6dq" path="res://src/unit/item/jelly.gd" id="2_xgmh2"]
+[ext_resource type="Texture2D" uid="uid://c0r6j5a7lpwu5" path="res://asset/texture/unit/item/jelly.webp" id="3_m7idc"]
+
+[node name="Jelly" instance=ExtResource("1_nsul5")]
+script = ExtResource("2_xgmh2")
+item_id = "jelly"
+message = "ITEM_JELLY"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_m7idc")

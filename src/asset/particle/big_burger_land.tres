@@ -1,0 +1,25 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=4 format=3 uid="uid://ciqeqd4xv5uys"]
+
+[ext_resource type="Texture2D" uid="uid://c42ew34tvwt57" path="res://src/asset/curve/fade_out.tres" id="1_q4ay8"]
+
+[sub_resource type="Gradient" id="Gradient_q4ay8"]
+colors = PackedColorArray(0.5411765, 0.28235295, 0.21176471, 1, 0.9019608, 0.6117647, 0.4117647, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_56qww"]
+gradient = SubResource("Gradient_q4ay8")
+
+[resource]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(12, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 80.0
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 90, 0)
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_56qww")
+alpha_curve = ExtResource("1_q4ay8")

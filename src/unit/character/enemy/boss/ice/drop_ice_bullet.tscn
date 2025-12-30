@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://ntvv05k8llxg"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_y3aus"]
+[ext_resource type="Script" uid="uid://dxiw6ph0bs0q6" path="res://src/unit/character/enemy/boss/ice/drop_ice_bullet.gd" id="2_b7hsm"]
+[ext_resource type="Texture2D" uid="uid://bx3yob8dxi8ns" path="res://asset/texture/unit/enemy/boss/ice/drop_ice_bullet.webp" id="3_b7hsm"]
+[ext_resource type="Material" uid="uid://bxh4fkf88hmab" path="res://src/asset/particle/small_bullet_disappear.tres" id="4_bbscu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b7hsm"]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bbscu"]
+radius = 3.0
+height = 10.0
+
+[node name="DropIceBullet" instance=ExtResource("1_y3aus")]
+script = ExtResource("2_b7hsm")
+obj_name = &"drop_ice_bullet"
+gravity = 900.0
+rotate_with_velocity = true
+dead_on_collide = 1
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_b7hsm")
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_b7hsm")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bbscu")
+
+[node name="ParticlePoint" parent="." index="4"]
+position = Vector2(2, 0)
+
+[node name="ParticleQueue" parent="." index="5"]
+overwrite_color = Color(0.580392, 0.992157, 1, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleQueue" index="0"]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_bbscu")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleQueue" index="1"]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_bbscu")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="6"]
+visible = false
+
+[node name="FloorChecker" type="RayCast2D" parent="." index="7"]
+target_position = Vector2(16, 0)
+collision_mask = 3
+
+[connection signal="finished" from="." to="." method="_on_finished"]

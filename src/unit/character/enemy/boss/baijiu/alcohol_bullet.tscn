@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://72i7rmwh1ro4"]
+
+[ext_resource type="PackedScene" uid="uid://d1dws1tcw045m" path="res://src/unit/character/enemy/character_bullet.tscn" id="1_07pbe"]
+[ext_resource type="Texture2D" uid="uid://bnhqn2eeu3s25" path="res://asset/texture/unit/enemy/boss/baijiu/alcohol_bullet.webp" id="2_i17x8"]
+[ext_resource type="Script" uid="uid://cv2g5yiqvpjma" path="res://src/unit/character/enemy/boss/baijiu/alcohol_bullet.gd" id="2_tccvk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i17x8"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tccvk"]
+radius = 6.0
+
+[node name="AlcoholBullet" instance=ExtResource("1_07pbe")]
+script = ExtResource("2_tccvk")
+obj_name = &"alcohol_bullet"
+gravity = 900.0
+rotation_speed = 2.0
+dead_on_hit = false
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_i17x8")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_i17x8")
+
+[node name="Hitbox" parent="." index="2"]
+damage = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_tccvk")
+
+[node name="LifeTimer" parent="." index="3"]
+wait_time = 5.0

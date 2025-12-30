@@ -1,0 +1,480 @@
+[gd_scene load_steps=29 format=3 uid="uid://dm0kgssiulbv5"]
+
+[ext_resource type="Script" uid="uid://bb0e5d2cgided" path="res://src/ui/title_screen.gd" id="2_6kggf"]
+[ext_resource type="AudioStream" uid="uid://blpbr62dgifi5" path="res://asset/music/title.ogg" id="3_b5uku"]
+[ext_resource type="Texture2D" uid="uid://bc4uklbywi465" path="res://asset/texture/background/forest_trunk_far.webp" id="4_wg5ug"]
+[ext_resource type="Texture2D" uid="uid://okj3v28f7tn2" path="res://asset/texture/logo.webp" id="5_ilmdq"]
+[ext_resource type="Texture2D" uid="uid://drxhjtek1x0qv" path="res://asset/texture/background/forest_leaf_top.webp" id="5_j4tbi"]
+[ext_resource type="Texture2D" uid="uid://hnh1p8nakjs2" path="res://asset/texture/background/forest_leaf_bottom_far.webp" id="6_0odt8"]
+[ext_resource type="Texture2D" uid="uid://efespqybkve8" path="res://asset/texture/background/forest_leaf_bottom_near.webp" id="7_04rag"]
+[ext_resource type="Texture2D" uid="uid://uj5u70k3nqe7" path="res://asset/texture/background/island_sky.webp" id="8_0gf2t"]
+[ext_resource type="Shader" uid="uid://bwq5fsfwuoq07" path="res://src/asset/shader/blur.gdshader" id="8_25vo7"]
+[ext_resource type="Theme" uid="uid://cweo6yptyo0b" path="res://src/asset/theme/menu_theme_forest.tres" id="8_ciees"]
+[ext_resource type="Texture2D" uid="uid://cb2qqpor30kqs" path="res://asset/texture/background/desert_sky.webp" id="8_glrfq"]
+[ext_resource type="Texture2D" uid="uid://ctfk715u0pt1q" path="res://asset/texture/background/desert_hill_far.webp" id="9_noknm"]
+[ext_resource type="Texture2D" uid="uid://sfordkw6vwf4" path="res://asset/texture/background/island_cloud_near.webp" id="9_yurly"]
+[ext_resource type="Texture2D" uid="uid://dug5xsjc65q3p" path="res://asset/texture/background/desert_hill_mid.webp" id="10_gmwca"]
+[ext_resource type="Texture2D" uid="uid://76pnaaul1wae" path="res://asset/texture/background/island_water_top.webp" id="10_lh0bn"]
+[ext_resource type="Texture2D" uid="uid://5yb8j8ipqgjg" path="res://asset/texture/background/island_water_mid.webp" id="11_fru0b"]
+[ext_resource type="Texture2D" uid="uid://cdutf85egs1g3" path="res://asset/texture/background/desert_hill_near.webp" id="11_xv238"]
+[ext_resource type="Texture2D" uid="uid://bju1k5nfekdqx" path="res://asset/texture/background/island_water_bottom.webp" id="12_kml13"]
+[ext_resource type="Texture2D" uid="uid://vc4oq7odvgla" path="res://asset/texture/background/desert_land.webp" id="12_kt6fw"]
+[ext_resource type="Texture2D" uid="uid://btaiko21kvps6" path="res://asset/texture/background/snowplain_sky.webp" id="13_yurly"]
+[ext_resource type="Texture2D" uid="uid://beyx0hbcqc20j" path="res://asset/texture/background/snowplain_mountain.webp" id="14_fru0b"]
+[ext_resource type="Texture2D" uid="uid://c1ufbcc8230x0" path="res://asset/texture/background/snowplain_tree.webp" id="15_kml13"]
+[ext_resource type="Texture2D" uid="uid://xbtkyiff2noo" path="res://asset/texture/subtitle.webp" id="23_fru0b"]
+[ext_resource type="Texture2D" uid="uid://bnfc8kyeahxjw" path="res://asset/texture/ui/social/discord.webp" id="23_kt6fw"]
+[ext_resource type="Texture2D" uid="uid://c6sfif0of8d8j" path="res://asset/texture/ui/social/steam.webp" id="24_0gf2t"]
+[ext_resource type="Texture2D" uid="uid://bupkr0xbunmc6" path="res://asset/texture/ui/social/qq.webp" id="24_lh0bn"]
+[ext_resource type="Texture2D" uid="uid://diaf2383x2yuu" path="res://asset/texture/ui/social/itch.webp" id="25_yurly"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhf1j"]
+shader = ExtResource("8_25vo7")
+shader_parameter/strength = 2.0
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_ciees")
+script = ExtResource("2_6kggf")
+bgm = ExtResource("3_b5uku")
+
+[node name="Background" type="Node" parent="."]
+
+[node name="Forest" type="CanvasLayer" parent="Background"]
+layer = -10
+follow_viewport_enabled = true
+
+[node name="TrunkFar" type="Parallax2D" parent="Background/Forest"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest/TrunkFar"]
+position = Vector2(192, 108)
+texture = ExtResource("4_wg5ug")
+
+[node name="LeafTop" type="Parallax2D" parent="Background/Forest"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(8, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest/LeafTop"]
+position = Vector2(192, 108)
+texture = ExtResource("5_j4tbi")
+
+[node name="LeafBottomFar" type="Parallax2D" parent="Background/Forest"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(8, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest/LeafBottomFar"]
+position = Vector2(192, 108)
+texture = ExtResource("6_0odt8")
+
+[node name="LeafBottomNear" type="Parallax2D" parent="Background/Forest"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(9, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Forest/LeafBottomNear"]
+position = Vector2(192, 108)
+texture = ExtResource("7_04rag")
+
+[node name="Island" type="CanvasLayer" parent="Background"]
+layer = -10
+visible = false
+follow_viewport_enabled = true
+
+[node name="Sky" type="Parallax2D" parent="Background/Island"]
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Island/Sky"]
+position = Vector2(192, 108)
+texture = ExtResource("8_0gf2t")
+
+[node name="Cloud" type="Parallax2D" parent="Background/Island"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(9, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Island/Cloud"]
+position = Vector2(192, 108)
+texture = ExtResource("9_yurly")
+
+[node name="WaterTop" type="Parallax2D" parent="Background/Island"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(7, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Island/WaterTop"]
+position = Vector2(192, 108)
+texture = ExtResource("10_lh0bn")
+
+[node name="WaterMid" type="Parallax2D" parent="Background/Island"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(8, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Island/WaterMid"]
+modulate = Color(1, 1, 1, 0.733333)
+position = Vector2(192, 108)
+texture = ExtResource("11_fru0b")
+
+[node name="WaterBottom" type="Parallax2D" parent="Background/Island"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(9, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Island/WaterBottom"]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(192, 108)
+texture = ExtResource("12_kml13")
+
+[node name="Snowfield" type="CanvasLayer" parent="Background"]
+layer = -10
+visible = false
+follow_viewport_enabled = true
+
+[node name="Sky" type="Parallax2D" parent="Background/Snowfield"]
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Snowfield/Sky"]
+position = Vector2(192, 108)
+texture = ExtResource("13_yurly")
+
+[node name="Mountain" type="Parallax2D" parent="Background/Snowfield"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(8, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Snowfield/Mountain"]
+position = Vector2(192, 108)
+texture = ExtResource("14_fru0b")
+
+[node name="Tree" type="Parallax2D" parent="Background/Snowfield"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(9, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Snowfield/Tree"]
+position = Vector2(192, 108)
+texture = ExtResource("15_kml13")
+
+[node name="Desert" type="CanvasLayer" parent="Background"]
+layer = -10
+visible = false
+follow_viewport_enabled = true
+
+[node name="Sky" type="Parallax2D" parent="Background/Desert"]
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Desert/Sky"]
+position = Vector2(192, 108)
+texture = ExtResource("8_glrfq")
+
+[node name="HillFar" type="Parallax2D" parent="Background/Desert"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(8, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Desert/HillFar"]
+position = Vector2(192, 108)
+texture = ExtResource("9_noknm")
+
+[node name="HillMid" type="Parallax2D" parent="Background/Desert"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(9, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Desert/HillMid"]
+position = Vector2(192, 108)
+texture = ExtResource("10_gmwca")
+
+[node name="HillNear" type="Parallax2D" parent="Background/Desert"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(9, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Desert/HillNear"]
+position = Vector2(192, 108)
+texture = ExtResource("11_xv238")
+
+[node name="Land" type="Parallax2D" parent="Background/Desert"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(10, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Desert/Land"]
+position = Vector2(192, 108)
+texture = ExtResource("12_kt6fw")
+
+[node name="Cave" type="CanvasLayer" parent="Background"]
+layer = -10
+visible = false
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="Background/Cave"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Ship" type="CanvasLayer" parent="Background"]
+layer = -10
+visible = false
+follow_viewport_enabled = true
+
+[node name="Sky" type="Parallax2D" parent="Background/Ship"]
+repeat_size = Vector2(384, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Ship/Sky"]
+position = Vector2(192, 108)
+texture = ExtResource("8_0gf2t")
+
+[node name="Cloud" type="Parallax2D" parent="Background/Ship"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(9, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Ship/Cloud"]
+position = Vector2(192, 108)
+texture = ExtResource("9_yurly")
+
+[node name="WaterTop" type="Parallax2D" parent="Background/Ship"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(7, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Ship/WaterTop"]
+position = Vector2(192, 108)
+texture = ExtResource("10_lh0bn")
+
+[node name="WaterMid" type="Parallax2D" parent="Background/Ship"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(8, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Ship/WaterMid"]
+modulate = Color(1, 1, 1, 0.733333)
+position = Vector2(192, 108)
+texture = ExtResource("11_fru0b")
+
+[node name="WaterBottom" type="Parallax2D" parent="Background/Ship"]
+repeat_size = Vector2(384, 0)
+autoscroll = Vector2(9, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Ship/WaterBottom"]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(192, 108)
+texture = ExtResource("12_kml13")
+
+[node name="ColorRect" type="ColorRect" parent="Background/Ship"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -80.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.34117648, 0.10980392, 0.15294118, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Background/Ship/ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+color = Color(0.76862746, 0.14117648, 0.1882353, 1)
+
+[node name="BackgroundBlur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_xhf1j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -12.0
+offset_right = 128.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EmptySpace" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EmptySpace" type="Control" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 96)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Options" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Continue" type="Button" parent="HBoxContainer/VBoxContainer/PanelContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "TITLE_CONTINUE"
+
+[node name="NewGame" type="Button" parent="HBoxContainer/VBoxContainer/PanelContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "TITLE_NEW_GAME"
+
+[node name="Setting" type="Button" parent="HBoxContainer/VBoxContainer/PanelContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "TITLE_SETTING"
+icon_alignment = 2
+
+[node name="Exit" type="Button" parent="HBoxContainer/VBoxContainer/PanelContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "TITLE_EXIT"
+
+[node name="EmptySpace2" type="Control" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EmptySpace2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="Copyright" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -16.0
+offset_right = -256.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "demo"
+vertical_alignment = 1
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 96.0
+grow_horizontal = 2
+texture = ExtResource("5_ilmdq")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="FakeButton" type="Button" parent="Logo"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = 57.0
+offset_right = 83.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+disabled = true
+icon = ExtResource("23_fru0b")
+flat = true
+
+[node name="SocialMedia" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Discord" type="Button" parent="SocialMedia"]
+layout_mode = 2
+icon = ExtResource("23_kt6fw")
+flat = true
+icon_alignment = 1
+
+[node name="QQ" type="Button" parent="SocialMedia"]
+layout_mode = 2
+icon = ExtResource("24_lh0bn")
+flat = true
+icon_alignment = 1
+
+[node name="Itch" type="Button" parent="SocialMedia"]
+layout_mode = 2
+icon = ExtResource("25_yurly")
+flat = true
+icon_alignment = 1
+
+[node name="Steam" type="Button" parent="SocialMedia"]
+layout_mode = 2
+icon = ExtResource("24_0gf2t")
+flat = true
+icon_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/PanelContainer/Options/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/PanelContainer/Options/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/PanelContainer/Options/Setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/PanelContainer/Options/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="SocialMedia/Discord" to="." method="_on_discord_pressed"]
+[connection signal="pressed" from="SocialMedia/QQ" to="." method="_on_qq_pressed"]
+[connection signal="pressed" from="SocialMedia/Itch" to="." method="_on_itch_pressed"]
+[connection signal="pressed" from="SocialMedia/Steam" to="." method="_on_steam_pressed"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://do7wh7elf3opi"]
+
+[ext_resource type="PackedScene" uid="uid://b0xv0xomuk2c6" path="res://src/unit/character/npc/npc.tscn" id="1_otmwc"]
+[ext_resource type="Script" uid="uid://hlhg3na2mkt0" path="res://src/unit/character/npc/big_burger_npc.gd" id="2_42hca"]
+[ext_resource type="Shader" uid="uid://d003qi8qm71iu" path="res://src/asset/shader/hurt_flash.gdshader" id="2_gxxb7"]
+[ext_resource type="Texture2D" uid="uid://c8n51orq8dw8u" path="res://asset/texture/unit/npc/big_burger.webp" id="3_gxxb7"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="4_tef8p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tef8p"]
+resource_local_to_scene = true
+shader = ExtResource("2_gxxb7")
+shader_parameter/flash_amount = 0.0
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxxb7"]
+size = Vector2(48, 8)
+
+[node name="BigBurgerNpc" instance=ExtResource("1_otmwc")]
+script = ExtResource("2_42hca")
+
+[node name="Sprite2D" parent="Graphics" index="0"]
+material = SubResource("ShaderMaterial_tef8p")
+position = Vector2(0, -16)
+texture = ExtResource("3_gxxb7")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_gxxb7")
+
+[node name="Dialog" parent="." index="4" node_paths=PackedStringArray("root_dialog")]
+position = Vector2(0, -34)
+root_dialog = NodePath("Normal")
+
+[node name="Normal" parent="Dialog" index="3" instance=ExtResource("4_tef8p")]
+can_end = true
+message = Array[String](["BIG_BURGER_NORMAL_0", "BIG_BURGER_NORMAL_1", "BIG_BURGER_NORMAL_2"])
+
+[node name="Battle" parent="Dialog" index="4" instance=ExtResource("4_tef8p")]
+can_end = true
+can_release_control = false
+message = Array[String](["BIG_BURGER_BATTLE_0"])
+
+[node name="End" parent="Dialog" index="5" instance=ExtResource("4_tef8p")]
+can_end = true
+message = Array[String](["BIG_BURGER_END_0", "BIG_BURGER_END_1"])
+
+[connection signal="ended" from="Dialog/Battle" to="." method="_on_battle_ended"]

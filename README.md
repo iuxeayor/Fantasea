@@ -1,7 +1,5 @@
-# Bread Adventure
+# Fantasea: Children of Ember
 
-https://store.steampowered.com/app/3835290/Bread_Adventure/
+Forked from Bread Adventure, a Metroidvania game made in Godot.
 
-Metroidvania game made by Godot
-
-Godot开发的类银河战士恶魔城游戏
+Fantasea is a story-based platformer about a planet full of magic and those who would fight to own it.

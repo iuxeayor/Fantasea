@@ -64,10 +64,10 @@ class PlayerStatus:
 	
 
 class SceneStatus:
-	var lapse: int = 0 # 游戏时间
+	var lapse: int = 0 # Game Time
 	var scene_explore: Dictionary[int, Constant.ExploreStatus] = new_scene_explore() # 探索列表
-	var scene_index: int = 1 # 当前场景索引
-	# 存储仅用于判断主题，不实际使用
+	var scene_index: int = 1 # Current Scene Index
+	# The stored data is only used for determining the topic and is not actually used otherwise.
 	var scene_environment: Constant.SceneEnvironment = Constant.SceneEnvironment.SWAP # 当前场景环境
 	# 剧情
 	var story: Dictionary[String, bool] = {
@@ -104,7 +104,7 @@ class SceneStatus:
 
 	func load_from(save: ConfigFile) -> ConfigFile:
 		lapse = Util.get_value_from_config(save, "status", "lapse", 0) # 游戏时间
-		scene_index = Util.get_value_from_config(save, "status", "scene_index", 1) # 场景索引
+		scene_index = Util.get_value_from_config(save, "status", "scene_index", 1) # 场景索引 (Scene Index)
 		for i in range(Constant.SCENE_COUNT):
 			if save.has_section("scene_explore"):
 				scene_explore[i] = Util.get_value_from_config(save,

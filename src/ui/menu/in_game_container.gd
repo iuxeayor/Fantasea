@@ -31,3 +31,10 @@ func _on_back_title_button_pressed() -> void:
 	# 淡出
 	await UIManager.special_effect.fade_out(0.5)
 	get_tree().paused = false
+
+
+func _on_exit_pressed() -> void:
+	if Util.is_web_platform():
+		JavaScriptBridge.eval("location.reload()")
+	else:
+		get_tree().quit()

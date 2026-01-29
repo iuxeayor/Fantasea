@@ -110,16 +110,16 @@ func _on_exit_pressed() -> void:
 
 
 func _on_discord_pressed() -> void:
-	OS.shell_open("https://github.com/wheafun/bread-adventure")
+	OS.shell_open("https://github.com/iuxeayor/Fantasea")
 
 
 func _on_steam_pressed() -> void:
-	OS.shell_open("https://github.com/wheafun/bread-adventure")
+	OS.shell_open("https://github.com/iuxeayor/Fantasea")
 
 
 func _on_itch_pressed() -> void:
-	OS.shell_open("https://github.com/wheafun/bread-adventure")
+	OS.shell_open("https://github.com/iuxeayor/Fantasea")
 
 
 func _on_qq_pressed() -> void:
-	OS.shell_open("https://github.com/wheafun/bread-adventure")
+	OS.shell_open("https://github.com/iuxeayor/Fantasea")

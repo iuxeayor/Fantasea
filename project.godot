@@ -14,7 +14,7 @@ general/accessibility_support=2
 
 [application]
 
-config/name="Bread Adventure Open"
+config/name="Fantasea: Children of Ember"
 config/version="1.0.0"
 run/main_scene="res://src/ui/open_screen.tscn"
 config/quit_on_go_back=false

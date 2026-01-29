@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dm0kgssiulbv5"]
+[gd_scene load_steps=28 format=3 uid="uid://dm0kgssiulbv5"]
 
 [ext_resource type="Script" uid="uid://bb0e5d2cgided" path="res://src/ui/title_screen.gd" id="2_6kggf"]
 [ext_resource type="AudioStream" uid="uid://blpbr62dgifi5" path="res://asset/music/title.ogg" id="3_b5uku"]
@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://btaiko21kvps6" path="res://asset/texture/background/snowplain_sky.webp" id="13_yurly"]
 [ext_resource type="Texture2D" uid="uid://beyx0hbcqc20j" path="res://asset/texture/background/snowplain_mountain.webp" id="14_fru0b"]
 [ext_resource type="Texture2D" uid="uid://c1ufbcc8230x0" path="res://asset/texture/background/snowplain_tree.webp" id="15_kml13"]
-[ext_resource type="Texture2D" uid="uid://xbtkyiff2noo" path="res://asset/texture/subtitle.webp" id="23_fru0b"]
 [ext_resource type="Texture2D" uid="uid://bnfc8kyeahxjw" path="res://asset/texture/ui/social/discord.webp" id="23_kt6fw"]
 [ext_resource type="Texture2D" uid="uid://c6sfif0of8d8j" path="res://asset/texture/ui/social/steam.webp" id="24_0gf2t"]
 [ext_resource type="Texture2D" uid="uid://bupkr0xbunmc6" path="res://asset/texture/ui/social/qq.webp" id="24_lh0bn"]
@@ -421,15 +420,16 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -83.0
-offset_top = 57.0
-offset_right = 83.0
-offset_bottom = -13.0
+offset_left = -82.0
+offset_top = 37.0
+offset_right = 84.0
+offset_bottom = -29.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 disabled = true
-icon = ExtResource("23_fru0b")
+text = "Fantasea:
+Children of Ember"
 flat = true
 
 [node name="SocialMedia" type="HBoxContainer" parent="."]

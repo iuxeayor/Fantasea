@@ -1,15 +1,15 @@
-[gd_scene load_steps=13 format=4 uid="uid://blua64w1ck2mj"]
+[gd_scene load_steps=13 format=4 uid="uid://8wqtleq0irdt"]
 
-[ext_resource type="PackedScene" uid="uid://drwpijhad8ye1" path="res://src/scene/game/base/forest_scene.tscn" id="1_wxuw8"]
-[ext_resource type="Script" uid="uid://3mrvgkrit63b" path="res://src/scene/game/scene_1.gd" id="2_4yc1k"]
-[ext_resource type="PackedScene" uid="uid://dub58i354rw7w" path="res://src/unit/props/rain.tscn" id="3_26lsq"]
-[ext_resource type="Texture2D" uid="uid://cb6bmar0rgggn" path="res://asset/texture/prop/forest/stone.webp" id="4_kc6jb"]
-[ext_resource type="PackedScene" uid="uid://dekecjlka8xp5" path="res://src/ui/dialog/dialog.tscn" id="5_jpirc"]
-[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="6_eelbc"]
-[ext_resource type="PackedScene" uid="uid://debavhwwbmt4m" path="res://src/unit/props/night_light.tscn" id="7_ajisq"]
-[ext_resource type="PackedScene" uid="uid://bictjaq7mapmy" path="res://src/scene/teleporter.tscn" id="8_qvllu"]
-[ext_resource type="PackedScene" uid="uid://dhp3xvkqaqrid" path="res://src/scene/entry_point.tscn" id="9_tsl6d"]
-[ext_resource type="PackedScene" uid="uid://2vwp3qil3b1o" path="res://src/ui/tutorial_hint.tscn" id="10_47vs3"]
+[ext_resource type="PackedScene" uid="uid://drwpijhad8ye1" path="res://src/scene/game/base/forest_scene.tscn" id="1_bq5xe"]
+[ext_resource type="Script" uid="uid://3mrvgkrit63b" path="res://src/scene/game/scene_1.gd" id="2_2dm3n"]
+[ext_resource type="PackedScene" uid="uid://dub58i354rw7w" path="res://src/unit/props/rain.tscn" id="3_sbyas"]
+[ext_resource type="Texture2D" uid="uid://cb6bmar0rgggn" path="res://asset/texture/prop/forest/stone.webp" id="4_o56cm"]
+[ext_resource type="PackedScene" uid="uid://dekecjlka8xp5" path="res://src/ui/dialog/dialog.tscn" id="5_xac3s"]
+[ext_resource type="PackedScene" uid="uid://vpfo1b81nema" path="res://src/ui/dialog/dialog_content.tscn" id="6_obgq7"]
+[ext_resource type="PackedScene" uid="uid://debavhwwbmt4m" path="res://src/unit/props/night_light.tscn" id="7_uul17"]
+[ext_resource type="PackedScene" uid="uid://bictjaq7mapmy" path="res://src/scene/teleporter.tscn" id="8_uskd0"]
+[ext_resource type="PackedScene" uid="uid://dhp3xvkqaqrid" path="res://src/scene/entry_point.tscn" id="9_iuclk"]
+[ext_resource type="PackedScene" uid="uid://2vwp3qil3b1o" path="res://src/ui/tutorial_hint.tscn" id="10_r8x3s"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_8woqr"]
 b = Vector2(64, 0)
@@ -17,16 +17,16 @@ b = Vector2(64, 0)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_s06o2"]
 b = Vector2(16, 0)
 
-[node name="Scene1" instance=ExtResource("1_wxuw8")]
-script = ExtResource("2_4yc1k")
+[node name="Scene1" instance=ExtResource("1_bq5xe")]
+script = ExtResource("2_2dm3n")
 scene_name = "SCENE_FOREST_START"
 
-[node name="Rain" parent="Background/Prop" index="0" instance=ExtResource("3_26lsq")]
+[node name="Rain" parent="Background/Prop" index="0" instance=ExtResource("3_sbyas")]
 position = Vector2(192, -64)
 
 [node name="Stone" type="Sprite2D" parent="Background/Prop" index="1"]
 position = Vector2(184, 152)
-texture = ExtResource("4_kc6jb")
+texture = ExtResource("4_o56cm")
 
 [node name="Tile" parent="Background/Prop" index="2"]
 tile_map_data = PackedByteArray("AAAsABUAAQALAAcAAAAsABQAAQALAAYAAAAsABMAAQALAAQAAAArABUAAQAJAAcAAAArABQAAQAKAAEAAAArABMAAQAKAAAAAAAqABUAAQAJAAMAAAAqABQAAQAKAAUAAAAqABMAAQAKAAAAAAApABUAAQAJAAMAAAApABQAAQAKAAEAAAApABMAAQAKAAQAAAAoABUAAQAIAAcAAAAoABQAAQAIAAUAAAAoABMAAQAIAAQAAAAEABQAAQACAAEAAAAFABQAAQACAAEAAAAGABQAAQACAAEAAAA=")
@@ -37,12 +37,12 @@ tile_map_data = PackedByteArray("AAD//xAAAAAJAAYAAAD//xEAAAAJAAYAAAD//xIAAAAJAAY
 [node name="Player" parent="." index="3"]
 position = Vector2(192, 168)
 
-[node name="Dialog" parent="Player" index="11" node_paths=PackedStringArray("root_dialog") instance=ExtResource("5_jpirc")]
+[node name="Dialog" parent="Player" index="11" node_paths=PackedStringArray("root_dialog") instance=ExtResource("5_xac3s")]
 position = Vector2(0, -18)
 root_dialog = NodePath("Start")
 hide_disabled = false
 
-[node name="Start" parent="Player/Dialog" index="3" instance=ExtResource("6_eelbc")]
+[node name="Start" parent="Player/Dialog" index="3" instance=ExtResource("6_obgq7")]
 can_end = true
 can_release_control = false
 message = Array[String](["START_0", "START_1", "START_2", "START_3", "START_4", "START_5"])
@@ -50,31 +50,31 @@ message = Array[String](["START_0", "START_1", "START_2", "START_3", "START_4", 
 [node name="GameCamera" parent="." index="4"]
 position = Vector2(192, 168)
 
-[node name="NightLight" parent="Lights" index="1" instance=ExtResource("7_ajisq")]
+[node name="NightLight" parent="Lights" index="1" instance=ExtResource("7_uul17")]
 
-[node name="RTeleporter" parent="Entrances" index="0" instance=ExtResource("8_qvllu")]
+[node name="RTeleporter" parent="Entrances" index="0" instance=ExtResource("8_uskd0")]
 position = Vector2(400, 0)
 target_scene = 2
 
-[node name="EntryPoint" parent="Entrances/RTeleporter" index="1" instance=ExtResource("9_tsl6d")]
+[node name="EntryPoint" parent="Entrances/RTeleporter" index="1" instance=ExtResource("9_iuclk")]
 position = Vector2(-16, 152)
 location = 4
 
-[node name="LTeleporter" parent="Entrances" index="1" instance=ExtResource("8_qvllu")]
+[node name="LTeleporter" parent="Entrances" index="1" instance=ExtResource("8_uskd0")]
 position = Vector2(-16, 0)
 target_entry_point = 5
 
-[node name="EntryPoint" parent="Entrances/LTeleporter" index="1" instance=ExtResource("9_tsl6d")]
+[node name="EntryPoint" parent="Entrances/LTeleporter" index="1" instance=ExtResource("9_iuclk")]
 position = Vector2(16, 104)
 
-[node name="StartEntryPoint" parent="Entrances" index="2" instance=ExtResource("9_tsl6d")]
+[node name="StartEntryPoint" parent="Entrances" index="2" instance=ExtResource("9_iuclk")]
 position = Vector2(192, 168)
 location = 8
 
 [node name="Tutorial" type="CanvasLayer" parent="." index="7"]
 layer = 11
 
-[node name="Move" parent="Tutorial" index="0" instance=ExtResource("10_47vs3")]
+[node name="Move" parent="Tutorial" index="0" instance=ExtResource("10_r8x3s")]
 message = "TUTORIAL_MOVE"
 actions = Array[StringName]([&"move_left", &"move_right"])
 story_id = "main_start"
@@ -83,7 +83,7 @@ story_id = "main_start"
 position = Vector2(160, -24)
 shape = SubResource("SegmentShape2D_8woqr")
 
-[node name="Jump" parent="Tutorial" index="1" instance=ExtResource("10_47vs3")]
+[node name="Jump" parent="Tutorial" index="1" instance=ExtResource("10_r8x3s")]
 message = "TUTORIAL_JUMP"
 actions = Array[StringName]([&"jump"])
 story_id = "main_start"
@@ -92,7 +92,7 @@ story_id = "main_start"
 position = Vector2(336, -24)
 shape = SubResource("SegmentShape2D_s06o2")
 
-[node name="Rain" parent="." index="8" instance=ExtResource("3_26lsq")]
+[node name="Rain" parent="." index="8" instance=ExtResource("3_sbyas")]
 z_index = 10
 position = Vector2(192, -64)
 

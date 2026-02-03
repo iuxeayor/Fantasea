@@ -1,7 +1,9 @@
 extends Node
 
 ## File path of the scene.
-const SCENE_PATH: String = "res://src/scene/game/scene_%d.tscn"
+#const SCENE_PATH: String = "res://src/scene/game/scene_%d.tscn"
+const SCENE_PATH: String = "res://_Fantasea/00-Scenes/scene_%d.tscn"
+
 
 var loading_scene: Dictionary[int, String] = {} # 正在加载的场景
 var loaded_scene: Dictionary[int, PackedScene] = {} # 已加载的场景

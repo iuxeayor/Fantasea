@@ -60,9 +60,10 @@ message = Array[String](["START_0", "START_1", "START_2", "START_3", "START_4", 
 position = Vector2(192, 168)
 
 [node name="NightLight" parent="Lights" index="1" instance=ExtResource("7_j14p7")]
+enabled = false
 
 [node name="RTeleporter" parent="Entrances" index="0" instance=ExtResource("8_n50on")]
-position = Vector2(400, 0)
+position = Vector2(1202, 28)
 target_scene = 2
 
 [node name="EntryPoint" parent="Entrances/RTeleporter" index="1" instance=ExtResource("9_8fxbb")]
@@ -70,7 +71,7 @@ position = Vector2(-16, 152)
 location = 4
 
 [node name="LTeleporter" parent="Entrances" index="1" instance=ExtResource("8_n50on")]
-position = Vector2(-16, 0)
+position = Vector2(-138, 2)
 target_entry_point = 5
 
 [node name="EntryPoint" parent="Entrances/LTeleporter" index="1" instance=ExtResource("9_8fxbb")]

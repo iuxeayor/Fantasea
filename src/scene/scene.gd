@@ -13,7 +13,7 @@ var explore_status: Constant.ExploreStatus = Constant.ExploreStatus.UNKNOWN
 @onready var units: Node2D = $Units
 @onready var enemies: Node2D = $Units/Enemies
 @onready var object_pool: ObjectPool = $Units/ObjectPool
-@onready var game_tile: TileMapLayer = $GameTile
+@onready var game_tile: TileMapLayer = $GameTile2
 @onready var player: Player = $Player
 @onready var game_camera: Camera2D = $GameCamera
 @onready var camera_remote: RemoteTransform2D = $Player/CameraRemote
@@ -52,7 +52,7 @@ func _ready() -> void:
 	explore_status = Constant.ExploreStatus.EXPLORED
 	from_status()
 	_handle_explore_unit()
-	_limit_camera()
+	_limit_camera() #I think this func stops cam from following player.
 	# 延展仅在移动设备上生效
 	if Util.is_touchscreen_platform():
 		get_viewport().size_changed.connect(_limit_camera)

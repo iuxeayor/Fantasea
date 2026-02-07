@@ -58,6 +58,7 @@ message = Array[String](["START_0", "START_1", "START_2", "START_3", "START_4", 
 
 [node name="GameCamera" parent="." index="5"]
 position = Vector2(192, 168)
+zoom = Vector2(0.5, 0.5)
 
 [node name="NightLight" parent="Lights" index="1" instance=ExtResource("7_j14p7")]
 enabled = false
